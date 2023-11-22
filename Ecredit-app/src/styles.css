@@ -42,5 +42,68 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-color: rgb(224, 100, 100);
 }
 #editButton{
+    margin-left: 30px;
     background-color: rgb(195, 238, 131);
+}
+.Observation{
+  width: 95%;
+margin: 20px;
+}
+#Submit{
+  margin-left: 50%;
+  background-color: rgb(114, 114, 245);
+  color:white;
+}
+#Submit:hover{
+  background-color: rgb(165, 165, 245);
+  color: rgb(255, 255, 255);
+}
+
+.button-container {
+  text-align: center;  
+}
+.button-container button {
+  margin: 5px; 
+  padding: 10px 20px; 
+  font-size: 16px; 
+  cursor: pointer; 
+  position: relative;
+}
+.files-upload{
+ 
+  border-radius: 5px;
+  justify-content: center;
+ 
+}
+.drop-container {
+  position: relative;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 2px dashed #555;
+  color: #444;
+  cursor: pointer;
+
+}
+
+.drop-container:hover {
+  background: #eee;
+  border-color: #111;
+}
+
+.drop-container:hover .drop-title {
+  color: #222;
+}
+
+.drop-title {
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  transition: color .2s ease-in-out;
 }
