@@ -1,4 +1,6 @@
 package com.Ecredit.demo.NatureGuarantie;
 
-public class NatureGuarantieRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface NatureGuarantieRepo extends JpaRepository<NatureGuarantie,Long> {
 }

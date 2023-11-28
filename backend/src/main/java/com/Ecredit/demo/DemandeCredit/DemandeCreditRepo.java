@@ -1,4 +1,6 @@
 package com.Ecredit.demo.DemandeCredit;
 
-public class DemandeCreditRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DemandeCreditRepo extends JpaRepository<DemandeCredit,Long> {
 }

@@ -1,4 +1,6 @@
 package com.Ecredit.demo.BankAccount;
 
-public class BankAccountRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface BankAccountRepo extends JpaRepository<BankAccount,Long> {
 }

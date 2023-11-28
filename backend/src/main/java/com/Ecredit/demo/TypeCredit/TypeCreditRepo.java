@@ -1,4 +1,6 @@
 package com.Ecredit.demo.TypeCredit;
 
-public class TypeCreditRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TypeCreditRepo extends JpaRepository<TypeCredit,Long> {
 }

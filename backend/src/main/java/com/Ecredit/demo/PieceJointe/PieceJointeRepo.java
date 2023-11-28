@@ -1,4 +1,6 @@
 package com.Ecredit.demo.PieceJointe;
 
-public class PieceJointeRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PieceJointeRepo extends JpaRepository<PieceJointe,Long> {
 }

@@ -1,4 +1,6 @@
 package com.Ecredit.demo.TypeGuarantie;
 
-public class TypeGuarantieRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TypeGuarantieRepo  extends JpaRepository<TypeGuarantie,Long> {
 }

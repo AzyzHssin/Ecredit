@@ -1,4 +1,6 @@
 package com.Ecredit.demo.Devise;
 
-public class DeviseRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DeviseRepo extends JpaRepository<DeviseRepo,Long> {
 }
