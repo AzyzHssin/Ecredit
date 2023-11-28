@@ -31,6 +31,7 @@ public class DemandeCredit{
     private String Observation;
     @Transient
     private List<Unite> uniteList  ;
+
     private long idBankAccount;
 
 
