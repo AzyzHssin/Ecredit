@@ -1,18 +1,12 @@
 package com.Ecredit.demo.DemandeCredit;
 
 import Unite.Unite;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+@Data
 @Entity
 public class DemandeCredit{
     @Id
