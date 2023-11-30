@@ -1,6 +1,8 @@
 package com.Ecredit.demo.DemandeCredit;
 
 import Unite.Unite;
+import com.Ecredit.demo.BankAccount.BankAccount;
+import com.Ecredit.demo.Guarantie.Guarantie;
 import lombok.*;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
+
 public class DemandeCredit{
     @Id
     @SequenceGenerator(
@@ -23,10 +26,12 @@ public class DemandeCredit{
     private int montant;
     private int nbreEcheance;
     private String Observation;
-    @Transient
-    private List<Unite> uniteList  ;
+    @OneToOne
+    private BankAccount bankAccount;
+    @OneToOne
+    private Unite unite;
 
-    private long idBankAccount;
-
+    @OneToMany
+    private List<Guarantie> guarantie;
 
 }

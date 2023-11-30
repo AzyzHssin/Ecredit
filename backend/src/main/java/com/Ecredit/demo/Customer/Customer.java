@@ -1,6 +1,7 @@
 package com.Ecredit.demo.Customer;
 
 import com.Ecredit.demo.BankAccount.BankAccount;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,6 @@ public class Customer {
     private Date birthday;
     @OneToMany
     private List<BankAccount> listOfAccounts;
+    @OneToOne
+    private SituationFamiliale.SituationFamiliale situationFamiliale;
 }

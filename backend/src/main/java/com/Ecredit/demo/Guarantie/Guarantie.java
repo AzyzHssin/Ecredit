@@ -1,5 +1,6 @@
 package com.Ecredit.demo.Guarantie;
 
+import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import com.Ecredit.demo.Devise.Devise;
 import com.Ecredit.demo.NatureGuarantie.NatureGuarantie;
 import com.Ecredit.demo.TypeGuarantie.TypeGuarantie;
@@ -27,6 +28,8 @@ public class Guarantie {
     private Devise devise;
     @OneToOne
     private TypeGuarantie typeGuarantie;
+    @ManyToOne
+    private DemandeCredit demandeCredit;
 
 
 

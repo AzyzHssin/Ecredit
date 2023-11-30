@@ -11,7 +11,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 @RequestMapping("api/Devise")
 public class DeviseController {
-
     private final DeviseService deviseService;
     @GetMapping
     public List<Devise> getAllDevise(){
