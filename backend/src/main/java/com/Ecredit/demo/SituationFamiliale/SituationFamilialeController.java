@@ -1,4 +1,4 @@
-package SituationFamiliale;
+package com.Ecredit.demo.SituationFamiliale;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +19,15 @@ import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 
 public class SituationFamilialeController {
-    private final SituationFamiliale.SituationFamilialeService situationFamilialeService;
+    private final SituationFamilialeService situationFamilialeService;
 
     @GetMapping
-    public List<SituationFamiliale.SituationFamiliale> getAllSituationFamiliale(){
+    public List<SituationFamiliale> getAllSituationFamiliale(){
         return situationFamilialeService.getAllSituationFamiliale();
     }
     @GetMapping("/{id}")
-   public Optional<SituationFamiliale.SituationFamiliale> get
+   public Optional<SituationFamiliale> getSituationFamilialeById(@PathVariable long id){
+        return situationFamilialeService.getSituationFamById(id);
+    }
 
 }

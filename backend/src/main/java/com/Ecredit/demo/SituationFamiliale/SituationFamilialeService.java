@@ -1,4 +1,4 @@
-package SituationFamiliale;
+package com.Ecredit.demo.SituationFamiliale;
 
 
 import lombok.RequiredArgsConstructor;
@@ -12,13 +12,13 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class SituationFamilialeService {
-private final SituationFamiliale.SituationFamilialeRepo situationFamilialeRepo;
+private final SituationFamilialeRepo situationFamilialeRepo;
 
-    public List<SituationFamiliale.SituationFamiliale> getAllSituationFamiliale() {
+    public List<SituationFamiliale> getAllSituationFamiliale() {
         return situationFamilialeRepo.findAll();
     }
 
-    public Optional<SituationFamiliale.SituationFamiliale> getSituationFamById(SingularAttribute<AbstractPersistable, Serializable> id){
+    public Optional<SituationFamiliale> getSituationFamById(long id){
         return situationFamilialeRepo.findById(id);
     }
 }

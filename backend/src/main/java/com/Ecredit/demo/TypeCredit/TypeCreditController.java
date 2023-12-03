@@ -14,7 +14,6 @@ import java.util.Optional;
 @RequestMapping("api/TypeCredit")
 public class TypeCreditController {
     private final TypeCreditService typeCreditService;
-
     @GetMapping
     public List<TypeCredit> getAllTypeCredit(){
        return  typeCreditService.getAllTypeCredit();

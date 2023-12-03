@@ -16,11 +16,11 @@ public class UniteController {
     private final UniteService uniteService;
 
     @GetMapping
-    public List<Unite.Unite> getAllUnite(){
+    public List<Unite> getAllUnite(){
         return uniteService.getAllUnite();
     }
     @GetMapping("/{id}")
-    public Optional<Unite.Unite> getUniteById(@PathVariable long id){
+    public Optional<Unite> getUniteById(@PathVariable long id){
         return uniteService.getUniteById(id);
     }
 }

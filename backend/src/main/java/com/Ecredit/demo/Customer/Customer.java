@@ -2,6 +2,7 @@ package com.Ecredit.demo.Customer;
 
 import com.Ecredit.demo.BankAccount.BankAccount;
 
+import com.Ecredit.demo.SituationFamiliale.SituationFamiliale;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,5 +27,5 @@ public class Customer {
     @OneToMany
     private List<BankAccount> listOfAccounts;
     @OneToOne
-    private SituationFamiliale.SituationFamiliale situationFamiliale;
+    private SituationFamiliale situationFamiliale;
 }

@@ -1,6 +1,6 @@
 package com.Ecredit.demo.DemandeCredit;
 
-import Unite.Unite;
+import com.Ecredit.demo.Unite.Unite;
 import com.Ecredit.demo.BankAccount.BankAccount;
 import com.Ecredit.demo.Guarantie.Guarantie;
 import lombok.*;

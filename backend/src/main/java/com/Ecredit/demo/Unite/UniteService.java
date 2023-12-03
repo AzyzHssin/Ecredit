@@ -11,10 +11,10 @@ import java.util.Optional;
 public class UniteService {
     private final UniteRepo uniteRepo;
 
-    public List<Unite.Unite> getAllUnite(){
+    public List<Unite> getAllUnite(){
         return uniteRepo.findAll();
     }
-    public Optional <Unite.Unite> getUniteById(long id ){
+    public Optional <Unite> getUniteById(long id ){
         return uniteRepo.findById(id);
     }
 }
