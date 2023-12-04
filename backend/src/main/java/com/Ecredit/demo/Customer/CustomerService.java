@@ -14,11 +14,11 @@ import java.util.Optional;
 public class CustomerService {
     private final CustomerRepo customerRepo;
 
-    public List<Customer> getAllBankAccount(){
+    public List<Customer> getAllCustomer(){
         return customerRepo.findAll();
     }
 
-    public Optional<Customer> getBankAccountById( long id ){
+    public Optional<Customer> getCustomerById( long id ){
         return customerRepo.findById(id);
     }
     public Customer createCustomer(Customer customer) {

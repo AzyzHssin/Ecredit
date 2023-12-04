@@ -19,12 +19,12 @@ public class CustomerController {
 
     @GetMapping
     public ResponseEntity<List<Customer>> getAllCustomer() {
-        List<Customer> uniteList = customerService.getAllBankAccount();
+        List<Customer> uniteList = customerService.getAllCustomer();
         return new ResponseEntity<>(uniteList, HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public Optional<Customer> getCustomerById(@PathVariable long   id){
-        return customerService.getBankAccountById(id);
+        return customerService.getCustomerById(id);
     }
     @PostMapping("/add")
     public Customer createCustomer(@RequestBody Customer customer) {

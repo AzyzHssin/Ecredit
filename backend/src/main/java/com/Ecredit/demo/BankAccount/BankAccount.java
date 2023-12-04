@@ -20,6 +20,15 @@ import java.util.List;
 @Entity
 public class BankAccount {
     @Id
+    @SequenceGenerator(
+            name = "BankAccount_sequence",
+            sequenceName = "BankAccount_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "BankAccount_sequence"
+    )
     private long id;
     private int solde;
     private Date createDate;
