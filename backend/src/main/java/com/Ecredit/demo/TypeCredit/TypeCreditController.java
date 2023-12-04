@@ -1,10 +1,8 @@
 package com.Ecredit.demo.TypeCredit;
 
+import com.Ecredit.demo.TypeGuarantie.TypeGuarantie;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,5 +19,14 @@ public class TypeCreditController {
     @GetMapping("/{id}")
     public Optional<TypeCredit> getTypeCreditById(@PathVariable long id ){
        return  typeCreditService.getTypeCreditById(id );
+    }
+    @PostMapping("/add")
+    public TypeCredit createTypeCredit(@RequestBody TypeCredit typeCredit) {
+        System.out.println("TypeCredit is created successefully");
+        return typeCreditService.createTypeCredit(typeCredit);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteTypeCredit(@PathVariable long id){
+        typeCreditService.deleteTypeCredit(id);
     }
 }

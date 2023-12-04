@@ -1,11 +1,9 @@
 package com.Ecredit.demo.NatureGuarantie;
 
 import com.Ecredit.demo.Devise.Devise;
+import com.Ecredit.demo.PieceJointe.PieceJointe;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,5 +23,14 @@ public class NatureGuarantieController {
     @GetMapping("/{id}")
     public Optional <NatureGuarantie> getNatureGuarantieByid(@PathVariable long id){
         return natureGuarantieService.getNatureGuarantieById(id);
+    }
+    @PostMapping("/add")
+    public NatureGuarantie createNatureGuarantie(@RequestBody NatureGuarantie natureGuarantie) {
+        System.out.println("NatureGuarantie is created successefully");
+        return natureGuarantieService.createNatureGuarantie(natureGuarantie);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteNatureGuarantie(@PathVariable long id){
+        natureGuarantieService.deleteNatureGuarantie(id);
     }
 }

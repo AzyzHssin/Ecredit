@@ -1,5 +1,6 @@
 package com.Ecredit.demo.TypeCredit;
 
+import com.Ecredit.demo.SituationFamiliale.SituationFamiliale;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +16,12 @@ public class TypeCreditService {
     }
     public Optional<TypeCredit> getTypeCreditById(long id){
         return typeCreditRepo.findById(id);
+    }
+
+    public TypeCredit createTypeCredit(TypeCredit typeCredit) {
+        return typeCreditRepo.save(typeCredit);
+    }
+    public void deleteTypeCredit(Long id) {
+        typeCreditRepo.deleteById(id);
     }
 }

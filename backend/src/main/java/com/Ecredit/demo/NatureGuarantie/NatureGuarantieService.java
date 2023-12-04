@@ -1,5 +1,6 @@
 package com.Ecredit.demo.NatureGuarantie;
 
+import com.Ecredit.demo.Guarantie.Guarantie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,5 +18,12 @@ public class NatureGuarantieService {
     }
     public Optional<NatureGuarantie> getNatureGuarantieById(long id){
         return natureGuarantieRepo.findById(id);
+    }
+
+    public NatureGuarantie createNatureGuarantie(NatureGuarantie natureGuarantie) {
+        return natureGuarantieRepo.save(natureGuarantie);
+    }
+    public void deleteNatureGuarantie(Long id) {
+        natureGuarantieRepo.deleteById(id);
     }
 }

@@ -1,10 +1,7 @@
 package com.Ecredit.demo.Unite;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,4 +20,14 @@ public class UniteController {
     public Optional<Unite> getUniteById(@PathVariable long id){
         return uniteService.getUniteById(id);
     }
+    @PostMapping("/add")
+    public Unite createUnite(@RequestBody Unite unite) {
+        System.out.println("unite is created successefully");
+        return uniteService.createUnite(unite);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteUnite(@PathVariable long id){
+         uniteService.deleteUnite(id);
+    }
+
 }

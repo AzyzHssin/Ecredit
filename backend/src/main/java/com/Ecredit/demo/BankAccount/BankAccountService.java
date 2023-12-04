@@ -18,4 +18,10 @@ public class BankAccountService {
         return bankAccountRepo.findById(id);
     }
 
+    public BankAccount createBankAccount(BankAccount bankAccount) {
+        return bankAccountRepo.save(bankAccount);
+    }
+    public void deleteBankAccount(Long id) {
+        bankAccountRepo.deleteById(id);
+    }
 }

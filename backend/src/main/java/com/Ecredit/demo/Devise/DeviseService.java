@@ -1,5 +1,6 @@
 package com.Ecredit.demo.Devise;
 
+import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -15,5 +16,11 @@ public class DeviseService {
     }
     public Optional<Devise> getDeviseById(long id){
         return deviseRepo.findById(id);
+    }
+    public Devise createDevise(Devise devise) {
+        return deviseRepo.save(devise);
+    }
+    public void deleteDevise(Long id) {
+        deviseRepo.deleteById(id);
     }
 }

@@ -1,5 +1,6 @@
 package com.Ecredit.demo.PieceJointe;
 
+import com.Ecredit.demo.NatureGuarantie.NatureGuarantie;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,11 @@ public List<PieceJointe> getAllPieceJointe(){
 public Optional<PieceJointe> getPieceJointeById(long id ) {
     return pieceJointeRepo.findById(id);
 }
+
+    public PieceJointe createPieceJointe(PieceJointe pieceJointe) {
+        return pieceJointeRepo.save(pieceJointe);
+    }
+    public void deletePieceJointe(Long id) {
+        pieceJointeRepo.deleteById(id);
+    }
 }

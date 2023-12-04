@@ -1,5 +1,6 @@
 package com.Ecredit.demo.TypeGuarantie;
 
+import com.Ecredit.demo.TypeCredit.TypeCredit;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,4 +19,13 @@ public class TypeGuarantieService {
     public Optional<TypeGuarantie> getTypeGuarantieById(long id){
         return typeGuarantieRepo.findById(id);
     }
+
+    public TypeGuarantie createTypeGuarantie(TypeGuarantie typeGuarantie) {
+        return typeGuarantieRepo.save(typeGuarantie);
+    }
+
+    public void deleteTypeGuarantie(Long id) {
+        typeGuarantieRepo.deleteById(id);
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.Ecredit.demo.Unite;
 
+import com.Ecredit.demo.TypeGuarantie.TypeGuarantie;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,5 +17,11 @@ public class UniteService {
     }
     public Optional <Unite> getUniteById(long id ){
         return uniteRepo.findById(id);
+    }
+    public Unite createUnite(Unite unite) {
+        return uniteRepo.save(unite);
+    }
+    public void deleteUnite(Long id) {
+        uniteRepo.deleteById(id);
     }
 }

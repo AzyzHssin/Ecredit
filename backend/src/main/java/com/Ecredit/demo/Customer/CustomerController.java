@@ -1,10 +1,8 @@
 package com.Ecredit.demo.Customer;
 
+import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -22,7 +20,16 @@ public class CustomerController {
         return customerService.getAllBankAccount();
     }
     @GetMapping("/{id}")
-    public Optional<Customer> getCustomerById(PathVariable id){
+    public Optional<Customer> getCustomerById(@PathVariable long   id){
         return customerService.getBankAccountById(id);
+    }
+    @PostMapping("/add")
+    public Customer createCustomer(@RequestBody Customer customer) {
+        System.out.println("Customer is created successefully");
+        return customerService.createCustomer(customer);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteCustomer(@PathVariable long id){
+        customerService.deleteCustomer(id);
     }
 }

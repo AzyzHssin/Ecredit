@@ -26,7 +26,7 @@ public class DemandeCredit{
     private int montant;
     private int nbreEcheance;
     private String Observation;
-    @OneToOne
+    @ManyToOne
     private BankAccount bankAccount;
     @OneToOne
     private Unite unite;

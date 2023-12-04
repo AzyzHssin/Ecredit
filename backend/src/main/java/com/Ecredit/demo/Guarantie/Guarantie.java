@@ -19,6 +19,15 @@ import javax.persistence.*;
 @Entity
 public class Guarantie {
     @Id
+    @SequenceGenerator(
+            name = "Guarantie_sequence",
+            sequenceName = "Guarantie_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "Guarantie_sequence"
+    )
     private long id;
     private long idDemande;
     private int valeur ;

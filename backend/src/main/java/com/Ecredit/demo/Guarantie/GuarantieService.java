@@ -1,5 +1,6 @@
 package com.Ecredit.demo.Guarantie;
 
+import com.Ecredit.demo.Devise.Devise;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,5 +19,11 @@ public class GuarantieService {
 
     public Optional<Guarantie> getGuarantieById(long id){
         return guarantieRepo.findById(id);
+    }
+    public Guarantie createGuarantie(Guarantie guarantie) {
+        return guarantieRepo.save(guarantie);
+    }
+    public void deleteGuarantie(Long id) {
+        guarantieRepo.deleteById(id);
     }
 }

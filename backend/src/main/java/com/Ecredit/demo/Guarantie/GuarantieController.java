@@ -1,10 +1,8 @@
 package com.Ecredit.demo.Guarantie;
 
+import com.Ecredit.demo.NatureGuarantie.NatureGuarantie;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,5 +17,19 @@ private final GuarantieService guarantieService;
 public List<Guarantie> getAllGuarantie() {
     return guarantieService.getAllGuarantie();}
     @GetMapping("/{id}")
-public Optional<Guarantie> getGuarantieById(@PathVariable long id){return guarantieService.getGuarantieById(id);}
+public Optional<Guarantie> getGuarantieById(@PathVariable long id)
+    {
+        return guarantieService.getGuarantieById(id);
+    }
+    @PostMapping("/add")
+    public Guarantie createGuarantie(@RequestBody Guarantie guarantie) {
+        System.out.println("Guarantie is created successefully");
+        return guarantieService.createGuarantie(guarantie);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteGuarantie(@PathVariable long id){
+        guarantieService.deleteGuarantie(id);
+    }
+
+
 }

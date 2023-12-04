@@ -1,12 +1,10 @@
 package com.Ecredit.demo.SituationFamiliale;
 
+import com.Ecredit.demo.TypeCredit.TypeCredit;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +26,15 @@ public class SituationFamilialeController {
     @GetMapping("/{id}")
    public Optional<SituationFamiliale> getSituationFamilialeById(@PathVariable long id){
         return situationFamilialeService.getSituationFamById(id);
+    }
+    @PostMapping("/add")
+    public SituationFamiliale createSituationFamiliale(@RequestBody SituationFamiliale situationFamiliale) {
+        System.out.println("SituationFamiliale is created successefully");
+        return situationFamilialeService.createSituationFamiliale(situationFamiliale);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteSituationFamiliale(@PathVariable long id){
+        situationFamilialeService.deleteSituationFamiliale(id);
     }
 
 }

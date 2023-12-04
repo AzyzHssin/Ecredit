@@ -1,8 +1,10 @@
 package com.Ecredit.demo.Customer;
 
+import com.Ecredit.demo.BankAccount.BankAccount;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +17,14 @@ public class CustomerService {
     public List<Customer> getAllBankAccount(){
         return customerRepo.findAll();
     }
-    public Optional<Customer> getBankAccountById(PathVariable id ){
+
+    public Optional<Customer> getBankAccountById( long id ){
         return customerRepo.findById(id);
+    }
+    public Customer createCustomer(Customer customer) {
+        return customerRepo.save(customer);
+    }
+    public void deleteCustomer(Long id) {
+        customerRepo.deleteById(id);
     }
 }

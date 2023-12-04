@@ -1,5 +1,6 @@
 package com.Ecredit.demo.Devise;
 
+import com.Ecredit.demo.Guarantie.Guarantie;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;
@@ -19,5 +20,14 @@ public class DeviseController {
     @GetMapping("/{id}")
     public Optional<Devise> getDeviseById(@PathVariable long id){
         return deviseService.getDeviseById(id);
+    }
+    @PostMapping("/add")
+    public Devise createDevise(@RequestBody Devise devise) {
+        System.out.println("Devise is created successefully");
+        return deviseService.createDevise(devise);
+    }
+    @DeleteMapping("/{id}")
+    public void deleteGuarantie(@PathVariable long id){
+        deviseService.deleteDevise(id);
     }
 }
