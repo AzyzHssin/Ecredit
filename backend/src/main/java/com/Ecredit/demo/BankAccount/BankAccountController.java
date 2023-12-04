@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/BankAccount")
+    @RequestMapping("api/BankAccount")
 public class BankAccountController {
     private final BankAccountService bankAccountService;
 

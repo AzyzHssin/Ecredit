@@ -1,5 +1,7 @@
 package com.Ecredit.demo.BankAccount;
 
+import com.Ecredit.demo.Customer.Customer;
+import com.Ecredit.demo.Customer.CustomerRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BankAccountService {
     private final BankAccountRepo bankAccountRepo;
+    private final CustomerRepo customerRepo;
 
     public List<BankAccount> getAllBankAccount(){
         return bankAccountRepo.findAll();
@@ -19,7 +22,12 @@ public class BankAccountService {
     }
 
     public BankAccount createBankAccount(BankAccount bankAccount) {
-        return bankAccountRepo.save(bankAccount);
+        Customer customer= customerRepo.findByCin(bankAccount.getCustomer().getCin());
+        customer.getListOfAccounts().add(bankAccount);
+        bankAccountRepo.save(bankAccount);
+        customerRepo.save(customer);
+
+        return bankAccount;
     }
     public void deleteBankAccount(Long id) {
         bankAccountRepo.deleteById(id);

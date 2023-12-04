@@ -2,6 +2,8 @@ package com.Ecredit.demo.Customer;
 
 import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +18,9 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getAllCustomer (){
-        return customerService.getAllBankAccount();
+    public ResponseEntity<List<Customer>> getAllCustomer() {
+        List<Customer> uniteList = customerService.getAllBankAccount();
+        return new ResponseEntity<>(uniteList, HttpStatus.OK);
     }
     @GetMapping("/{id}")
     public Optional<Customer> getCustomerById(@PathVariable long   id){

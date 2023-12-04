@@ -3,6 +3,7 @@ package com.Ecredit.demo.Customer;
 import com.Ecredit.demo.BankAccount.BankAccount;
 
 import com.Ecredit.demo.SituationFamiliale.SituationFamiliale;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class Customer {
     private String firstName;
     private Date birthday;
     @OneToMany
+    @JsonIgnoreProperties({"customer"})
     private List<BankAccount> listOfAccounts;
     @OneToOne
     private SituationFamiliale situationFamiliale;
