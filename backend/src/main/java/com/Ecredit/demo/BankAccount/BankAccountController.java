@@ -2,6 +2,7 @@ package com.Ecredit.demo.BankAccount;
 
 import com.Ecredit.demo.Customer.Customer;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,8 +10,9 @@ import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
-    @RequestMapping("api/BankAccount")
+@RequestMapping("api/BankAccount")
 public class BankAccountController {
+
     private final BankAccountService bankAccountService;
 
     @GetMapping

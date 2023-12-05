@@ -26,7 +26,6 @@ public class BankAccountService {
         customer.getListOfAccounts().add(bankAccount);
         bankAccountRepo.save(bankAccount);
         customerRepo.save(customer);
-
         return bankAccount;
     }
     public void deleteBankAccount(Long id) {

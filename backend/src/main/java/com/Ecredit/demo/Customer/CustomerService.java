@@ -22,6 +22,7 @@ public class CustomerService {
         return customerRepo.findById(id);
     }
     public Customer createCustomer(Customer customer) {
+
         return customerRepo.save(customer);
     }
     public void deleteCustomer(Long id) {
