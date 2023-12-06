@@ -18,8 +18,7 @@ http://localhost:9092/api/Customer
   "birthday":"1995-01-24",
   "situationFamiliale":{
     "id": 1
-  }
-  
+  } 
 }
 
 http://localhost:9092/api/BankAccount/add
@@ -36,8 +35,7 @@ http://localhost:9092/api/DemandeCredit/add
   "montant":500,
   "nbreEcheance":5,
   "Observation":"credit voiture", 
-  "bankAccount":1,
-  "Unite":1
-  
+  "bankAccount":{"id": 1} ,
+  "unite":{"id": 1} 
 }
 
