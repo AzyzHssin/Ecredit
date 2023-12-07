@@ -29,7 +29,7 @@ public class Guarantie {
             generator = "Guarantie_sequence"
     )
     private long id;
-    private long idDemande;
+//    private long idDemande;
     private int valeur ;
     @OneToOne
     private NatureGuarantie natureGuarantie;

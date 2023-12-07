@@ -38,6 +38,6 @@ public class DemandeCredit{
     private Unite unite;
     @JsonIgnore
     @OneToMany
-    private List<Guarantie> guaranties;
+    private List<Guarantie> guarantieList;
 
 }
