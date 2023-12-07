@@ -36,6 +36,7 @@ public class DemandeCredit{
     @ManyToOne
     @JoinColumn(name = "bank_account_id")
     private BankAccount bankAccount;
+
     @OneToOne
     private Unite unite;
     @ManyToOne
