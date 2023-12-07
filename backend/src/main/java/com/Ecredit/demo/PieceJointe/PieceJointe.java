@@ -27,6 +27,7 @@ public class PieceJointe {
 private long id ;
 private String nom;
 private String type ;
+
 @ManyToOne
 private TypeCredit typeCredit;
 
