@@ -2,7 +2,9 @@ package com.Ecredit.demo.Customer;
 
 import com.Ecredit.demo.BankAccount.BankAccount;
 
+import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import com.Ecredit.demo.SituationFamiliale.SituationFamiliale;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,4 +32,7 @@ public class Customer {
     private List<BankAccount> listOfAccounts;
     @OneToOne
     private SituationFamiliale situationFamiliale;
+//    @OneToMany
+//    @JsonIgnoreProperties({"customer"})
+//    private List<DemandeCredit> demandeCredits;
 }
