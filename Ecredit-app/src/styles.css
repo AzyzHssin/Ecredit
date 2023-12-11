@@ -19,15 +19,14 @@ body {
  }
 .example-form-field {
     width: 200px;
-
   }
   .example-form-field-devise{
-    width:100px;
+    width:50px;
 
 
   }
   .deviseText{
-   margin-left: 0px;
+   margin-left: 40px;
    margin-right: 20px;
   }
   .navButton{
@@ -121,6 +120,6 @@ margin: 20px;
 #Card{
   border:3px solid rgb(240, 240, 240);
   border-radius: 15px;
+  width: 120vh;
 
-  width: 50vw;
 }
