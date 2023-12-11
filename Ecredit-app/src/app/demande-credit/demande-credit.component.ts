@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import { DemandeService } from '../services/demande.service';
+import { DemandeCredit } from '../Models/DemandeCredit_Model';
 
 @Component({
   selector: 'app-demande-credit',
@@ -9,6 +11,7 @@ import {FormBuilder, Validators} from '@angular/forms';
   
 })
 export class DemandeCreditComponent implements OnInit {
+  demandeCredit?:DemandeCredit[]
   ncin: number = 0;
   nom:string='';
   prenom:string='';
@@ -26,7 +29,7 @@ export class DemandeCreditComponent implements OnInit {
       // Add more items as needed
     ]
   };
-  constructor(private _formBuilder:FormBuilder ) { }
+  constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService ) { }
   showFormData(){
     console.log("Form values:", {
       ncin: this.ncin,
@@ -47,5 +50,14 @@ export class DemandeCreditComponent implements OnInit {
   }
   ngOnInit(): void {
   }
+  getDemande(){
+    this.demandeServ.getDemande().subscribe((data) => {
+      this.demandeCredit = data;
 
+    },
+    (error) => {
+      console.error('Error fetching data:', error);
+    }
+  );
+  }
 }
