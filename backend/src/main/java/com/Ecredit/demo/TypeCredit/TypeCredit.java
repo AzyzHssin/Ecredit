@@ -31,6 +31,7 @@ public class TypeCredit {
     private long id;
     private String nom;
     @OneToMany
+
     @JsonIgnore
     private List<PieceJointe> piecesJointes;
 
