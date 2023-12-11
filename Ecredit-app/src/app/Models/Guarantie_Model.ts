@@ -1,3 +1,4 @@
+import { DemandeCredit } from "./DemandeCredit_Model";
 import { Devise } from "./Devise_Model";
 import { NatureGuarantie } from "./NatureGuarantie_Model";
 import { TypeGuarantie } from "./TypeGuarantie_Model";
