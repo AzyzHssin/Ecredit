@@ -28,7 +28,7 @@ public class Customer {
     private String firstName;
     private Date birthday;
     @OneToMany
-    @JsonIgnoreProperties({"customer"})
+    @JsonIgnore
     private List<BankAccount> listOfAccounts;
     @OneToOne
     private SituationFamiliale situationFamiliale;

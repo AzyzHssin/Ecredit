@@ -1,6 +1,7 @@
 package com.Ecredit.demo.TypeCredit;
 
 import com.Ecredit.demo.PieceJointe.PieceJointe;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,10 +28,13 @@ public class TypeCredit {
             strategy = GenerationType.SEQUENCE,
             generator = "TypeCredit_sequence"
     )
-    private Long id;
+    private long id;
     private String nom;
     @OneToMany
+    @JsonIgnore
     private List<PieceJointe> piecesJointes;
+
+
 
 
 

@@ -6,7 +6,7 @@ import com.Ecredit.demo.Unite.Unite;
 import com.Ecredit.demo.BankAccount.BankAccount;
 import com.Ecredit.demo.Guarantie.Guarantie;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.Ecredit.demo.File.File;
 import lombok.*;
 
 import javax.persistence.*;
@@ -40,16 +40,18 @@ public class DemandeCredit{
 
     @OneToOne
     private Unite unite;
-
-    @ManyToOne
-    @JoinColumn(name = "type_credit_id")
+    @OneToOne
+    /*@JoinColumn(name = "type_credit_id")*/
     private TypeCredit typeCredit;
-
-//    @ManyToOne
-//    @JoinColumn(name = "customer_cin")
-//    Customer customer;
+   /* @ManyToOne
+    @JoinColumn(name = "customer_cin")
+    Customer customer;*/
     @OneToMany
+    @JsonIgnore
     private List<Guarantie> guaranties;
 
+    @OneToMany
+    @JsonIgnore
+    private List<File> fileList;
 
 }
