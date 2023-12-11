@@ -12,50 +12,50 @@
               <mat-form-field class="example-form-field">
                   <mat-label>N°Cin</mat-label>
                   <input matInput type="text" [(ngModel)]="ncin" name="ncin">
-                
+
                       <button matSuffix mat-icon-button aria-label="Clear" (click)="ncin=0">
                         <mat-icon>close</mat-icon>
                       </button>
-                    
+
                 </mat-form-field>
           </div>
-          
+
       </mat-grid-tile>
-  
-  
+
+
       <mat-grid-tile>
           <div class="space-label">Nom:</div>
           <div>
               <mat-form-field class="example-form-field">
                   <mat-label>Nom</mat-label>
                   <input matInput type="text" [(ngModel)]="nom" name="nom">
-                
+
                       <button matSuffix mat-icon-button aria-label="Clear" (click)="nom=''">
                         <mat-icon>close</mat-icon>
                       </button>
-                    
+
                 </mat-form-field>
       </div>
   </mat-grid-tile>
-  
-  
+
+
       <mat-grid-tile>
           <div class="space-label">Prenom:</div>
           <div>
               <mat-form-field class="example-form-field">
                   <mat-label>Prenom</mat-label>
                   <input matInput type="text" [(ngModel)]="prenom" name="prenom">
-                
+
                       <button matSuffix mat-icon-button aria-label="Clear" (click)="prenom=''">
                         <mat-icon>close</mat-icon>
                       </button>
-                    
+
                 </mat-form-field>
       </div>
       </mat-grid-tile>
   </mat-grid-list>
-  
-  
+
+
   <!-- ______________________________________row 2_____________________________________ -->
   <mat-grid-list cols="3" rowHeight="100px">
       <mat-grid-tile>
@@ -68,29 +68,32 @@
                     <mat-option value="option1">Option 2</mat-option>
                   </mat-select>
                 </mat-form-field>
-          </div>
+            </div>
+        </mat-grid-tile>
+        <mat-grid-tile>
+
           <div class="deviseText">
               Devise:
           </div>
           <div>
-              
+
               <mat-form-field class="example-form-field-devise">
-                  
+
                   <mat-label>Devise</mat-label>
-                  
+
                   <input matInput type="text" [(ngModel)]="devise" name="devise">
-                
+
                       <button matSuffix mat-icon-button aria-label="Clear" (click)="devise=''">
                         <mat-icon>close</mat-icon>
                       </button>
-                    
+
                 </mat-form-field>
-      </div>   
+      </div>
       </mat-grid-tile>
-  
-  
-  
-       
+
+
+
+
       <mat-grid-tile>
           <div class="space-label">Date d'ouverture compte:</div>
           <div>
@@ -102,18 +105,18 @@
                   <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
           </div>
-          
+
       </mat-grid-tile>
-  
+
   </mat-grid-list>
   </mat-card>
   <br>
   <!-- __________________________________Dossier Credit_________________________ -->
-  
-  <mat-card>
+
+  <mat-card id="Card">
       <mat-card-header>
         <mat-card-title>Dossier Credit</mat-card-title>
-  
+
       </mat-card-header>
       <!-- ________________row 3_________________ -->
       <mat-grid-list cols="2" rowHeight="100px">
@@ -129,29 +132,29 @@
                       </mat-select>
                     </mat-form-field>
               </div>
-              
+
           </mat-grid-tile>
-      
-      
+
+
           <mat-grid-tile>
               <div class="space-label">Montant:</div>
               <div>
                   <mat-form-field class="example-form-field">
                       <mat-label>Montant</mat-label>
                       <input matInput type="text" [(ngModel)]="montant" name="montant">
-                    
+
                           <button matSuffix mat-icon-button aria-label="Clear" >
                             <mat-icon>close</mat-icon>
                           </button>
-                        
+
                     </mat-form-field>
           </div>
       </mat-grid-tile>
-      
-      
-        
+
+
+
       </mat-grid-list>
-  
+
   <!-- _______________row 4_____________________ -->
   <mat-grid-list cols="2" rowHeight="100px">
       <mat-grid-tile>
@@ -166,34 +169,35 @@
                   </mat-select>
                 </mat-form-field>
           </div>
-          
+
       </mat-grid-tile>
-  
-  
+
+
       <mat-grid-tile>
           <div class="space-label">Nbre d'echeance:</div>
           <div>
               <mat-form-field class="example-form-field">
                   <mat-label>Nbre d'echeance</mat-label>
                   <input matInput type="text" [(ngModel)]="nbreEcheance"  name="nbreEcheance">
-                
+
                       <button matSuffix mat-icon-button aria-label="Clear" >
                         <mat-icon>close</mat-icon>
                       </button>
-                    
+
                 </mat-form-field>
       </div>
   </mat-grid-tile>
-  
-  
-    
+
+
+
   </mat-grid-list>
   </mat-card>
-  
+<br>
   <!-- _______________________________Guaranties Proposées_______________________ -->
   <mat-card>
       <mat-card-header>
-        <mat-card-title>Guaranties Proposées</mat-card-title>
+        <mat-card-title>Garanties Proposées</mat-card-title>
+      </mat-card-header>
         <table class="table">
           <thead>
             <tr>
@@ -212,11 +216,11 @@
               <td>{{t.name}}</td>
               <td><button id="editButton" mat-raised-button>Modifier</button><button id="deleteButton" mat-raised-button>Delete</button></td>
             </tr>
-          
-            
+
+
           </tbody>
         </table>
-      </mat-card-header>
+
   </mat-card>
   <br>
   <!-- __________________________Pieces Jointes ___________________________________ -->
@@ -224,7 +228,7 @@
       <mat-card-header>
         <mat-card-title>Pieces jointes</mat-card-title>
       </mat-card-header>
-  
+
       <table class="table">
           <thead>
             <tr>
@@ -239,21 +243,21 @@
                   <th scope="col">files selon type credit</th>
                   <th scope="col">  <input type="checkbox" aria-label="Checkbox for following text input"></th>
           </tbody>
-  
+
       </table>
       <label for="images" class="drop-container" id="dropcontainer">
-        
+
         <input type="file" class="files-upload" (change)="onFileChange($event)" multiple >
       </label>
-      
+
   </mat-card>
-  
+<br>
   <!-- _____________________Observation_______________________ -->
   <mat-card>
       <mat-card-header>
         <mat-card-title>Observation</mat-card-title>
       </mat-card-header>
-  
+
       <mat-form-field class="Observation">
         <mat-label>Observation</mat-label>
         <textarea matInput [(ngModel)]="observation"></textarea>
@@ -265,7 +269,6 @@
       <button  id="Submit" mat-raised-button (click)="showFormData()">Enregistrer</button>
     </div>
   </mat-card>
-  
+
   </form>
-  
-  
+

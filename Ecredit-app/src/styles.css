@@ -7,22 +7,32 @@
 
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 180vh; /* Set the height of the body to the full viewport height */
+      margin: 0; /* Remove default margin */
+
+ }
 .example-form-field {
     width: 200px;
+
   }
   .example-form-field-devise{
-    width:50px;
- 
-    
+    width:100px;
+
+
   }
   .deviseText{
-   margin-left: 40px;
+   margin-left: 0px;
    margin-right: 20px;
   }
   .navButton{
     background-color: aliceblue;
- 
+
   }
   .space{
     margin: 10px;
@@ -31,7 +41,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .space-label{
         margin-left: 40px;
-        margin-right: 20px;   
+        margin-right: 20px;
   }
 
 #addButton{
@@ -60,20 +70,20 @@ margin: 20px;
 }
 
 .button-container {
-  text-align: center;  
+  text-align: center;
 }
 .button-container button {
-  margin: 5px; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  cursor: pointer; 
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
   position: relative;
 }
 .files-upload{
- 
+
   border-radius: 5px;
   justify-content: center;
- 
+
 }
 .drop-container {
   position: relative;
@@ -106,4 +116,11 @@ margin: 20px;
   font-weight: bold;
   text-align: center;
   transition: color .2s ease-in-out;
+}
+
+#Card{
+  border:3px solid rgb(240, 240, 240);
+  border-radius: 15px;
+
+  width: 50vw;
 }

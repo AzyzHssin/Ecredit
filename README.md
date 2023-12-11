@@ -60,7 +60,7 @@ http://localhost:9092/api/TypeGuarantie/add
 http://localhost:9092/api/PieceJointe/add
 {
   "nom":"Cin",
-  "type":"image",
+  "obligatoire":"image",
   "typeCredit":{"id":1}
 }
 http://localhost:9092/api/Guarantie/add
