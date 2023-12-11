@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class File {
+public class DocumentFile {
     @Id
     @SequenceGenerator(
             name = "file_sequence",

@@ -10,34 +10,34 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class FileService {
-    private final FileRepo fileRepo;
+public class DocumentFILEService {
+    private final DocumentFILERepo documentFILERepo;
     private final DemandeCreditRepo demandeCreditRepo;
-    public List<File> getAllFile (){
-        return fileRepo.findAll();
+    public List<DocumentFile> getAllFile (){
+        return documentFILERepo.findAll();
     }
-    public Optional<File> getFileById(long id){return fileRepo.findById(id);}
-    public File createFile(File file) {
+    public Optional<DocumentFile> getFileById(long id){return documentFILERepo.findById(id);}
+    public DocumentFile createFile(DocumentFile file) {
         DemandeCredit demandeCredit =demandeCreditRepo.findById(file.getDemandeCredit().getId()).orElse(null);
         assert demandeCredit != null;
-        demandeCredit.getFileList().add(file);
-        fileRepo.save(file);
+        demandeCredit.getDocumentFiles().add(file);
+        documentFILERepo.save(file);
 
         demandeCreditRepo.save(demandeCredit);
         return file;
     }
-    public List<File> createMultipleFile(List<File> files){
-        for (File file: files) {
+    public List<DocumentFile> createMultipleFile(List<DocumentFile> files){
+        for (DocumentFile file: files) {
             DemandeCredit demandeCredit =demandeCreditRepo.findById(file.getDemandeCredit().getId()).orElse(null);
             assert demandeCredit != null;
-            demandeCredit.getFileList().add(file);
-            fileRepo.save(file);
+            demandeCredit.getDocumentFiles().add(file);
+            documentFILERepo.save(file);
             demandeCreditRepo.save(demandeCredit);
         }
 
         return files;
     }
     public void deleteFile(Long id) {
-        fileRepo.deleteById(id);
+        documentFILERepo.deleteById(id);
     }
 }

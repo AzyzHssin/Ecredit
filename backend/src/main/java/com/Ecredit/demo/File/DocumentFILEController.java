@@ -11,25 +11,25 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/File")
-public class FileController {
-    private final FileService fileService;
+public class DocumentFILEController {
+    private final DocumentFILEService documentFILEService;
 
     @GetMapping
-    public ResponseEntity<List<File>> getAllFile() {
-        List<File> FileList = fileService.getAllFile();
+    public ResponseEntity<List<DocumentFile>> getAllFile() {
+        List<DocumentFile> FileList = documentFILEService.getAllFile();
         return new ResponseEntity<>(FileList, HttpStatus.OK);
     }
     @GetMapping("/{id}")
-    public Optional<File> getFileById(@PathVariable long   id){
-        return fileService.getFileById(id);
+    public Optional<DocumentFile> getFileById(@PathVariable long   id){
+        return documentFILEService.getFileById(id);
     }
     @PostMapping("/add")
-    public File createFile(@RequestBody File file) {
+    public DocumentFile createFile(@RequestBody DocumentFile file) {
         System.out.println("file is created successefully");
-        return fileService.createFile(file);
+        return documentFILEService.createFile(file);
     }
     @DeleteMapping("/{id}")
     public void deleteFile(@PathVariable long id){
-        fileService.deleteFile(id);
+        documentFILEService.deleteFile(id);
     }
 }
