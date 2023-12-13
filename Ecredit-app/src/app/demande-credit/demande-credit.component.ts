@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-
+import { DemandeCredit } from '../Models/DemandeCredit_Model';
 @Component({
   selector: 'app-demande-credit',
   templateUrl: './demande-credit.component.html',
   styleUrls: ['./demande-credit.component.css'],
-  
-  
+
+
 })
 export class DemandeCreditComponent implements OnInit {
   ncin: number = 0;
   nom:string='';
   prenom:string='';
   devise:string='';
-  dateOvertureCompte: Date | null = null; 
+  dateOvertureCompte: Date | null = null;
   montant:number=0;
   nbreEcheance:number=0;
   observation:string='';
