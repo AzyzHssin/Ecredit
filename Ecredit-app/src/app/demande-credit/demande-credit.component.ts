@@ -1,6 +1,10 @@
+import { Unite } from './../Models/Unite_Model';
+
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { DemandeCredit } from '../Models/DemandeCredit_Model';
+import { DemandeService } from '../services/DemandeService';
+import { UniteService } from '../services/unite.service';
 @Component({
   selector: 'app-demande-credit',
   templateUrl: './demande-credit.component.html',
@@ -9,6 +13,8 @@ import { DemandeCredit } from '../Models/DemandeCredit_Model';
 
 })
 export class DemandeCreditComponent implements OnInit {
+  demandeCredit?:DemandeCredit[]
+  uniteArray?:Unite[]
   ncin: number = 0;
   nom:string='';
   prenom:string='';
@@ -26,7 +32,7 @@ export class DemandeCreditComponent implements OnInit {
       // Add more items as needed
     ]
   };
-  constructor(private _formBuilder:FormBuilder ) { }
+  constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService,private uniteServ:UniteService ) { }
   showFormData(){
     console.log("Form values:", {
       ncin: this.ncin,
@@ -46,6 +52,25 @@ export class DemandeCreditComponent implements OnInit {
     console.log('Selected files:', this.selectedFiles);
   }
   ngOnInit(): void {
+    this.getUnite();
+  }
+  getDemande(){
+    this.demandeServ.getDemande().subscribe((data:any) => {
+      this.demandeCredit = data;
+    },
+    (error:any) => {
+      console.error('Error fetching demande data:', error);
+    }
+  );
+  }
+  getUnite(){
+    this.uniteServ.getUnite().subscribe((data:Unite[])=>{
+      this.uniteArray=data;
+      console.log("data is detched ",data,"*********");
+    },(error:any) => {
+      console.error('Error fetching Unite data:', error);
+    }
+    )
   }
 
 }

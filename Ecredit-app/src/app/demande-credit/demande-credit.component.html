@@ -164,8 +164,9 @@
                   <mat-label>Unité</mat-label>
                   <mat-select >
                       <!-- <mat-select [(ngModel)]="selectedOption"> -->
-                    <mat-option value="option1">Option 1</mat-option>
-                    <mat-option value="option1">Option 2</mat-option>
+                        <mat-option *ngFor="let unite of uniteArray" [value]="unite.id">
+                          {{ unite.nom }}
+                        </mat-option>
                   </mat-select>
                 </mat-form-field>
           </div>
