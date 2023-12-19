@@ -4,11 +4,14 @@ import { DemandeCredit } from '../Models/DemandeCredit_Model';
 import {TypeCredit} from '../Models/TypeCredit_Model';
 import { Unite } from './../Models/Unite_Model';
 import { BankAccount } from '../Models/BankAccount_Model';
+import { PieceJointe } from './../Models/PieceJointe_Model';
 ///////////////////////////////////////////////////////////////
 import { DemandeService } from '../services/DemandeService';
 import { UniteService } from '../services/unite.service';
 import {TypecreditService} from '../services/typecredit.service'
 import { BankaccountService } from '../services/bankaccount.service';
+import { PiecesjointesService } from './../services/piecesjointes.service';
+////////////////////////////////////////////////////////////////
 @Component({
   selector: 'app-demande-credit',
   templateUrl: './demande-credit.component.html',
@@ -21,6 +24,7 @@ export class DemandeCreditComponent implements OnInit {
   typecreditArray?:TypeCredit[];
   uniteArray?:Unite[];
   bankAccountArray?:BankAccount[];
+  PieceJointeArray?:PieceJointe[];
   selectedBankAccount?:BankAccount;
   ncin: number = 0;
   nom:string='';
@@ -31,6 +35,8 @@ export class DemandeCreditComponent implements OnInit {
   nbreEcheance:number=0;
   observation:string='';
   selectedFiles: FileList | null = null;
+  selectedTypeCredit?:TypeCredit;
+  FilesToRender?:any[];
   tablet = {
     items: [
       { name: 'iPod', brand: 'Apple', price: 499.99 },
@@ -40,7 +46,7 @@ export class DemandeCreditComponent implements OnInit {
     ]
   };
   fetchedCustomer: boolean=false;
-  constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService,private bankaccountService:BankaccountService )
+  constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService,private bankaccountService:BankaccountService )
    { }
   /////////////////////////Methods////////////////////////////////////
    showFormData(){
@@ -54,8 +60,9 @@ export class DemandeCreditComponent implements OnInit {
       nbreEcheance:this.nbreEcheance,
       selectedFiles:this.selectedFiles,
       observation:this.observation,
-      selectedBankAccount:this.selectedBankAccount
-
+      selectedBankAccount:this.selectedBankAccount,
+      selectedTypeCredit:this.selectedTypeCredit,
+      typecreditArray:this.typecreditArray
     });
   }
   onCinChange(){
@@ -70,6 +77,7 @@ export class DemandeCreditComponent implements OnInit {
   onFileChange(event: any) {
     this.selectedFiles = event.target.files;
     console.log('Selected files:', this.selectedFiles);
+    /* this.FilesToRender=Array.from(this.selectedFiles); */
   }
   ngOnInit(): void {
     this.getUnite();
@@ -129,6 +137,24 @@ export class DemandeCreditComponent implements OnInit {
       //this.devise = this.selectedBankAccount.currency; // Adjust to your actual property name
     } else {
       console.warn('Selected bank account is undefined.');
+    }
+  }
+  getPiecesJointesByTypeCredit(id:number){
+    this.piecesjointesService.getPiecesJointesByTypeCredit(id).subscribe((data:PieceJointe[])=>{
+      this.PieceJointeArray=data;
+      console.log("Pieces Jointes are fetched \n",this.PieceJointeArray);
+    },(error:any) => {
+      console.error('Error fetching Pieces Jointes data:', error);
+    });
+  }
+  onSelectTypeCredit(){
+    console.log("this.selectedTypeCredit: ",this.selectedTypeCredit)
+    if(this.selectedTypeCredit){
+      this.getPiecesJointesByTypeCredit(this.selectedTypeCredit.id);
+      console.log("request fetch is executed using this id : ",this.selectedTypeCredit.id);
+    }
+    else{
+      console.warn("no Type Credit is selected to fetch pieces jointes")
     }
   }
 }

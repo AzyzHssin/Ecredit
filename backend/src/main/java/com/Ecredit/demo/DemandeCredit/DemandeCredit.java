@@ -51,7 +51,7 @@ public class DemandeCredit{
     private List<Guarantie> guaranties;
 
     @OneToMany
-    @JsonIgnoreProperties("demandeCredit")
+    @JsonIgnore
     private List<DocumentFile> documentFiles;
 
 }

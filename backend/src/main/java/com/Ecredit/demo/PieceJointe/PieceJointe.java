@@ -1,6 +1,7 @@
 package com.Ecredit.demo.PieceJointe;
 
 import com.Ecredit.demo.TypeCredit.TypeCredit;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,6 +30,7 @@ private String nom;
 private String obligatoire ;
 
 @ManyToOne
+@JsonIgnoreProperties("typeCredit")
 private TypeCredit typeCredit;
 
 

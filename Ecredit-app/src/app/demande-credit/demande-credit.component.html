@@ -157,11 +157,11 @@
         <div>
           <mat-form-field>
             <mat-label>Type</mat-label>
-            <mat-select>
+            <mat-select [(ngModel)]="selectedTypeCredit" (selectionChange)="onSelectTypeCredit()" name="selectedTypeCredit">
               <!-- <mat-select [(ngModel)]="selectedOption"> -->
               <mat-option
                 *ngFor="let typeCredit of typecreditArray"
-                [value]="typeCredit.id"
+                [value]="typeCredit"
                 >{{ typeCredit.nom }}</mat-option
               >
             </mat-select>
@@ -271,9 +271,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let t of tablet.items">
-          <th scope="col">need to fetch data</th>
-          <th scope="col">files selon type credit</th>
+        <tr *ngFor="let piece of PieceJointeArray" >
+          <th scope="col">{{piece.nom}}</th>
+          <th scope="col">{{piece.obligatoire}}</th>
           <th scope="col">
             <input
               type="checkbox"
@@ -291,6 +291,11 @@
         multiple
       />
     </label>
+    <div >
+      <ul>
+        <li *ngFor="let item of FilesToRender">{{ item }}</li>
+      </ul>
+    </div>
   </mat-card>
   <br />
   <!-- _____________________Observation_______________________ -->

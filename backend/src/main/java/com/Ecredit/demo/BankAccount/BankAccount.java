@@ -20,7 +20,7 @@ import java.util.List;
 @Entity
 public class BankAccount {
     @Id
-    @SequenceGenerator(
+        @SequenceGenerator(
             name = "BankAccount_sequence",
             sequenceName = "BankAccount_sequence",
             allocationSize = 1
