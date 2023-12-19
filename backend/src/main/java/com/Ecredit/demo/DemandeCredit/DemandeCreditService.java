@@ -4,6 +4,12 @@ import com.Ecredit.demo.BankAccount.BankAccount;
 import com.Ecredit.demo.BankAccount.BankAccountRepo;
 import com.Ecredit.demo.Customer.Customer;
 import com.Ecredit.demo.Customer.CustomerRepo;
+import com.Ecredit.demo.Files.File;
+import com.Ecredit.demo.Files.FileRepo;
+import com.Ecredit.demo.Guarantie.Guarantie;
+import com.Ecredit.demo.Guarantie.GuarantieRepo;
+import com.Ecredit.demo.TypeCredit.TypeCredit;
+import com.Ecredit.demo.TypeCredit.TypeCreditRepo;
 import com.Ecredit.demo.Unite.Unite;
 import com.Ecredit.demo.Unite.UniteRepo;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +26,9 @@ public class DemandeCreditService {
     private final CustomerRepo customerRepo;
     private final BankAccountRepo bankAccountRepo;
     private final UniteRepo uniteRepo;
-
+    private final FileRepo fileRepo;
+    private final GuarantieRepo guarantieRepo;
+    private final TypeCreditRepo typeCreditRepo;
     public List<DemandeCredit> getAllDemandeCredit(){
         return demandeCreditRepo.findAll();
     }
@@ -29,13 +37,28 @@ public class DemandeCreditService {
     }
     public DemandeCredit createDemandeCredit(DemandeCredit demandeCredit) {
         BankAccount  bankAccount= bankAccountRepo.findById(demandeCredit.getBankAccount().getId()).orElse(null);
-//        Customer customer =customerRepo.findByCin(demandeCredit.getCustomer().getCin());
+        Guarantie guarantie=guarantieRepo.findById(demandeCredit.getGuarantie().getId()).orElse(null);
+        TypeCredit typeCredit=typeCreditRepo.findById(demandeCredit.getTypeCredit().getId()).orElse(null);
         Unite unite=uniteRepo.findById(demandeCredit.getUnite().getId()).orElse(null);
+
         demandeCredit.setUnite(unite);
-        assert bankAccount != null;
         bankAccount.getDemandeCredits().add(demandeCredit);
+        //
         demandeCreditRepo.save(demandeCredit);
+        //
+        assert bankAccount != null;
         bankAccountRepo.save(bankAccount);
+        assert guarantie != null;
+        guarantieRepo.save(guarantie);
+        assert typeCredit != null;
+        typeCreditRepo.save(typeCredit);
+
+
+
+
+
+
+
 //        customerRepo.save(customer);
 
         return demandeCredit;

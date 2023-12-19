@@ -29,11 +29,9 @@ public class GuarantieService {
     }
 
     public Guarantie createGuarantie(Guarantie guarantie) {
-        DemandeCredit demandeCredit= demandeCreditRepo.findById(guarantie.getDemandeCredit().getId()).orElse(null);
-        assert demandeCredit != null;
-        demandeCredit.getGuaranties().add(guarantie);
+
         guarantieRepo.save(guarantie);
-        demandeCreditRepo.save(demandeCredit);
+
         return guarantie;
     }
     public void deleteGuarantie(Long id) {

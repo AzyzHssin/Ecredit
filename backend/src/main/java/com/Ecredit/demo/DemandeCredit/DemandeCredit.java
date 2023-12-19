@@ -1,6 +1,7 @@
 package com.Ecredit.demo.DemandeCredit;
 
 import com.Ecredit.demo.Customer.Customer;
+import com.Ecredit.demo.Files.File;
 import com.Ecredit.demo.TypeCredit.TypeCredit;
 import com.Ecredit.demo.Unite.Unite;
 import com.Ecredit.demo.BankAccount.BankAccount;
@@ -41,15 +42,18 @@ public class DemandeCredit{
     @OneToOne
     private Unite unite;
 
-    @ManyToOne
-    @JoinColumn(name = "type_credit_id")
+    @OneToOne
     private TypeCredit typeCredit;
 
 //    @ManyToOne
 //    @JoinColumn(name = "customer_cin")
 //    Customer customer;
+    @ManyToOne
+    private Guarantie guarantie;
+
     @OneToMany
-    private List<Guarantie> guaranties;
+    private List<File> fileList;
+
 
 
 }

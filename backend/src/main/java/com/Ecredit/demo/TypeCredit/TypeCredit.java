@@ -1,5 +1,6 @@
 package com.Ecredit.demo.TypeCredit;
 
+import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import com.Ecredit.demo.PieceJointe.PieceJointe;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,10 +28,13 @@ public class TypeCredit {
             strategy = GenerationType.SEQUENCE,
             generator = "TypeCredit_sequence"
     )
-    private Long id;
+    private long id;
     private String nom;
     @OneToMany
     private List<PieceJointe> piecesJointes;
+    @OneToOne
+    private DemandeCredit demandeCredit;
+    }
 
 
 

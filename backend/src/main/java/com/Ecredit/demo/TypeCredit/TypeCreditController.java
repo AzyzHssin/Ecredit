@@ -20,6 +20,7 @@ public class TypeCreditController {
     public Optional<TypeCredit> getTypeCreditById(@PathVariable long id ){
        return  typeCreditService.getTypeCreditById(id );
     }
+
     @PostMapping("/add")
     public TypeCredit createTypeCredit(@RequestBody TypeCredit typeCredit) {
         System.out.println("TypeCredit is created successefully");

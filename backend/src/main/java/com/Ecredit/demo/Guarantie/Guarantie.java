@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Setter
@@ -37,8 +38,8 @@ public class Guarantie {
     private Devise devise;
     @OneToOne
     private TypeGuarantie typeGuarantie;
-    @ManyToOne
-    private DemandeCredit demandeCredit;
+    @OneToMany
+    private List<DemandeCredit> demandeCredits;
 
 
 
