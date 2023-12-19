@@ -17,6 +17,9 @@ public class BankAccountService {
     public List<BankAccount> getAllBankAccount(){
         return bankAccountRepo.findAll();
     }
+    public List<BankAccount> getBankAccountByCustomerCin(long id){
+        return bankAccountRepo.findByCustomer_Cin(id);
+    }
     public Optional<BankAccount> getBankAccountById(long id ){
         return bankAccountRepo.findById(id);
     }

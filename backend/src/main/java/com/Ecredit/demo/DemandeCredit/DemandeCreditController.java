@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/DemandeCredit")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class DemandeCreditController {
 
     private final DemandeCreditService demandeCreditService;
