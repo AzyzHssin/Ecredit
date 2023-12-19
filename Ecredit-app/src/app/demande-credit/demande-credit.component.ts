@@ -3,8 +3,10 @@ import { Unite } from './../Models/Unite_Model';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { DemandeCredit } from '../Models/DemandeCredit_Model';
+import {TypeCredit} from '../Models/TypeCredit_Model';
 import { DemandeService } from '../services/DemandeService';
 import { UniteService } from '../services/unite.service';
+import {TypecreditService} from '../services/typecredit.service'
 @Component({
   selector: 'app-demande-credit',
   templateUrl: './demande-credit.component.html',
@@ -13,8 +15,9 @@ import { UniteService } from '../services/unite.service';
 
 })
 export class DemandeCreditComponent implements OnInit {
-  demandeCredit?:DemandeCredit[]
-  uniteArray?:Unite[]
+  demandeCredit?:DemandeCredit[];
+  typecreditArray?:TypeCredit[];
+  uniteArray?:Unite[];
   ncin: number = 0;
   nom:string='';
   prenom:string='';
@@ -32,7 +35,7 @@ export class DemandeCreditComponent implements OnInit {
       // Add more items as needed
     ]
   };
-  constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService,private uniteServ:UniteService ) { }
+  constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService ) { }
   showFormData(){
     console.log("Form values:", {
       ncin: this.ncin,
@@ -53,6 +56,7 @@ export class DemandeCreditComponent implements OnInit {
   }
   ngOnInit(): void {
     this.getUnite();
+    this.getTypecredit();
   }
   getDemande(){
     this.demandeServ.getDemande().subscribe((data:any) => {
@@ -71,6 +75,15 @@ export class DemandeCreditComponent implements OnInit {
       console.error('Error fetching Unite data:', error);
     }
     )
+  };
+
+  getTypecredit(){
+    this.typecreditService.getTypeCredit().subscribe((data:TypeCredit[])=>{
+      this.typecreditArray=data;
+      console.log("Type Credits is fetched",data,"--------------")
+    },(error:any) => {
+      console.error('Error fetching type credits data:', error);
+    })
   }
 
 }
