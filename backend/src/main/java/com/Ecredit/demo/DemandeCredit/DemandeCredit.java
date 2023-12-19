@@ -47,7 +47,7 @@ public class DemandeCredit{
     @JoinColumn(name = "customer_cin")
     Customer customer;*/
     @OneToMany
-    @JsonIgnore
+    @JsonIgnoreProperties({"demandeCredit"})
     private List<Guarantie> guaranties;
 
     @OneToMany

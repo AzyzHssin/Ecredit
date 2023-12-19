@@ -267,19 +267,15 @@
         <tr>
           <th scope="col">Document</th>
           <th scope="col">Obligatoire</th>
-          <th scope="col">Statut</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let piece of PieceJointeArray" >
           <th scope="col">{{piece.nom}}</th>
-          <th scope="col">{{piece.obligatoire}}</th>
-          <th scope="col">
-            <input
-              type="checkbox"
-              aria-label="Checkbox for following text input"
-            />
-          </th>
+          <td>
+            <ng-container *ngIf="obligedDocuments.includes(piece.nom)">oui</ng-container>
+            <ng-container *ngIf="!obligedDocuments.includes(piece.nom)">non</ng-container>
+          </td>
         </tr>
       </tbody>
     </table>

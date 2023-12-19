@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+
 import { DemandeCredit } from '../Models/DemandeCredit_Model';
 import {TypeCredit} from '../Models/TypeCredit_Model';
 import { Unite } from './../Models/Unite_Model';
@@ -20,8 +21,8 @@ import { PiecesjointesService } from './../services/piecesjointes.service';
 
 })
 export class DemandeCreditComponent implements OnInit {
-  demandeCredit?:DemandeCredit[];
-  typecreditArray?:TypeCredit[];
+  demandeCredit!: DemandeCredit[];
+  typecreditArray!:TypeCredit[];
   uniteArray?:Unite[];
   bankAccountArray?:BankAccount[];
   PieceJointeArray?:PieceJointe[];
@@ -37,6 +38,8 @@ export class DemandeCreditComponent implements OnInit {
   selectedFiles: FileList | null = null;
   selectedTypeCredit?:TypeCredit;
   FilesToRender?:any[];
+  checked: boolean = false;
+  obligedDocuments: string[]=[];
   tablet = {
     items: [
       { name: 'iPod', brand: 'Apple', price: 499.99 },
@@ -46,6 +49,14 @@ export class DemandeCreditComponent implements OnInit {
     ]
   };
   fetchedCustomer: boolean=false;
+cities: any[]= [
+  {name: 'New York', code: 'NY'},
+  {name: 'Rome', code: 'RM'},
+  {name: 'London', code: 'LDN'},
+  {name: 'Istanbul', code: 'IST'},
+  {name: 'Paris', code: 'PRS'}
+];
+;
   constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService,private bankaccountService:BankaccountService )
    { }
   /////////////////////////Methods////////////////////////////////////
@@ -82,6 +93,7 @@ export class DemandeCreditComponent implements OnInit {
   ngOnInit(): void {
     this.getUnite();
     this.getTypecredit();
+    this.getPiecesJointes();
   }
   getDemande(){
     this.demandeServ.getDemande().subscribe((data:any) => {
@@ -139,8 +151,8 @@ export class DemandeCreditComponent implements OnInit {
       console.warn('Selected bank account is undefined.');
     }
   }
-  getPiecesJointesByTypeCredit(id:number){
-    this.piecesjointesService.getPiecesJointesByTypeCredit(id).subscribe((data:PieceJointe[])=>{
+  getPiecesJointes(){
+    this.piecesjointesService.getPiecesJointes().subscribe((data:PieceJointe[])=>{
       this.PieceJointeArray=data;
       console.log("Pieces Jointes are fetched \n",this.PieceJointeArray);
     },(error:any) => {
@@ -150,7 +162,12 @@ export class DemandeCreditComponent implements OnInit {
   onSelectTypeCredit(){
     console.log("this.selectedTypeCredit: ",this.selectedTypeCredit)
     if(this.selectedTypeCredit){
-      this.getPiecesJointesByTypeCredit(this.selectedTypeCredit.id);
+      this.piecesjointesService.getPiecesJointesByTypeCredit(this.selectedTypeCredit.id).subscribe((data:PieceJointe[])=>{
+        this.obligedDocuments=data.map(data=>data.nom);
+        console.log("obliged docs ",this.obligedDocuments);
+
+
+      })
       console.log("request fetch is executed using this id : ",this.selectedTypeCredit.id);
     }
     else{

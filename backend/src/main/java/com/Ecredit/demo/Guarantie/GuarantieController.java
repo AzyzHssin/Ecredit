@@ -22,7 +22,7 @@ public Optional<Guarantie> getGuarantieById(@PathVariable long id)
         return guarantieService.getGuarantieById(id);
     }
     @PostMapping("/add")
-    public Guarantie createGuarantie(@RequestBody Guarantie guarantie) {
+    public long createGuarantie(@RequestBody Guarantie guarantie) {
         System.out.println("Guarantie is created successefully");
         return guarantieService.createGuarantie(guarantie);
     }

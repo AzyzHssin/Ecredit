@@ -28,7 +28,6 @@ public class DemandeCreditController {
     }
     @PostMapping("/add")
     public DemandeCredit createDemandeCredit(@RequestBody DemandeCredit demandeCredit) {
-        System.out.println("DemandeCredit is created successefully");
         return demandeCreditService.createDemandeCredit(demandeCredit);
     }
     @DeleteMapping("/{id}")

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
+import { CheckboxModule } from 'primeng/checkbox';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemandeCreditComponent } from './demande-credit/demande-credit.component';
@@ -19,12 +19,13 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {ReactiveFormsModule,FormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
-
+import { DropdownModule } from 'primeng/dropdown';
 @NgModule({
   declarations: [
     AppComponent,
     DemandeCreditComponent,
-    ConsultationCreditComponent
+    ConsultationCreditComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -42,7 +43,9 @@ import { HttpClientModule } from '@angular/common/http';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CheckboxModule,
+    DropdownModule
 
   ],
   providers: [

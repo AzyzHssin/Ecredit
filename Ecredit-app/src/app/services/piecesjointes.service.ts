@@ -11,4 +11,7 @@ export class PiecesjointesService {
   getPiecesJointesByTypeCredit(id:number): Observable<PieceJointe[]>{
     return this.http.get<PieceJointe[]>(`http://localhost:9092/api/PieceJointe/ByTypeCredit/${id}`);
   }
+  getPiecesJointes(): Observable<PieceJointe[]>{
+    return this.http.get<PieceJointe[]>(`http://localhost:9092/api/PieceJointe`);
+  }
 }
