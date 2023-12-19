@@ -1,12 +1,14 @@
-import { Unite } from './../Models/Unite_Model';
-
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { DemandeCredit } from '../Models/DemandeCredit_Model';
 import {TypeCredit} from '../Models/TypeCredit_Model';
+import { Unite } from './../Models/Unite_Model';
+import { BankAccount } from '../Models/BankAccount_Model';
+///////////////////////////////////////////////////////////////
 import { DemandeService } from '../services/DemandeService';
 import { UniteService } from '../services/unite.service';
 import {TypecreditService} from '../services/typecredit.service'
+import { BankaccountService } from '../services/bankaccount.service';
 @Component({
   selector: 'app-demande-credit',
   templateUrl: './demande-credit.component.html',
@@ -18,6 +20,8 @@ export class DemandeCreditComponent implements OnInit {
   demandeCredit?:DemandeCredit[];
   typecreditArray?:TypeCredit[];
   uniteArray?:Unite[];
+  bankAccountArray?:BankAccount[];
+  selectedBankAccount?:BankAccount;
   ncin: number = 0;
   nom:string='';
   prenom:string='';
@@ -35,8 +39,10 @@ export class DemandeCreditComponent implements OnInit {
       // Add more items as needed
     ]
   };
-  constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService ) { }
-  showFormData(){
+  constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService,private bankaccountService:BankaccountService )
+   { }
+  /////////////////////////Methods////////////////////////////////////
+   showFormData(){
     console.log("Form values:", {
       ncin: this.ncin,
       nom: this.nom,
@@ -47,8 +53,18 @@ export class DemandeCreditComponent implements OnInit {
       nbreEcheance:this.nbreEcheance,
       selectedFiles:this.selectedFiles,
       observation:this.observation,
+      selectedBankAccount:this.selectedBankAccount
 
     });
+  }
+  onCinChange(){
+    if(this.ncin.toString().length===8){
+      this.getBankAccountsByCustomerId(this.ncin);
+      console.log("request fetch is executed using this id ncin:",this.ncin);
+    }
+    else{
+      console.log("Ncin:",this.ncin);
+    }
   }
   onFileChange(event: any) {
     this.selectedFiles = event.target.files;
@@ -84,6 +100,36 @@ export class DemandeCreditComponent implements OnInit {
     },(error:any) => {
       console.error('Error fetching type credits data:', error);
     })
-  }
+  };
 
+  getBankAccountsByCustomerId(id:number){
+    this.bankaccountService.getBankAccountByCustomer(id).subscribe((data:BankAccount[])=>{
+      this.bankAccountArray=data;
+      if(this.bankAccountArray.length!=0){
+        this.nom=this.bankAccountArray[0].customer.firstName;
+        this.prenom=this.bankAccountArray[0].customer.lastName;
+        console.log("BankAccounts is fetched",data,"\n------------------------------")
+      }
+      else{
+        console.log("No bank account corresponding to this account");
+        //Make toast
+      }
+    },(error:any) => {
+      console.error('Error fetching BankAccounts data:', error);
+    })
+  }
+  onBankAccountChange(event:any){
+    this.selectedBankAccount = event.target.BankAccount;
+    console.log('Selected Account:', this.selectedBankAccount);
+  }
+  onSelectingAccount(): void {
+    if (this.selectedBankAccount) {
+      console.log('Selected bank account:', this.selectedBankAccount);
+
+      this.dateOvertureCompte = new Date(this.selectedBankAccount.createDate);
+      //this.devise = this.selectedBankAccount.currency; // Adjust to your actual property name
+    } else {
+      console.warn('Selected bank account is undefined.');
+    }
+  }
 }
