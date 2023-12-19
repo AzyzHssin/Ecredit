@@ -2,6 +2,7 @@ package com.Ecredit.demo.PieceJointe;
 
 import com.Ecredit.demo.SituationFamiliale.SituationFamiliale;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,10 @@ public class PieceJointeController {
     @GetMapping("/{id}")
     public Optional<PieceJointe> getPieceJointeById(@PathVariable long id ){
         return pieceJointeService.getPieceJointeById(id);
+    }
+    @GetMapping("/ByTypeCredit/{id}")
+    public ResponseEntity<List<PieceJointe>> getPieceJointeByTypeCredit(@PathVariable long id){
+        return ResponseEntity.ok(pieceJointeService.getPieceJointeByTypeCredit(id));
     }
     @PostMapping("/add")
     public PieceJointe createPieceJointe(@RequestBody PieceJointe pieceJointe) {

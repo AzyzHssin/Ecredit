@@ -39,6 +39,7 @@ export class DemandeCreditComponent implements OnInit {
       // Add more items as needed
     ]
   };
+  fetchedCustomer: boolean=false;
   constructor(private _formBuilder:FormBuilder,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService,private bankaccountService:BankaccountService )
    { }
   /////////////////////////Methods////////////////////////////////////
@@ -109,6 +110,7 @@ export class DemandeCreditComponent implements OnInit {
         this.nom=this.bankAccountArray[0].customer.firstName;
         this.prenom=this.bankAccountArray[0].customer.lastName;
         console.log("BankAccounts is fetched",data,"\n------------------------------")
+        this.fetchedCustomer=true;
       }
       else{
         console.log("No bank account corresponding to this account");
@@ -118,13 +120,10 @@ export class DemandeCreditComponent implements OnInit {
       console.error('Error fetching BankAccounts data:', error);
     })
   }
-  onBankAccountChange(event:any){
-    this.selectedBankAccount = event.target.BankAccount;
-    console.log('Selected Account:', this.selectedBankAccount);
-  }
+
   onSelectingAccount(): void {
     if (this.selectedBankAccount) {
-      console.log('Selected bank account:', this.selectedBankAccount);
+      console.log('Selected bank account:', this.selectedBankAccount.id);
 
       this.dateOvertureCompte = new Date(this.selectedBankAccount.createDate);
       //this.devise = this.selectedBankAccount.currency; // Adjust to your actual property name
