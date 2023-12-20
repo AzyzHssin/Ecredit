@@ -10,6 +10,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/Guarantie")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class GuarantieController {
 private final GuarantieService guarantieService;
 
@@ -24,6 +25,11 @@ public Optional<Guarantie> getGuarantieById(@PathVariable long id)
     @PostMapping("/add")
     public Guarantie createGuarantie(@RequestBody Guarantie guarantie) {
         return guarantieService.createGuarantie(guarantie);
+    }
+    @PostMapping("/update")
+    public Guarantie updateGuarantie(@RequestBody Guarantie frontGuarantie){
+        return guarantieService.updateGuarantie(frontGuarantie);
+
     }
     @DeleteMapping("/{id}")
     public void deleteGuarantie(@PathVariable long id){

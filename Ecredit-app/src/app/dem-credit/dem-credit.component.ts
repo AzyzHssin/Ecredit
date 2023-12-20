@@ -69,7 +69,12 @@ cities: any[]= [
   {name: 'Paris', code: 'PRS'}
 ];
   idDocument!: number;
-;
+  objUpdate!:Guarantie;
+  natureUpdateState!:NatureGuarantie;
+  typeUpdateState!:TypeGuarantie;
+  valeurUpdateState!:number;
+  deviseUpdateState!:Devise;
+
   constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,
     private typecreditService:TypecreditService,private bankaccountService:BankaccountService,
     private typeGarantieService:TypeGarantieService,private deviseGarantieService:DeviseGarantieService,private natureGarantieService:NatureGarantieService,
@@ -101,7 +106,15 @@ cities: any[]= [
       typecreditArray:this.typecreditArray
     });
   }
+  onUpdateGarantie(){
+    this.guarantieService.updateGarantie(this.objUpdate).subscribe(()=>{
+      console.log("guaranie is updated");
+      //for each
+      //look for it
+      //update it in front
 
+    })
+  }
   getTypeGarantieRequest(){
     this.typeGarantieService.getTypeGarantie().subscribe((data:TypeGuarantie[])=>{
       this.TypeGarantieArray=data;
@@ -262,7 +275,7 @@ deleteGarantieElement(value:Guarantie){
       this.sacannedDocumentService.uploadPdf(file).subscribe((data:number)=>{
            this.idDocument=data;
            console.log("id of new doc scanned is ",this.idDocument);
-
+          //ABATH PAYLOAD
 
       }
 

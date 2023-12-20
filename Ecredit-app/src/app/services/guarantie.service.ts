@@ -12,4 +12,8 @@ export class GuarantieService {
   addGuarantie(data:Guarantie){
    return this.http.post("http://localhost:9092/api/Guarantie/add",data);
   }
+  updateGarantie(data:Guarantie){
+    return this.http.put("http://localhost:9092/api/Guarantie/update",data);
+  }
+  
 }

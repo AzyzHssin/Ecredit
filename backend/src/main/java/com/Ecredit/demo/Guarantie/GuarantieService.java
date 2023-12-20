@@ -33,4 +33,18 @@ public class GuarantieService {
     public void deleteGuarantie(Long id) {
         guarantieRepo.deleteById(id);
     }
+    public Guarantie updateGuarantie(Guarantie frontGuarantie){
+        Optional<Guarantie> backGuarantie = this.getGuarantieById(frontGuarantie.getId());
+
+        if (backGuarantie.isPresent()) {
+            Guarantie existingGuarantie = backGuarantie.get();
+            existingGuarantie.setNatureGuarantie(frontGuarantie.getNatureGuarantie());
+            existingGuarantie.setTypeGuarantie(frontGuarantie.getTypeGuarantie());
+            existingGuarantie.setValeur(frontGuarantie.getValeur());
+            existingGuarantie.setDevise(frontGuarantie.getDevise());
+
+            return guarantieRepo.save(existingGuarantie);
+        }
+        return null;
+    }
 }

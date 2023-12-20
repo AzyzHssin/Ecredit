@@ -59,5 +59,6 @@ public class DemandeCredit{
     @JoinColumn(name = "scanned_document_id")
     @JsonIgnoreProperties({"demandeCredit"})
     private ScannedDocument scannedDocument;
+    //abath id fil payload
 
 }
