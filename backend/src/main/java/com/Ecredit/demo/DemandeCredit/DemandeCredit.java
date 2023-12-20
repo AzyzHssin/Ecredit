@@ -1,5 +1,6 @@
 package com.Ecredit.demo.DemandeCredit;
 
+import com.Ecredit.demo.ScannedDocument.ScannedDocument;
 import com.Ecredit.demo.TypeCredit.TypeCredit;
 import com.Ecredit.demo.Unite.Unite;
 import com.Ecredit.demo.BankAccount.BankAccount;
@@ -53,5 +54,10 @@ public class DemandeCredit{
     @OneToMany
     @JsonIgnore
     private List<DocumentFile> documentFiles;
+
+    @ManyToOne
+    @JoinColumn(name = "scanned_document_id")
+    @JsonIgnoreProperties({"demandeCredit"})
+    private ScannedDocument scannedDocument;
 
 }

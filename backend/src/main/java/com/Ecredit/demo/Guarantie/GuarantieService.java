@@ -27,10 +27,8 @@ public class GuarantieService {
         return guarantieRepo.findById(id);
     }
 
-    public long createGuarantie(Guarantie guarantie) {
-
-        guarantieRepo.save(guarantie);
-        return guarantie.getId();
+    public Guarantie createGuarantie(Guarantie guarantie) {
+        return guarantieRepo.save(guarantie);
     }
     public void deleteGuarantie(Long id) {
         guarantieRepo.deleteById(id);

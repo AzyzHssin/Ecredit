@@ -4,6 +4,8 @@ import com.Ecredit.demo.BankAccount.BankAccount;
 import com.Ecredit.demo.BankAccount.BankAccountRepo;
 import com.Ecredit.demo.Guarantie.Guarantie;
 import com.Ecredit.demo.Guarantie.GuarantieRepo;
+import com.Ecredit.demo.ScannedDocument.ScannedDocument;
+import com.Ecredit.demo.ScannedDocument.ScannedDocumentRepository;
 import com.Ecredit.demo.TypeCredit.TypeCredit;
 import com.Ecredit.demo.TypeCredit.TypeCreditRepo;
 import com.Ecredit.demo.Unite.Unite;
@@ -20,7 +22,7 @@ import java.util.Optional;
 public class DemandeCreditService {
 
     private final DemandeCreditRepo demandeCreditRepo;
-
+    private final ScannedDocumentRepository scannedDocumentRepository;
     private final BankAccountRepo bankAccountRepo;
     private final GuarantieRepo guarantieRepo;
     private final UniteRepo uniteRepo;
@@ -46,6 +48,7 @@ public class DemandeCreditService {
             guarantieList.add(guarantieRepo.findById(guarantie.getId()).orElse(null));
         }
         demandeCredit.setGuaranties(guarantieList);
+        demandeCredit.setScannedDocument(scannedDocumentRepository.findById(demandeCredit.getScannedDocument().getId()).orElse(null));
 
         return demandeCreditRepo.save(demandeCredit);
     }

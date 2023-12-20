@@ -341,21 +341,31 @@
 </div>-->
 
 <div class="card">
-	
+
 
 
 
       <div class="w3-sidebar w3-bar-block" style="width:15%">
-        <button    (click)="redirectToDemandeRoute()">Demande Credit</button>
-        <button   (click)="redirectToConsultationRoute()">Consultation Credit</button>
+        <p-fieldset legend="Routes" [toggleable]="true">
+
+        <ul>
+
+            <button id="navButton" (click)="redirectToDemandeRoute()" >Demande Credit</button>
+<br><br>
+
+
+            <button  id="navButton" (click)="redirectToConsultationRoute()"  > Consultation Credit</button>
+
+        </ul>
+      </p-fieldset>
       </div>
-			
-		
+
+
 
 		<div style="margin-left:15%">
 				<router-outlet></router-outlet>
 			</div>
 
-	
+
 </div>
 

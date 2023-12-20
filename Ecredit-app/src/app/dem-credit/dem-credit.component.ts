@@ -1,3 +1,5 @@
+import { SacannedDocumentService } from './../services/ScannedDocument.service';
+import { Guarantie } from './../Models/Guarantie_Model';
 import { GuarantieService } from './../services/guarantie.service';
 
 import { TypeGarantieService } from './../services/type-garantie.service';
@@ -17,7 +19,6 @@ import { UniteService } from '../services/unite.service';
 import {TypecreditService} from '../services/typecredit.service'
 import { BankaccountService } from '../services/bankaccount.service';
 import { PiecesjointesService } from './../services/piecesjointes.service';
-import { Guarantie } from '../Models/Guarantie_Model';
 import { NatureGuarantie } from '../Models/NatureGuarantie_Model';
 import { TypeGuarantie } from '../Models/TypeGuarantie_Model';
 import { Devise } from '../Models/Devise_Model';
@@ -29,7 +30,7 @@ import { Devise } from '../Models/Devise_Model';
 
 })
 export class DemCreditComponent implements OnInit {
-  guarantiesArrayOfDemand!:Guarantie[];
+  guarantiesArrayOfDemand:Guarantie[]=[];
   demandeCredit!: DemandeCredit[];
   typecreditArray!:TypeCredit[];
   uniteArray!:Unite[];
@@ -47,9 +48,9 @@ export class DemCreditComponent implements OnInit {
   montant:number=0;
   nbreEcheance:number=0;
   observation:string='';
-  selectedFiles: FileList | null = null;
+  selectedFile: any;
   selectedTypeCredit?:TypeCredit;
-  FilesToRender?:any[];
+
   checked: boolean = false;
   obligedDocuments: string[]=[];
   displayModal: boolean=false;
@@ -67,11 +68,12 @@ cities: any[]= [
   {name: 'Istanbul', code: 'IST'},
   {name: 'Paris', code: 'PRS'}
 ];
+  idDocument!: number;
 ;
   constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,
     private typecreditService:TypecreditService,private bankaccountService:BankaccountService,
     private typeGarantieService:TypeGarantieService,private deviseGarantieService:DeviseGarantieService,private natureGarantieService:NatureGarantieService,
-    private guarantieService:GuarantieService
+    private guarantieService:GuarantieService,private sacannedDocumentService:SacannedDocumentService
     )
    { }
    ngOnInit(): void {
@@ -92,7 +94,7 @@ cities: any[]= [
       dateOvertureCompte: this.dateOvertureCompte,
       montant:this.montant,
       nbreEcheance:this.nbreEcheance,
-      selectedFiles:this.selectedFiles,
+      selectedFile:this.selectedFile,
       observation:this.observation,
       selectedBankAccount:this.selectedBankAccount,
       selectedTypeCredit:this.selectedTypeCredit,
@@ -147,20 +149,18 @@ onConfirmDialog(){
     "devise": this.DeviseGarantieInput,
     "natureGuarantie": this.NatureGarantieInput,
     "typeGuarantie": this.TypeGarantieInput
-};
-this.guarantieService.addGuarantie(objectGarantieToSave).subscribe(
-  () => {
-    console.log("Guarantie added successfully!");
-  },
-  (error) => {
+  };
+this.guarantieService.addGuarantie(objectGarantieToSave).subscribe((data:any)=>{
+  this.guarantiesArrayOfDemand.push(data);
 
-    console.error("Error adding Guarantie:", error);
-
-  }
-);
-/* this.guarantiesArrayOfDemand.push(objectGarantieToSave); */
-console.log("guarantiesArrayOfDemand ::",this.guarantiesArrayOfDemand);
+})
 }
+
+deleteGarantieElement(value:Guarantie){
+  this.guarantiesArrayOfDemand.filter(item=>item!==value);
+  console.log("tab after deleting one element ",this.guarantiesArrayOfDemand);
+}
+
   onCinChange(){
     if(this.ncin.toString().length===8){
       this.getBankAccountsByCustomerId(this.ncin);
@@ -171,9 +171,9 @@ console.log("guarantiesArrayOfDemand ::",this.guarantiesArrayOfDemand);
     }
   }
   onFileChange(event: any) {
-    this.selectedFiles = event.target.files;
-    console.log('Selected files:', this.selectedFiles);
-    /* this.FilesToRender=Array.from(this.selectedFiles); */
+    this.selectedFile = event.files;
+    console.log('Selected file:', this.selectedFile);
+
   }
 
   getDemande(){
@@ -256,6 +256,27 @@ console.log("guarantiesArrayOfDemand ::",this.guarantiesArrayOfDemand);
       console.warn("no Type Credit is selected to fetch pieces jointes")
     }
   }
+  submit(){
+    if(this.selectedFile){
+      this.selectedFile.forEach((file: File) => {
+      this.sacannedDocumentService.uploadPdf(file).subscribe((data:number)=>{
+           this.idDocument=data;
+           console.log("id of new doc scanned is ",this.idDocument);
+
+
+      }
+
+      );
+    });
+  }else{
+    console.log("plz upload file");
+
+  }
+
+  }
+
+  //////////////////////////////////////BASE64////////////////////////////////////////
+
 }
 
 

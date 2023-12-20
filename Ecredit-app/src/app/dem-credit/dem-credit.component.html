@@ -1,5 +1,5 @@
 
-<form>
+<form >
 
     <p-fieldset legend="Information Client">
 
@@ -119,18 +119,18 @@
             </ng-template>
             <ng-template pTemplate="body" let-g>
                 <tr>
-                    <th>{{g.natureGuarantie}}</th>
-                    <td>{{g.typeGuarantie}}</td>
+                    <th>{{g.natureGuarantie.nom}}</th>
+                    <td>{{g.typeGuarantie.nom}}</td>
                     <td>{{g.valeur}}</td>
-                    <td>{{g.devise}}</td>
+                    <td>{{g.devise.nom}}</td>
                     <td>
-                        <button pButton pRipple icon="pi pi-pencil" id="editbutton" class="p-button-rounded p-button-success mr-2" ></button>
-                        <button (click)="showMaximizableDialog()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
-                        <p-dialog header="supprimer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
+                        <button (click)="showMaximizableDialog()"  pButton pRipple icon="pi pi-pencil" id="editbutton" class="p-button-rounded p-button-success mr-2" ></button>
+                        <button (click)="deleteGarantieElement(g)" pButton  icon="pi pi-trash" class="p-button-rounded p-button-warning" > </button>
+                        <p-dialog header="Modifer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
                         [draggable]="false" [resizable]="false">
 
                          <ng-template pTemplate="footer">
-                        <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok" styleClass="p-button-text"></p-button>
+                        <p-button icon="pi pi-check" (click)="displayMaximizable=false"  styleClass="p-button-text"></p-button>
                         </ng-template>
                         </p-dialog>
                       </td>
@@ -162,12 +162,21 @@
 
         </p-table>
 
-        <p-fileUpload  (change)="onFileChange($event)"
-        type="file" name="myfile[]" url="./upload.php"></p-fileUpload>
+        <p-fileUpload mode="basic" chooseLabel="Choose FILE"
+        url="https://www.primefaces.org/cdn/api/upload.php"
+        (onUpload)="onFileChange($event)"></p-fileUpload>
+
+
     </p-fieldset>
 
 
     <p-fieldset legend="Observation" [toggleable]="true">
         <textarea pInputTextarea [(ngModel)]="observation" id="text" placeholder="your text is here"></textarea>
     </p-fieldset>
+    <br>
+    <div class="FormSubmitButtons">
+      <button pButton type="button" label="Cancel" icon="pi pi-times"></button>
+      <p-button (onClick)="submit()" label="Envoyer" icon="pi pi-check"></p-button>
+
+    </div>
    </form>
