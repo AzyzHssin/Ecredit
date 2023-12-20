@@ -40,6 +40,7 @@ public class DemandeCreditService {
         bankAccount.getDemandeCredits().add(demandeCredit);
         demandeCreditRepo.save(demandeCredit);
         bankAccountRepo.save(bankAccount);
+        //////
         List<Guarantie> guarantieList=new ArrayList<>();
         for(Guarantie guarantie:demandeCredit.getGuaranties()){
             guarantieList.add(guarantieRepo.findById(guarantie.getId()).orElse(null));
