@@ -2,6 +2,7 @@ package com.Ecredit.demo.BankAccount;
 
 import com.Ecredit.demo.Customer.Customer;
 import com.Ecredit.demo.DemandeCredit.DemandeCredit;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,7 +20,7 @@ import java.util.List;
 @Entity
 public class BankAccount {
     @Id
-    @SequenceGenerator(
+        @SequenceGenerator(
             name = "BankAccount_sequence",
             sequenceName = "BankAccount_sequence",
             allocationSize = 1
@@ -34,46 +35,7 @@ public class BankAccount {
     @ManyToOne
     private Customer customer;
     @OneToMany
-    @JsonIgnoreProperties({"bankAccount"})
+    @JsonIgnore
     private List<DemandeCredit> demandeCredits;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public int getSolde() {
-        return solde;
-    }
-
-    public void setSolde(int solde) {
-        this.solde = solde;
-    }
-
-    public Date getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public List<DemandeCredit> getDemandeCredits() {
-        return demandeCredits;
-    }
-
-    public void setDemandeCredits(List<DemandeCredit> demandeCredits) {
-        this.demandeCredits = demandeCredits;
-    }
 }

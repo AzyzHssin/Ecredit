@@ -10,6 +10,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/TypeCredit")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class TypeCreditController {
     private final TypeCreditService typeCreditService;
     @GetMapping

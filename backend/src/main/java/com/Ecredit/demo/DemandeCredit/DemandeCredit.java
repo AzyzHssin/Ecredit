@@ -1,12 +1,11 @@
 package com.Ecredit.demo.DemandeCredit;
 
-import com.Ecredit.demo.Customer.Customer;
-import com.Ecredit.demo.Files.File;
 import com.Ecredit.demo.TypeCredit.TypeCredit;
 import com.Ecredit.demo.Unite.Unite;
 import com.Ecredit.demo.BankAccount.BankAccount;
 import com.Ecredit.demo.Guarantie.Guarantie;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.Ecredit.demo.File.DocumentFile;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -41,19 +40,18 @@ public class DemandeCredit{
 
     @OneToOne
     private Unite unite;
-
     @OneToOne
+    /*@JoinColumn(name = "type_credit_id")*/
     private TypeCredit typeCredit;
-
-//    @ManyToOne
-//    @JoinColumn(name = "customer_cin")
-//    Customer customer;
-    @ManyToOne
-    private Guarantie guarantie;
+   /* @ManyToOne
+    @JoinColumn(name = "customer_cin")
+    Customer customer;*/
+    @OneToMany
+    @JsonIgnoreProperties({"demandeCredit"})
+    private List<Guarantie> guaranties;
 
     @OneToMany
-    private List<File> fileList;
-
-
+    @JsonIgnore
+    private List<DocumentFile> documentFiles;
 
 }

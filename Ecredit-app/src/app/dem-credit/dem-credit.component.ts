@@ -12,21 +12,22 @@ import { UniteService } from '../services/unite.service';
 import {TypecreditService} from '../services/typecredit.service'
 import { BankaccountService } from '../services/bankaccount.service';
 import { PiecesjointesService } from './../services/piecesjointes.service';
+import { Guarantie } from '../Models/Guarantie_Model';
 ////////////////////////////////////////////////////////////////
 @Component({
-  selector: 'app-demande-credit',
-  templateUrl: './demande-credit.component.html',
-  styleUrls: ['./demande-credit.component.css'],
-
+  selector: 'app-dem-credit',
+  templateUrl: './dem-credit.component.html',
+  styleUrls: ['./dem-credit.component.css']
 
 })
-export class DemandeCreditComponent implements OnInit {
+export class DemCreditComponent implements OnInit {
+  guarantiesArrayOfDemand!:Guarantie[];
   demandeCredit!: DemandeCredit[];
   typecreditArray!:TypeCredit[];
-  uniteArray?:Unite[];
-  bankAccountArray?:BankAccount[];
-  PieceJointeArray?:PieceJointe[];
-  selectedBankAccount?:BankAccount;
+  uniteArray!:Unite[];
+  bankAccountArray!:BankAccount[];
+  PieceJointeArray!:PieceJointe[];
+  selectedBankAccount!:BankAccount;
   ncin: number = 0;
   nom:string='';
   prenom:string='';
@@ -40,6 +41,12 @@ export class DemandeCreditComponent implements OnInit {
   FilesToRender?:any[];
   checked: boolean = false;
   obligedDocuments: string[]=[];
+  displayModal: boolean=false;
+  displayMaximizable: boolean=false;
+  NatureGarantieInput:string='';
+  TypeGarantieInput:string='';
+  ValeurGarantieInput:string='';
+  DeviseGarantieInput:string='';
   tablet = {
     items: [
       { name: 'iPod', brand: 'Apple', price: 499.99 },
@@ -76,6 +83,12 @@ cities: any[]= [
       typecreditArray:this.typecreditArray
     });
   }
+  showModalDialog() {
+    this.displayModal = true;
+}
+showMaximizableDialog() {
+  this.displayMaximizable = true;
+}
   onCinChange(){
     if(this.ncin.toString().length===8){
       this.getBankAccountsByCustomerId(this.ncin);
@@ -175,3 +188,5 @@ cities: any[]= [
     }
   }
 }
+
+

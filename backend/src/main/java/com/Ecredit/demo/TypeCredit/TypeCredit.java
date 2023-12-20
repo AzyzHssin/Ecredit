@@ -2,6 +2,8 @@ package com.Ecredit.demo.TypeCredit;
 
 import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import com.Ecredit.demo.PieceJointe.PieceJointe;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,12 +33,7 @@ public class TypeCredit {
     private long id;
     private String nom;
     @OneToMany
+    @JsonIgnoreProperties("typeCredit")
     private List<PieceJointe> piecesJointes;
-    @OneToOne
-    private DemandeCredit demandeCredit;
-    }
-
-
-
 
 }

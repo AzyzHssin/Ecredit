@@ -4,6 +4,7 @@ import com.Ecredit.demo.NatureGuarantie.NatureGuarantie;
 import com.Ecredit.demo.TypeCredit.TypeCredit;
 import com.Ecredit.demo.TypeCredit.TypeCreditRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,7 +22,9 @@ public List<PieceJointe> getAllPieceJointe(){
 public Optional<PieceJointe> getPieceJointeById(long id ) {
     return pieceJointeRepo.findById(id);
 }
-
+public List<PieceJointe> getPieceJointeByTypeCredit(long id){
+    return pieceJointeRepo.findByTypeCredit_Id(id);
+}
     public PieceJointe createPieceJointe(PieceJointe pieceJointe) {
         TypeCredit typeCredit=typeCreditRepo.findById(pieceJointe.getTypeCredit().getId()).orElse(null);
         assert typeCredit!=null;

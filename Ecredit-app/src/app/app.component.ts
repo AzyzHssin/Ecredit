@@ -10,7 +10,7 @@ export class AppComponent {
   title = 'Ecredit';
   constructor(private router: Router) {}
   redirectToDemandeRoute(): void {
-    this.router.navigate(['/DemandeCredit']);
+    this.router.navigate(['/DemCredit']);
   }
   redirectToConsultationRoute(): void {
     this.router.navigate(['/ConsultationCredit']);

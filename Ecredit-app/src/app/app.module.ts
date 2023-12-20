@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemandeCreditComponent } from './demande-credit/demande-credit.component';
@@ -18,15 +17,33 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {ReactiveFormsModule,FormsModule} from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+////////////////////////////////PRIMENG///////////////////////////////
+import {SplitterModule} from 'primeng/splitter';
 
+import { DropdownModule } from 'primeng/dropdown';
+import { DemCreditComponent } from './dem-credit/dem-credit.component';
+import {InputTextModule} from 'primeng/inputtext';
+import {CalendarModule} from 'primeng/calendar';
+import {FieldsetModule} from 'primeng/fieldset';
+import { CheckboxModule } from 'primeng/checkbox';
+import {TableModule} from 'primeng/table';
+import {ButtonModule} from 'primeng/button';
+import {FileUploadModule} from 'primeng/fileupload';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {DialogModule} from 'primeng/dialog';
 @NgModule({
   declarations: [
     AppComponent,
     DemandeCreditComponent,
-    ConsultationCreditComponent
+    ConsultationCreditComponent,
+    DemCreditComponent,
+
   ],
   imports: [
+    DialogModule,
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     MatToolbarModule,
     MatButtonModule,
@@ -40,8 +57,17 @@ import {ReactiveFormsModule,FormsModule} from "@angular/forms";
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    ReactiveFormsModule
-    
+    ReactiveFormsModule,
+    CheckboxModule,
+    DropdownModule,
+    SplitterModule,
+    InputTextModule,
+    FieldsetModule,
+    CalendarModule,
+    TableModule,
+    ButtonModule,
+    FileUploadModule,
+    InputTextareaModule
   ],
   providers: [
     MatDatepickerModule

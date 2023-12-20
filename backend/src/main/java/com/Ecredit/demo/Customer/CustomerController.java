@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/Customer")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class CustomerController {
     private final CustomerService customerService;
 

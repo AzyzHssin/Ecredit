@@ -1,4 +1,4 @@
-package com.Ecredit.demo.Files;
+package com.Ecredit.demo.File;
 
 import com.Ecredit.demo.DemandeCredit.DemandeCredit;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class File {
+public class DocumentFile {
     @Id
     @SequenceGenerator(
             name = "file_sequence",

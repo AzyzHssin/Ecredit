@@ -17,7 +17,6 @@ import java.util.Optional;
 
 public class GuarantieService {
     private final GuarantieRepo guarantieRepo;
-    private final DemandeCreditRepo demandeCreditRepo;
 
 
     public List<Guarantie> getAllGuarantie (){
@@ -28,11 +27,10 @@ public class GuarantieService {
         return guarantieRepo.findById(id);
     }
 
-    public Guarantie createGuarantie(Guarantie guarantie) {
+    public long createGuarantie(Guarantie guarantie) {
 
         guarantieRepo.save(guarantie);
-
-        return guarantie;
+        return guarantie.getId();
     }
     public void deleteGuarantie(Long id) {
         guarantieRepo.deleteById(id);

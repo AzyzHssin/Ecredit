@@ -1,4 +1,4 @@
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+/*  @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
 .logoInThemiddle{
     height:40px ;
@@ -7,14 +7,23 @@
 
 }
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 180vh;
+      margin: 0; 
+
+ }
 .example-form-field {
     width: 200px;
   }
   .example-form-field-devise{
     width:50px;
- 
-    
+
+
   }
   .deviseText{
    margin-left: 40px;
@@ -22,7 +31,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   }
   .navButton{
     background-color: aliceblue;
- 
+
   }
   .space{
     margin: 10px;
@@ -31,7 +40,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
   .space-label{
         margin-left: 40px;
-        margin-right: 20px;   
+        margin-right: 20px;
   }
 
 #addButton{
@@ -49,6 +58,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 95%;
 margin: 20px;
 }
+
 #Submit{
   margin-left: 50%;
   background-color: rgb(114, 114, 245);
@@ -60,20 +70,20 @@ margin: 20px;
 }
 
 .button-container {
-  text-align: center;  
+  text-align: center;
 }
 .button-container button {
-  margin: 5px; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  cursor: pointer; 
+  margin: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
   position: relative;
 }
 .files-upload{
- 
+
   border-radius: 5px;
   justify-content: center;
- 
+
 }
 .drop-container {
   position: relative;
@@ -107,3 +117,14 @@ margin: 20px;
   text-align: center;
   transition: color .2s ease-in-out;
 }
+
+#Card{
+  border:3px solid rgb(240, 240, 240);
+  border-radius: 15px;
+  width: 120vh;
+
+}
+ */
+ #editbutton{
+  background-color:rgb(111, 111, 255) ;
+ }

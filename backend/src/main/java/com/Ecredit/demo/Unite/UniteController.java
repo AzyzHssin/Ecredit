@@ -9,6 +9,7 @@ import java.util.Optional;
 @RestController
 @AllArgsConstructor
 @RequestMapping("api/Unite")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class UniteController {
     private final UniteService uniteService;
 

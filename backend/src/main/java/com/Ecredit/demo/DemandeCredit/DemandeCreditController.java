@@ -12,6 +12,7 @@ import java.util.Optional;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/DemandeCredit")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class DemandeCreditController {
 
     private final DemandeCreditService demandeCreditService;
@@ -27,7 +28,6 @@ public class DemandeCreditController {
     }
     @PostMapping("/add")
     public DemandeCredit createDemandeCredit(@RequestBody DemandeCredit demandeCredit) {
-        System.out.println("DemandeCredit is created successefully");
         return demandeCreditService.createDemandeCredit(demandeCredit);
     }
     @DeleteMapping("/{id}")
