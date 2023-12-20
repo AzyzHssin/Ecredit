@@ -43,7 +43,6 @@ public class DemandeCreditService {
         List<Guarantie> guarantieList=new ArrayList<>();
         for(Guarantie guarantie:demandeCredit.getGuaranties()){
             guarantieList.add(guarantieRepo.findById(guarantie.getId()).orElse(null));
-
         }
         demandeCredit.setGuaranties(guarantieList);
 
