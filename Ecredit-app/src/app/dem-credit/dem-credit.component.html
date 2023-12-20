@@ -128,9 +128,17 @@
                         <button (click)="deleteGarantieElement(g)" pButton  icon="pi pi-trash" class="p-button-rounded p-button-warning" > </button>
                         <p-dialog header="Modifer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
                         [draggable]="false" [resizable]="false">
+                        <span class="ml-2">Nature</span>
+                        <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder={{g.natureGuarantie.nom}}  [(ngModel)]="natureUpdateState"></p-dropdown>
+                        <span class="ml-2">Type</span>
+                        <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder={{g.typeGuarantie.nom}}  [(ngModel)]="typeUpdateState"></p-dropdown>
+                        <span class="ml-2">Valeur</span>
+                        <input type="text" pInputText  placeholder="Donner une valeur du garantie" name="natureUpdateState" placeholder={{g.valeur.nom}} [(ngModel)]="valeurUpdateState">
+                        <span class="ml-2">Devise</span>
+                        <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="natureUpdateState"placeholder={{g.devise.nom}} [(ngModel)]="deviseUpdateState"></p-dropdown>
 
                          <ng-template pTemplate="footer">
-                        <p-button icon="pi pi-check" (click)="displayMaximizable=false"  styleClass="p-button-text"></p-button>
+                        <p-button icon="pi pi-check" (click)="onUpdateGarantie(g)"   styleClass="p-button-text"></p-button>
                         </ng-template>
                         </p-dialog>
                       </td>

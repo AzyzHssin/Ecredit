@@ -32,6 +32,7 @@ public class BankAccount {
     private long id;
     private int solde;
     private Date createDate;
+    private String devise;
     @ManyToOne
     private Customer customer;
     @OneToMany

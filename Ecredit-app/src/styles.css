@@ -139,10 +139,11 @@ margin: 20px;
   padding: 10px 20px;
 }
 #navButton{
-  height:50px;
-  border-radius: 10px;
+  height:40px;
+  border-radius: 3px;
   border:2px solid rgb(65, 154, 255);
-  background-color: #4baaf5;;
+  background-color: #2196F3;
   margin: 0px;
+  color:white;
   width: 100%;
 }

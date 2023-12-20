@@ -26,7 +26,7 @@ public Optional<Guarantie> getGuarantieById(@PathVariable long id)
     public Guarantie createGuarantie(@RequestBody Guarantie guarantie) {
         return guarantieService.createGuarantie(guarantie);
     }
-    @PostMapping("/update")
+    @PutMapping("/update")
     public Guarantie updateGuarantie(@RequestBody Guarantie frontGuarantie){
         return guarantieService.updateGuarantie(frontGuarantie);
 

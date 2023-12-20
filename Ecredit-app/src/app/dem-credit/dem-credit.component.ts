@@ -69,7 +69,7 @@ cities: any[]= [
   {name: 'Paris', code: 'PRS'}
 ];
   idDocument!: number;
-  objUpdate!:Guarantie;
+
   natureUpdateState!:NatureGuarantie;
   typeUpdateState!:TypeGuarantie;
   valeurUpdateState!:number;
@@ -106,14 +106,24 @@ cities: any[]= [
       typecreditArray:this.typecreditArray
     });
   }
-  onUpdateGarantie(){
-    this.guarantieService.updateGarantie(this.objUpdate).subscribe(()=>{
-      console.log("guaranie is updated");
-      //for each
-      //look for it
-      //update it in front
+  onUpdateGarantie(oldGuarantie:Guarantie){
+
+    const objUpdate:Guarantie = {
+      "id":oldGuarantie.id,
+      "valeur": this.valeurUpdateState,
+      "devise": this.deviseUpdateState,
+      "natureGuarantie": this.natureUpdateState,
+      "typeGuarantie": this.typeUpdateState
+    };
+    this.guarantieService.updateGarantie(objUpdate).subscribe((data:any)=>{
+      this.guarantiesArrayOfDemand = this.guarantiesArrayOfDemand.filter(item => item.id !== objUpdate.id);
+      this.guarantiesArrayOfDemand.push(data)
+      console.log("after update ",this.guarantiesArrayOfDemand);
+
 
     })
+
+    this.displayMaximizable=false
   }
   getTypeGarantieRequest(){
     this.typeGarantieService.getTypeGarantie().subscribe((data:TypeGuarantie[])=>{
@@ -158,6 +168,7 @@ showStateTypeGuarantie(){
 }
 onConfirmDialog(){
   const objectGarantieToSave:Guarantie = {
+    "id":null,
     "valeur": this.ValeurGarantieInput,
     "devise": this.DeviseGarantieInput,
     "natureGuarantie": this.NatureGarantieInput,

@@ -4,7 +4,7 @@ import { NatureGuarantie } from "./NatureGuarantie_Model";
 import { TypeGuarantie } from "./TypeGuarantie_Model";
 
 export interface Guarantie {
-    /* id: number; */
+    id: any;
     valeur: number;
     natureGuarantie: NatureGuarantie;
     devise: Devise;

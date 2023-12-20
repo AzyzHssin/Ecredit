@@ -15,5 +15,5 @@ export class GuarantieService {
   updateGarantie(data:Guarantie){
     return this.http.put("http://localhost:9092/api/Guarantie/update",data);
   }
-  
+
 }
