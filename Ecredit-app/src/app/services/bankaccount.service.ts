@@ -8,12 +8,12 @@ import { BankAccount } from '../Models/BankAccount_Model';
 export class BankaccountService {
   constructor(private http:HttpClient) { }
   getBankAccounts(): Observable<BankAccount[]> {
-    return this.http.get<BankAccount[]>("http://localhost:8090/api/BankAccount");
+    return this.http.get<BankAccount[]>("http://localhost:9092/api/BankAccount");
   }
   getBankAccountByCustomer(id:number):Observable<BankAccount[]>{
-    console.log("executed route to backend: http://localhost:8090/api/BankAccount/ByCustomer/{id}")
-    return this.http.get<BankAccount[]>(`http://localhost:8090/api/BankAccount/ByCustomer/${id}`)
+    console.log("executed route to backend: http://localhost:9092/api/BankAccount/ByCustomer/{id}")
+    return this.http.get<BankAccount[]>(`http://localhost:9092/api/BankAccount/ByCustomer/${id}`)
   }
 }
 //http://localhost:8090/ port el dar
-// port el khedma 9092 
+// port el khedma 9092

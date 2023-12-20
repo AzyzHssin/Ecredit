@@ -8,9 +8,9 @@ import { DemandeCredit } from '../Models/DemandeCredit_Model';
 export class DemandeService {
   constructor(private http:HttpClient) { }
   getDemande(): Observable<DemandeCredit[]> {
-    return this.http.get<DemandeCredit[]>("http://localhost:8090/api/DemandeCredit");
+    return this.http.get<DemandeCredit[]>("http://localhost:9092/api/DemandeCredit");
   }
   addDemande(data:DemandeCredit){
-    this.http.post("http://localhost:8090/api/DemandeCredit/add",data);
+    this.http.post("http://localhost:9092/api/DemandeCredit/add",data);
   }
 }

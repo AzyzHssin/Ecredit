@@ -9,9 +9,9 @@ import { Unite } from '../Models/Unite_Model';
 export class UniteService {
   constructor(private http:HttpClient) { }
   getUnite(): Observable<any> {
-    return this.http.get("http://localhost:8090/api/Unite");
+    return this.http.get("http://localhost:9092/api/Unite");
   }
   addUnite(data:Unite){
-    this.http.post("http://localhost:8090/api/Unite/add",data);
+    this.http.post("http://localhost:9092/api/Unite/add",data);
   }
 }

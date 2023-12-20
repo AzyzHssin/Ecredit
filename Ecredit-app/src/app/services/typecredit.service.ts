@@ -9,9 +9,9 @@ import { TypeCredit } from '../Models/TypeCredit_Model';
 export class TypecreditService {
   constructor(private http:HttpClient) { }
   getTypeCredit(): Observable<any> {
-    return this.http.get("http://localhost:8090/api/TypeCredit");
+    return this.http.get("http://localhost:9092/api/TypeCredit");
   }
   addTypeCredit(data:TypeCredit){
-    this.http.post("http://localhost:8090/api/TypeCredit/add",data);
+    this.http.post("http://localhost:9092/api/TypeCredit/add",data);
   }
 }

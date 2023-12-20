@@ -1,3 +1,8 @@
+import { GuarantieService } from './../services/guarantie.service';
+
+import { TypeGarantieService } from './../services/type-garantie.service';
+import { DeviseGarantieService } from './../services/devise-garantie.service';
+import { NatureGarantieService } from './../services/nature-garantie.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 
@@ -13,6 +18,9 @@ import {TypecreditService} from '../services/typecredit.service'
 import { BankaccountService } from '../services/bankaccount.service';
 import { PiecesjointesService } from './../services/piecesjointes.service';
 import { Guarantie } from '../Models/Guarantie_Model';
+import { NatureGuarantie } from '../Models/NatureGuarantie_Model';
+import { TypeGuarantie } from '../Models/TypeGuarantie_Model';
+import { Devise } from '../Models/Devise_Model';
 ////////////////////////////////////////////////////////////////
 @Component({
   selector: 'app-dem-credit',
@@ -27,6 +35,9 @@ export class DemCreditComponent implements OnInit {
   uniteArray!:Unite[];
   bankAccountArray!:BankAccount[];
   PieceJointeArray!:PieceJointe[];
+  NatureGarantieArray!:NatureGuarantie[];
+  TypeGarantieArray!:TypeGuarantie[];
+  DeviseGarantieArray!:Devise[];
   selectedBankAccount!:BankAccount;
   ncin: number = 0;
   nom:string='';
@@ -43,18 +54,11 @@ export class DemCreditComponent implements OnInit {
   obligedDocuments: string[]=[];
   displayModal: boolean=false;
   displayMaximizable: boolean=false;
-  NatureGarantieInput:string='';
-  TypeGarantieInput:string='';
-  ValeurGarantieInput:string='';
-  DeviseGarantieInput:string='';
-  tablet = {
-    items: [
-      { name: 'iPod', brand: 'Apple', price: 499.99 },
-      { name: 'Galaxy Tab', brand: 'Samsung', price: 349.99 },
-      { name: 'Fire HD', brand: 'Amazon', price: 149.99 },
-      // Add more items as needed
-    ]
-  };
+  NatureGarantieInput!:NatureGuarantie;
+  TypeGarantieInput!:TypeGuarantie;
+  ValeurGarantieInput!:number;
+  DeviseGarantieInput!:Devise;
+
   fetchedCustomer: boolean=false;
 cities: any[]= [
   {name: 'New York', code: 'NY'},
@@ -64,8 +68,20 @@ cities: any[]= [
   {name: 'Paris', code: 'PRS'}
 ];
 ;
-  constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,private typecreditService:TypecreditService,private bankaccountService:BankaccountService )
+  constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,
+    private typecreditService:TypecreditService,private bankaccountService:BankaccountService,
+    private typeGarantieService:TypeGarantieService,private deviseGarantieService:DeviseGarantieService,private natureGarantieService:NatureGarantieService,
+    private guarantieService:GuarantieService
+    )
    { }
+   ngOnInit(): void {
+    this.getUnite();
+    this.getTypecredit();
+    this.getPiecesJointes();
+    this.getTypeGarantieRequest();
+    this.getNatureGarantieRequest();
+    this.getDeviseGarantieRequest();
+  }
   /////////////////////////Methods////////////////////////////////////
    showFormData(){
     console.log("Form values:", {
@@ -83,11 +99,67 @@ cities: any[]= [
       typecreditArray:this.typecreditArray
     });
   }
+
+  getTypeGarantieRequest(){
+    this.typeGarantieService.getTypeGarantie().subscribe((data:TypeGuarantie[])=>{
+      this.TypeGarantieArray=data;
+      console.log("Type Garantie is fetched",data,"--------------")
+    },(error:any) => {
+      console.error('Error fetching type Garantie data:', error);
+    });
+  }
+  getNatureGarantieRequest(){
+    this.natureGarantieService.getNatureGarantie().subscribe((data:NatureGuarantie[])=>{
+      this.NatureGarantieArray=data;
+      console.log(" NatureGuarantie is fetched",data,"--------------")
+    },(error:any) => {
+      console.error('Error fetching NatureGuarantie data:', error);
+    });
+
+  }
+  getDeviseGarantieRequest(){
+    this.deviseGarantieService.getDeviseGarantie().subscribe((data:Devise[])=>{
+      this.DeviseGarantieArray=data;
+      console.log(" DeviseGarantie is fetched",data,"--------------")
+    },(error:any) => {
+      console.error('Error fetching DeviseGarantie data:', error);
+    });
+
+}
   showModalDialog() {
     this.displayModal = true;
 }
 showMaximizableDialog() {
   this.displayMaximizable = true;
+}
+showStateNature(){
+  console.log(this.NatureGarantieInput);
+}
+showStateDeviseGarantie(){
+  console.log(this.DeviseGarantieInput);
+}
+showStateTypeGuarantie(){
+  console.log(this.TypeGarantieInput)
+}
+onConfirmDialog(){
+  const objectGarantieToSave:Guarantie = {
+    "valeur": this.ValeurGarantieInput,
+    "devise": this.DeviseGarantieInput,
+    "natureGuarantie": this.NatureGarantieInput,
+    "typeGuarantie": this.TypeGarantieInput
+};
+this.guarantieService.addGuarantie(objectGarantieToSave).subscribe(
+  () => {
+    console.log("Guarantie added successfully!");
+  },
+  (error) => {
+
+    console.error("Error adding Guarantie:", error);
+
+  }
+);
+/* this.guarantiesArrayOfDemand.push(objectGarantieToSave); */
+console.log("guarantiesArrayOfDemand ::",this.guarantiesArrayOfDemand);
 }
   onCinChange(){
     if(this.ncin.toString().length===8){
@@ -103,11 +175,7 @@ showMaximizableDialog() {
     console.log('Selected files:', this.selectedFiles);
     /* this.FilesToRender=Array.from(this.selectedFiles); */
   }
-  ngOnInit(): void {
-    this.getUnite();
-    this.getTypecredit();
-    this.getPiecesJointes();
-  }
+
   getDemande(){
     this.demandeServ.getDemande().subscribe((data:any) => {
       this.demandeCredit = data;
@@ -142,6 +210,7 @@ showMaximizableDialog() {
       if(this.bankAccountArray.length!=0){
         this.nom=this.bankAccountArray[0].customer.firstName;
         this.prenom=this.bankAccountArray[0].customer.lastName;
+       /*  this.dateOvertureCompte=new Date(this.bankAccountArray[0].createDate); */
         console.log("BankAccounts is fetched",data,"\n------------------------------")
         this.fetchedCustomer=true;
       }

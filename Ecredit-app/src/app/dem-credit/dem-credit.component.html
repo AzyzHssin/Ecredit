@@ -1,6 +1,7 @@
+
 <form>
 
-    <p-fieldset legend="Information Client" [toggleable]="true">
+    <p-fieldset legend="Information Client">
 
 
         <div class="grid">
@@ -16,7 +17,7 @@
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>num de compte</h5>
                     <p-dropdown [options]="bankAccountArray" [(ngModel)]="selectedBankAccount"
-                    (selectionChange)="onSelectingAccount()"
+                    (onClick)="onSelectingAccount()"
                     name="BankAccount" optionLabel="id"></p-dropdown>
                 </div>
             </div>
@@ -34,46 +35,47 @@
                 </div>
             </div>
             <div class="col">
-                    
+
 
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>prénom</h5>
                     <input type="text"  disabled="true"
-                    type="text" [(ngModel)]="prenom" name="prenom" pInputText> 
+                    type="text" [(ngModel)]="prenom" name="prenom" pInputText>
                 </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5 for="icon">dateOvertureCompte</h5>
                     <p-calendar [(ngModel)]="dateOvertureCompte"
                     name="dateOvertureCompte" [showIcon]="true" inputId="icon"></p-calendar>
-                    
+
                 </div>
                 </div>
         </div>
 
 
     </p-fieldset>
+    <br>
     <p-fieldset legend="Dossier Credit" [toggleable]="true">
         <div class="grid">
             <div class="col-6">
                 <div class="text-left p-3 border-round-sm  font-bold">
                     <h5>montant</h5>
-                    <input type="text" [(ngModel)]="montant" name="montant" pInputText> 
-                
+                    <input type="text" [(ngModel)]="montant" name="montant" pInputText>
+
                 </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>nbre echeance </h5>
 
                     <input type="text"
                     [(ngModel)]="nbreEcheance"
-                    name="nbreEcheance" pInputText> 
+                    name="nbreEcheance" pInputText>
                 </div>
             </div>
             <div class="col-6">
                 <div class="text-left p-3 border-round-sm  font-bold col-4">
                     <h5>Type Credit: </h5>
-                    <p-dropdown [(ngModel)]="selectedTypeCredit" [options]="typecreditArray" (selectionChange)="onSelectTypeCredit()"
+                    <p-dropdown [(ngModel)]="selectedTypeCredit" [options]="typecreditArray" placeholder="select a type" (onChange)="onSelectTypeCredit()"
                      name="selectedTypeCredit"  optionLabel="nom"></p-dropdown>
-                
+
                 </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>unité </h5>
@@ -81,7 +83,7 @@
                 </div>
             </div>
         </div>
-        
+
 <!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 
@@ -92,21 +94,21 @@
 <p-dialog header="Ajouter un nouveau garantie" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
     [draggable]="false" [resizable]="false">
     <span class="ml-2">Nature</span>
-    <input type="text" pInputText [(ngModel)]="NatureGarantieInput"> 
+    <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="NatureGarantieInput" placeholder="Choisissez une nature guarantie" (onClick)="showStateNature()" [(ngModel)]="NatureGarantieInput"></p-dropdown>
     <span class="ml-2">Type</span>
-    <input type="text" pInputText [(ngModel)]="TypeGarantieInput"> 
+    <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="TypeGarantieInput" placeholder="Choisissez un type garantie" (onClick)="showStateTypeGuarantie()" [(ngModel)]="TypeGarantieInput"></p-dropdown>
     <span class="ml-2">Valeur</span>
-    <input type="text" pInputText [(ngModel)]="ValeurGarantieInput"> 
+    <input type="text" pInputText [(ngModel)]="ValeurGarantieInput" placeholder="Donner une valeur du garantie" name="ValeurGarantieInput">
     <span class="ml-2">Devise</span>
-    <input type="text" pInputText [(ngModel)]="DeviseGarantieInput"> 
-   
+    <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="DeviseGarantieInput"placeholder="Choisissez une devise de garantie" (onClick)="showStateDeviseGarantie()" [(ngModel)]="DeviseGarantieInput"></p-dropdown>
+
 
         <ng-template pTemplate="footer">
-        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text" placeholder="" (onClick)="onConfirmDialog()"></p-button>
         </ng-template>
 </p-dialog>
 <!-- ::::::::::::::::::::::::::::::::::modal:::::::::::::::::::::::::::::::::::::: -->
-        <p-table [value]="cities" responsiveLayout="scroll">
+        <p-table [value]="guarantiesArrayOfDemand" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
                     <th>Nature</th>
@@ -115,26 +117,26 @@
                     <th>Devise</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" >
+            <ng-template pTemplate="body" let-g>
                 <tr>
-                    <th>{{cities[0].name}}</th>
-                    <td>{{cities[0].name}}</td>
-                    <td>{{cities[0].name}}</td>
-                    <td>{{cities[0].name}}</td>
+                    <th>{{g.natureGuarantie}}</th>
+                    <td>{{g.typeGuarantie}}</td>
+                    <td>{{g.valeur}}</td>
+                    <td>{{g.devise}}</td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" id="editbutton" class="p-button-rounded p-button-success mr-2" ></button>
                         <button (click)="showMaximizableDialog()" pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" ></button>
                         <p-dialog header="supprimer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
                         [draggable]="false" [resizable]="false">
-    
+
                          <ng-template pTemplate="footer">
                         <p-button icon="pi pi-check" (click)="displayMaximizable=false" label="Ok" styleClass="p-button-text"></p-button>
                         </ng-template>
                         </p-dialog>
                       </td>
                 </tr>
-               
-                
+
+
             </ng-template>
         </p-table>
     </p-fieldset>
@@ -146,17 +148,18 @@
                     <th>oblgatoire</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" >
-                <tr *ngFor="let piece of PieceJointeArray" >
-                    <th scope="col">{{piece.nom}}</th>
-                    <td>
-                      <ng-container *ngIf="obligedDocuments.includes(piece.nom)">oui</ng-container>
-                      <ng-container *ngIf="!obligedDocuments.includes(piece.nom)">non</ng-container>
-                    </td>
-                  </tr>
-                
-                
-            </ng-template>
+              <ng-template pTemplate="body" let-document>
+                <tr>
+                  <td>{{ document.nom }}</td>
+                  <td>
+                    <ng-container *ngIf="obligedDocuments.includes(document.nom)">oui</ng-container>
+                    <ng-container *ngIf="!obligedDocuments.includes(document.nom)">non</ng-container>
+                  </td>
+
+                </tr>
+              </ng-template>
+
+
         </p-table>
 
         <p-fileUpload  (change)="onFileChange($event)"

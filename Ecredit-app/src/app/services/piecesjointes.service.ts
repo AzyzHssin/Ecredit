@@ -9,9 +9,9 @@ export class PiecesjointesService {
 
   constructor(private http:HttpClient) { }
   getPiecesJointesByTypeCredit(id:number): Observable<PieceJointe[]>{
-    return this.http.get<PieceJointe[]>(`http://localhost:8090/api/PieceJointe/ByTypeCredit/${id}`);
+    return this.http.get<PieceJointe[]>(`http://localhost:9092/api/PieceJointe/ByTypeCredit/${id}`);
   }
   getPiecesJointes(): Observable<PieceJointe[]>{
-    return this.http.get<PieceJointe[]>(`http://localhost:8090/api/PieceJointe`);
+    return this.http.get<PieceJointe[]>(`http://localhost:9092/api/PieceJointe`);
   }
 }
