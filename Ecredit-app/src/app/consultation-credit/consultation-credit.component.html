@@ -1,1 +1,31 @@
-<p>consultation-credit works!</p>
+<p-fieldset legend="Consultation Crédit" [toggleable]="true" [collapsed]="true">
+  <p-table [value]="cities" responsiveLayout="scroll"> <!--  -->
+    <ng-template pTemplate="header">
+        <tr>
+            <th>N</th>
+            <th>ID demande</th>
+            <th>Nom Client</th>
+            <th>Type Credit</th>
+            <th>Etat</th>
+            <th>Date Demande</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-g>
+        <tr>
+            <th>{{g.natureGuarantie===null? 'none':g.natureGuarantie.nom }}</th>
+            <td></td>
+            <td></td>
+            <td></td>
+
+            <td>
+                <button   ></button>
+               <button   > </button>
+                <!-- _______________________________________________________Modal here________________________________________________________________________ -->
+              </td>
+        </tr>
+
+
+    </ng-template>
+</p-table>
+</p-fieldset>

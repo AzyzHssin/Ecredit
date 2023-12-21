@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {ToastModule} from 'primeng/toast';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DemandeCreditComponent } from './demande-credit/demande-credit.component';
@@ -29,12 +29,14 @@ import { InputNumberModule } from "primeng/inputnumber";
 @NgModule({
   declarations: [
     AppComponent,
+
     DemandeCreditComponent,
     ConsultationCreditComponent,
     DemCreditComponent,
 
   ],
   imports: [
+    ToastModule,
     InputNumberModule,
     DialogModule,
     ListboxModule,

@@ -1,5 +1,6 @@
 
-
+import {MessageService} from 'primeng/api';
+import { PrimeNGConfig } from 'primeng/api';
 import { SacannedDocumentService } from './../services/ScannedDocument.service';
 import { Guarantie } from './../Models/Guarantie_Model';
 import { GuarantieService } from './../services/guarantie.service';
@@ -28,7 +29,8 @@ import { Devise } from '../Models/Devise_Model';
 @Component({
   selector: 'app-dem-credit',
   templateUrl: './dem-credit.component.html',
-  styleUrls: ['./dem-credit.component.css']
+  styleUrls: ['./dem-credit.component.css'],
+  providers: [MessageService]
 
 })
 export class DemCreditComponent implements OnInit {
@@ -72,13 +74,7 @@ export class DemCreditComponent implements OnInit {
   dd!:Devise;
 
   fetchedCustomer: boolean=false;
-cities: any[]= [
-  {name: 'New York', code: 'NY'},
-  {name: 'Rome', code: 'RM'},
-  {name: 'London', code: 'LDN'},
-  {name: 'Istanbul', code: 'IST'},
-  {name: 'Paris', code: 'PRS'}
-];
+
   idDocument!: number;
 
   natureUpdateState!:NatureGuarantie;
@@ -89,7 +85,7 @@ cities: any[]= [
   constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,
     private typecreditService:TypecreditService,private bankaccountService:BankaccountService,
     private typeGarantieService:TypeGarantieService,private deviseGarantieService:DeviseGarantieService,private natureGarantieService:NatureGarantieService,
-    private guarantieService:GuarantieService,private sacannedDocumentService:SacannedDocumentService
+    private guarantieService:GuarantieService,private sacannedDocumentService:SacannedDocumentService,private messageService: MessageService, private primengConfig: PrimeNGConfig
     )
    { }
    ngOnInit(): void {
@@ -133,7 +129,7 @@ cities: any[]= [
       this.guarantiesArrayOfDemand = this.guarantiesArrayOfDemand.filter(item => item.id !== objUpdate.id);
       this.guarantiesArrayOfDemand.push(data)
       console.log("after update ",this.guarantiesArrayOfDemand);
-
+      this.showSuccess("Garantie est modifié")
 
     })
 
@@ -199,6 +195,7 @@ this.guarantieService.addGuarantie(objectGarantieToSave).subscribe((data:any)=>{
   this.DeviseGarantieInput=this.dd;
   this.NatureGarantieInput=this.nn;
   this.TypeGarantieInput=this.tt;
+  this.showSuccess(`Guarantie est ajouté`)
 })
 }
 
@@ -206,7 +203,7 @@ deleteGarantieElement(value:Guarantie){
   this.guarantieService.deleteGuarantie(value.id).subscribe(data=>{
     this.guarantiesArrayOfDemand=this.guarantiesArrayOfDemand.filter(item=>item!==value);
    console.log("tab after deleting one element ",this.guarantiesArrayOfDemand);
-
+    this.showSuccess("Guarantie est supprimé")
   })
 
 }
@@ -216,6 +213,7 @@ deleteGarantieElement(value:Guarantie){
     if(this.ncin.toString().length===8){
       this.getBankAccountsByCustomerId(this.ncin);
       console.log("request fetch is executed using this id ncin:",this.ncin);
+
     }
     else{
       console.log("Ncin:",this.ncin);
@@ -259,6 +257,7 @@ deleteGarantieElement(value:Guarantie){
     this.bankaccountService.getBankAccountByCustomer(id).subscribe((data:BankAccount[])=>{
       this.bankAccountArray=data;
       if(this.bankAccountArray.length!=0){
+        this.showSuccess(`Le system a trouvé le client de la carte cin numero: ${id} `)
         this.nom=this.bankAccountArray[0].customer.firstName;
         this.prenom=this.bankAccountArray[0].customer.lastName;
         this.birthday=new Date(this.bankAccountArray[0].customer.birthday);
@@ -266,10 +265,13 @@ deleteGarantieElement(value:Guarantie){
        /*  this.dateOvertureCompte=new Date(this.bankAccountArray[0].createDate); */
         console.log("BankAccounts is fetched",data,"\n------------------------------")
         this.fetchedCustomer=true;
+        this.showSuccess(`Le system a trouvé les comptes bancaires de client qu'il a la carte cin numero: ${id}`)
       }
       else{
         console.log("No bank account corresponding to this account");
         //Make toast
+        this.showError(`le client de la carte cin ${id} n'esxiste pas dans le system`)
+
       }
     },(error:any) => {
       console.error('Error fetching BankAccounts data:', error);
@@ -316,6 +318,7 @@ deleteGarantieElement(value:Guarantie){
     if(this.selectedFile){
       this.selectedFile.forEach((file: File) => {
       this.sacannedDocumentService.uploadPdf(file).subscribe((data:number)=>{
+        this.showSuccess("fichier est ajouté")
            this.idDocument=data;
            console.log("id of new doc scanned is (from database) ",this.idDocument);
           const demande:DemandeCredit={
@@ -330,10 +333,10 @@ deleteGarantieElement(value:Guarantie){
           };
           this.demandeServ.addDemande(demande).subscribe((dataResponse:any )=>{
              console.log(dataResponse,"is saved")
+             this.showSuccess("Votre demande à été envoyé");
+            },(error:any)=>{
+              this.showError("Echec :verifier vos donner");
             });
-
-
-
       }
 
       );
@@ -341,13 +344,18 @@ deleteGarantieElement(value:Guarantie){
     });
   }else{
     console.log("plz upload file");
-
+    this.showError("mettez les pieces jointes");
   }
 
   }
 
-  //////////////////////////////////////BASE64////////////////////////////////////////
-
+  //////////////////////////////////////Toasts////////////////////////////////////////
+  showSuccess(msg:string) {
+    this.messageService.add({severity:'success', summary: 'Success', detail:msg});
+}
+showError(msg:string) {
+  this.messageService.add({severity:'error', summary: 'Error', detail: msg});
+}
 }
 
 

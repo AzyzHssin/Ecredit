@@ -11,5 +11,11 @@ export class ConsultationCreditComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  cities: any[]= [
+    {name: 'New York', code: 'NY'},
+    {name: 'Rome', code: 'RM'},
+    {name: 'London', code: 'LDN'},
+    {name: 'Istanbul', code: 'IST'},
+    {name: 'Paris', code: 'PRS'}
+  ];
 }
