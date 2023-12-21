@@ -2,8 +2,8 @@
 <form >
 <!-- ///////////////////////////////////////////////////////INFORMATION CLIENT///////////////////////////////////////////////// -->
     <p-fieldset legend="Information Client">
-        <div class="grid">
-            <div class="col">
+    <div class="grid">
+        <div class="col">
               <div class="field col-6 md:col-4">
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon">
@@ -17,16 +17,21 @@
                     </span>
                 </div>
             </div>
+               <div class="text-left p-3 border-round-sm  font-bold ">
+                  <h5 for="icon">Date de Naissance</h5>
+                  <p-calendar [(ngModel)]="birthday"
+                  name="birthday" [showIcon]="true" inputId="icon" disabled="true"></p-calendar>
 
+               </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>Num de compte</h5>
                     <p-dropdown [options]="bankAccountArray"  [(ngModel)]="selectedBankAccount"
                     (onClick)="onSelectingAccount()"
                     name="BankAccount" optionLabel="id"></p-dropdown>
-                </div>
+              </div>
 
 
-            </div>
+        </div>
 
             <div class="col">
                 <div class="field col-6 md:col-4">
@@ -43,6 +48,10 @@
                       </span>
                   </div>
               </div>
+              <div class="text-left p-3 border-round-sm  font-bold ">
+                <h5>Situation Familiale </h5>
+                <input type="text" [(ngModel)]="situationFamiliale"  disabled="true" name="situationFamiliale" pInputText>
+            </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>Devise </h5>
                     <input type="text" [(ngModel)]="devise"  disabled="true" name="devise" pInputText>
@@ -66,13 +75,15 @@
                       </span>
                   </div>
               </div>
+                
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5 for="icon">Date d'ouverture du compte</h5>
                     <p-calendar [(ngModel)]="dateOvertureCompte"
                     name="dateOvertureCompte" [showIcon]="true" inputId="icon" disabled="true"></p-calendar>
 
                 </div>
-                </div>
+
+              </div>
         </div>
 <br>
 <!-- ////////////////////////////////////////////////////DOSSIER CREDIT//////////////////////////////////////////////////////////// -->
@@ -109,7 +120,7 @@
         </div>
       </p-fieldset>
 <!-- ////////////////////////////////////////////////////////Garanties Proposées/////////////////////////////////////////////////// -->
-
+<br>
 
     <p-fieldset legend="Garanties Proposées" [toggleable]="true" [collapsed]="true">
         <!-- ::::::::::::::::::::::::::::::::::modal:::::::::::::::::::::::::::::::::::::: -->
@@ -147,7 +158,7 @@
                     <td>{{g.valeur}}</td>
                     <td>{{g.devise===null? 'none':g.devise.nom}}</td>
                     <td>
-                        <button (click)="showMaximizableDialog()"  pButton pRipple icon="pi pi-pencil" id="editbutton" class="p-button-rounded p-button-success mr-2" ></button>
+                        <button (click)="showMaximizableDialog(g)"  pButton pRipple icon="pi pi-pencil" id="editbutton" class="p-button-rounded p-button-success mr-2" ></button>
                        <button (click)="deleteGarantieElement(g)" pButton  icon="pi pi-trash" class="p-button-rounded p-button-warning" > </button>
                         <!-- _______________________________________________________Modal Edit________________________________________________________________________ -->
                         <p-dialog header="Modifer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
@@ -157,7 +168,7 @@
                         <span class="ml-2">Type</span>
                         <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder="{{g.typeGuarantie===null? 'none':g.typeGuarantie.nom}}"  [(ngModel)]="typeUpdateState"></p-dropdown>
                         <span class="ml-2">Valeur</span>
-                        <input type="text" pInputText  placeholder="Donner une valeur du garantie" name="natureUpdateState" placeholder={{g.valeur.nom}} [(ngModel)]="valeurUpdateState">
+                        <input type="text" pInputText  placeholder="Donner une valeur du garantie" name="natureUpdateState" placeholder={{g.valeur}} [(ngModel)]="valeurUpdateState">
                         <span class="ml-2">Devise</span>
                         <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="natureUpdateState"placeholder="{{g.devise===null? 'none':g.devise.nom}}" [(ngModel)]="deviseUpdateState"></p-dropdown>
 

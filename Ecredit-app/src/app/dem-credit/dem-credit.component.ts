@@ -1,3 +1,5 @@
+
+
 import { SacannedDocumentService } from './../services/ScannedDocument.service';
 import { Guarantie } from './../Models/Guarantie_Model';
 import { GuarantieService } from './../services/guarantie.service';
@@ -7,7 +9,7 @@ import { DeviseGarantieService } from './../services/devise-garantie.service';
 import { NatureGarantieService } from './../services/nature-garantie.service';
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-
+import {SituationFamiliale} from '../Models/SituationFamiliale_Model'
 import { DemandeCredit } from '../Models/DemandeCredit_Model';
 import {TypeCredit} from '../Models/TypeCredit_Model';
 import { Unite } from './../Models/Unite_Model';
@@ -45,6 +47,9 @@ export class DemCreditComponent implements OnInit {
   prenom:string='';
   devise:string='';
   dateOvertureCompte: Date | null = null;
+  birthday: Date | null = null;
+  situationFamiliale!:string;
+
   montant:number=0;
   unite!:Unite;
   nbreEcheance:number=0;
@@ -60,6 +65,11 @@ export class DemCreditComponent implements OnInit {
   TypeGarantieInput!:TypeGuarantie;
   ValeurGarantieInput!:number;
   DeviseGarantieInput!:Devise;
+
+  nn!:NatureGuarantie;
+  tt!:TypeGuarantie;
+  vv!:number;
+  dd!:Devise;
 
   fetchedCustomer: boolean=false;
 cities: any[]= [
@@ -158,8 +168,13 @@ cities: any[]= [
   showModalDialog() {
     this.displayModal = true;
 }
-showMaximizableDialog() {
+showMaximizableDialog(guarantie:any) {
   this.displayMaximizable = true;
+  //
+  this.natureUpdateState=guarantie.natureGuarantie;
+  this.deviseUpdateState=guarantie.devise;
+  this.typeUpdateState=guarantie.TypeGuarantie;
+  this.valeurUpdateState=guarantie.valeur;
 }
 showStateNature(){
   console.log(this.NatureGarantieInput);
@@ -180,7 +195,10 @@ onConfirmDialog(){
   };
 this.guarantieService.addGuarantie(objectGarantieToSave).subscribe((data:any)=>{
   this.guarantiesArrayOfDemand.push(data);
-
+  this.ValeurGarantieInput=this.vv;
+  this.DeviseGarantieInput=this.dd;
+  this.NatureGarantieInput=this.nn;
+  this.TypeGarantieInput=this.tt;
 })
 }
 
@@ -243,7 +261,8 @@ deleteGarantieElement(value:Guarantie){
       if(this.bankAccountArray.length!=0){
         this.nom=this.bankAccountArray[0].customer.firstName;
         this.prenom=this.bankAccountArray[0].customer.lastName;
-
+        this.birthday=new Date(this.bankAccountArray[0].customer.birthday);
+        this.situationFamiliale=this.bankAccountArray[0].customer.situationFamiliale.situation;
        /*  this.dateOvertureCompte=new Date(this.bankAccountArray[0].createDate); */
         console.log("BankAccounts is fetched",data,"\n------------------------------")
         this.fetchedCustomer=true;
@@ -262,6 +281,7 @@ deleteGarantieElement(value:Guarantie){
       console.log('Selected bank account:', this.selectedBankAccount.id);
       this.devise=this.selectedBankAccount.devise;
       this.dateOvertureCompte = new Date(this.selectedBankAccount.createDate);
+
       //this.devise = this.selectedBankAccount.currency; // Adjust to your actual property name
     } else {
       console.warn('Selected bank account is undefined.');
