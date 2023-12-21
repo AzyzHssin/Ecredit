@@ -38,6 +38,7 @@ public class GuarantieService {
 
         if (backGuarantie.isPresent()) {
             Guarantie existingGuarantie = backGuarantie.get();
+            existingGuarantie.setId(frontGuarantie.getId());
             existingGuarantie.setNatureGuarantie(frontGuarantie.getNatureGuarantie());
             existingGuarantie.setTypeGuarantie(frontGuarantie.getTypeGuarantie());
             existingGuarantie.setValeur(frontGuarantie.getValeur());

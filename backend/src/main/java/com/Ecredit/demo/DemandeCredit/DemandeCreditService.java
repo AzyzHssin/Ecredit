@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,7 @@ public class DemandeCreditService {
         return demandeCreditRepo.findById(id);
     }
     public DemandeCredit createDemandeCredit(DemandeCredit demandeCredit) {
+        demandeCredit.setDateDemande(new Date());
         BankAccount  bankAccount= bankAccountRepo.findById(demandeCredit.getBankAccount().getId()).orElse(null);
         //
         Unite unite=uniteRepo.findById(demandeCredit.getUnite().getId()).orElse(null);

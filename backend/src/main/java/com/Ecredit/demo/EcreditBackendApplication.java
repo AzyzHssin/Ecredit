@@ -10,10 +10,6 @@ public class EcreditBackendApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EcreditBackendApplication.class, args);
 
+	}
 
-	}
-	@GetMapping("/")
-	public String testServerResponse(){
-		return "hello World";
-	}
 }
