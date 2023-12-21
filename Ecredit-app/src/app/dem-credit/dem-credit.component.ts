@@ -106,7 +106,8 @@ cities: any[]= [
       selectedBankAccount:this.selectedBankAccount,
       selectedTypeCredit:this.selectedTypeCredit,
       typecreditArray:this.typecreditArray,
-      scannedDocument:this.idDocument
+      scannedDocument:this.idDocument,
+      guarantiesArrayOfDemand:this.guarantiesArrayOfDemand
     });
   }
   onUpdateGarantie(oldGuarantie:Guarantie){
@@ -184,8 +185,12 @@ this.guarantieService.addGuarantie(objectGarantieToSave).subscribe((data:any)=>{
 }
 
 deleteGarantieElement(value:Guarantie){
-  this.guarantiesArrayOfDemand.filter(item=>item!==value);
-  console.log("tab after deleting one element ",this.guarantiesArrayOfDemand);
+  this.guarantieService.deleteGuarantie(value.id).subscribe(data=>{
+    this.guarantiesArrayOfDemand=this.guarantiesArrayOfDemand.filter(item=>item!==value);
+   console.log("tab after deleting one element ",this.guarantiesArrayOfDemand);
+
+  })
+
 }
 
   onCinChange(){
@@ -303,8 +308,10 @@ deleteGarantieElement(value:Guarantie){
             "guaranties":this.guarantiesArrayOfDemand,
             "scannedDocument":{"id":this.idDocument}
           };
-          this.demandeServ.addDemande(demande).subscribe((dataResponse:any )=>{ console.log(dataResponse,"is saved")});
-          
+          this.demandeServ.addDemande(demande).subscribe((dataResponse:any )=>{
+             console.log(dataResponse,"is saved")
+            });
+
 
 
       }

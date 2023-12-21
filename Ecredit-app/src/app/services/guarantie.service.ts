@@ -7,13 +7,19 @@ import { Guarantie } from '../Models/Guarantie_Model';
 })
 export class GuarantieService {
 
-  constructor(private http:HttpClient) { }
+  private baseUrl = 'http://localhost:9092/api/Guarantie';
 
-  addGuarantie(data:Guarantie){
-   return this.http.post("http://localhost:9092/api/Guarantie/add",data);
-  }
-  updateGarantie(data:Guarantie){
-    return this.http.put("http://localhost:9092/api/Guarantie/update",data);
+  constructor(private http: HttpClient) { }
+
+  addGuarantie(data: Guarantie): Observable<any> {
+    return this.http.post(`${this.baseUrl}/add`, data);
   }
 
+  updateGarantie(data: Guarantie): Observable<any> {
+    return this.http.put(`${this.baseUrl}/update`, data);
+  }
+
+  deleteGuarantie(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${id}`);
+  }
 }

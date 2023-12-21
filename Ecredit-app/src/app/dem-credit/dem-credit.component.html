@@ -78,7 +78,7 @@
 <!-- ////////////////////////////////////////////////////DOSSIER CREDIT//////////////////////////////////////////////////////////// -->
     </p-fieldset>
     <br>
-    <p-fieldset legend="Dossier Credit" [toggleable]="true">
+    <p-fieldset legend="Dossier Credit" [toggleable]="true" [collapsed]="true">
         <div class="grid">
             <div class="col-6">
                 <div class="text-left p-3 border-round-sm  font-bold">
@@ -103,15 +103,15 @@
                 </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>unité </h5>
-                    <p-dropdown [options]="uniteArray" [(ngModel)]="unite" name="unite" optionLabel="nom"></p-dropdown>
+                    <p-dropdown [options]="uniteArray" placeholder="selectionner unite" [(ngModel)]="unite" name="unite" optionLabel="nom"></p-dropdown>
                 </div>
             </div>
         </div>
-
+      </p-fieldset>
 <!-- ////////////////////////////////////////////////////////Garanties Proposées/////////////////////////////////////////////////// -->
 
-    </p-fieldset>
-    <p-fieldset legend="Garanties Proposées" [toggleable]="true">
+
+    <p-fieldset legend="Garanties Proposées" [toggleable]="true" [collapsed]="true">
         <!-- ::::::::::::::::::::::::::::::::::modal:::::::::::::::::::::::::::::::::::::: -->
         <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Ajouter garantie"></p-button>
 <p-dialog header="Ajouter un nouveau garantie" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
@@ -142,10 +142,10 @@
             </ng-template>
             <ng-template pTemplate="body" let-g>
                 <tr>
-                    <th>{{g.natureGuarantie.nom}}</th>
-                    <td>{{g.typeGuarantie.nom}}</td>
+                    <th>{{g.natureGuarantie===null? 'none':g.natureGuarantie.nom }}</th>
+                    <td>{{g.typeGuarantie===null? 'none':g.typeGuarantie.nom}}</td>
                     <td>{{g.valeur}}</td>
-                    <td>{{g.devise.nom}}</td>
+                    <td>{{g.devise===null? 'none':g.devise.nom}}</td>
                     <td>
                         <button (click)="showMaximizableDialog()"  pButton pRipple icon="pi pi-pencil" id="editbutton" class="p-button-rounded p-button-success mr-2" ></button>
                        <button (click)="deleteGarantieElement(g)" pButton  icon="pi pi-trash" class="p-button-rounded p-button-warning" > </button>
@@ -153,13 +153,13 @@
                         <p-dialog header="Modifer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
                         [draggable]="false" [resizable]="false">
                         <span class="ml-2">Nature</span>
-                        <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder={{g.natureGuarantie.nom}}  [(ngModel)]="natureUpdateState"></p-dropdown>
+                        <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder="{{g.natureGuarantie===null? 'none':g.natureGuarantie.nom}} " [(ngModel)]="natureUpdateState"></p-dropdown>
                         <span class="ml-2">Type</span>
-                        <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder={{g.typeGuarantie.nom}}  [(ngModel)]="typeUpdateState"></p-dropdown>
+                        <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder="{{g.typeGuarantie===null? 'none':g.typeGuarantie.nom}}"  [(ngModel)]="typeUpdateState"></p-dropdown>
                         <span class="ml-2">Valeur</span>
                         <input type="text" pInputText  placeholder="Donner une valeur du garantie" name="natureUpdateState" placeholder={{g.valeur.nom}} [(ngModel)]="valeurUpdateState">
                         <span class="ml-2">Devise</span>
-                        <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="natureUpdateState"placeholder={{g.devise.nom}} [(ngModel)]="deviseUpdateState"></p-dropdown>
+                        <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="natureUpdateState"placeholder="{{g.devise===null? 'none':g.devise.nom}}" [(ngModel)]="deviseUpdateState"></p-dropdown>
 
                          <ng-template pTemplate="footer">
                         <p-button icon="pi pi-check" (click)="onUpdateGarantie(g)"   styleClass="p-button-text"></p-button>
@@ -172,8 +172,9 @@
             </ng-template>
         </p-table>
     </p-fieldset>
+    <br><br>
     <!-- ///////////////////////////////////////////////////////////////////////PIECES JOINTES//////////////////////////////////////////////////////////// -->
-    <p-fieldset legend="Pieces jointes" [toggleable]="true">
+    <p-fieldset legend="Pieces jointes" [toggleable]="true" [collapsed]="true">
         <p-table [value]="PieceJointeArray" responsiveLayout="scroll">
             <ng-template pTemplate="header">
                 <tr>
@@ -203,7 +204,7 @@
     </p-fieldset>
 
 <!-- /////////////////////////////////////////////////////////OBSERVATION///////////////////////////////////////////////////// -->
-    <p-fieldset legend="Observation" [toggleable]="true">
+    <p-fieldset legend="Observation" [toggleable]="true" [collapsed]="true">
         <textarea pInputTextarea [(ngModel)]="observation" name="observation" id="text" placeholder="your text is here"></textarea>
     </p-fieldset>
     <br>
