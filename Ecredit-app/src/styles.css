@@ -155,3 +155,11 @@ margin: 20px;
   align-items: center;
 
 }
+#sidebar{
+  height: 100%;
+}
+#rightPage{
+  border: 2px solid gray;
+  border-left: #2196F3;
+  background-color: red;
+}
