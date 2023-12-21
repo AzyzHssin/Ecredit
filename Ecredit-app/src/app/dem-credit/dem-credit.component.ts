@@ -40,16 +40,17 @@ export class DemCreditComponent implements OnInit {
   TypeGarantieArray!:TypeGuarantie[];
   DeviseGarantieArray!:Devise[];
   selectedBankAccount!:BankAccount;
-  ncin: number = 0;
+  ncin!: number ;
   nom:string='';
   prenom:string='';
   devise:string='';
   dateOvertureCompte: Date | null = null;
   montant:number=0;
+  unite!:Unite;
   nbreEcheance:number=0;
-  observation:string='';
+  observation!:string;
   selectedFile: any;
-  selectedTypeCredit?:TypeCredit;
+  selectedTypeCredit!:TypeCredit;
 
   checked: boolean = false;
   obligedDocuments: string[]=[];
@@ -99,11 +100,13 @@ cities: any[]= [
       dateOvertureCompte: this.dateOvertureCompte,
       montant:this.montant,
       nbreEcheance:this.nbreEcheance,
+      unite:this.unite,
       selectedFile:this.selectedFile,
       observation:this.observation,
       selectedBankAccount:this.selectedBankAccount,
       selectedTypeCredit:this.selectedTypeCredit,
-      typecreditArray:this.typecreditArray
+      typecreditArray:this.typecreditArray,
+      scannedDocument:this.idDocument
     });
   }
   onUpdateGarantie(oldGuarantie:Guarantie){
@@ -186,6 +189,7 @@ deleteGarantieElement(value:Guarantie){
 }
 
   onCinChange(){
+    console.log("on cin change is executed with cin value :",this.ncin)
     if(this.ncin.toString().length===8){
       this.getBankAccountsByCustomerId(this.ncin);
       console.log("request fetch is executed using this id ncin:",this.ncin);
@@ -234,6 +238,7 @@ deleteGarantieElement(value:Guarantie){
       if(this.bankAccountArray.length!=0){
         this.nom=this.bankAccountArray[0].customer.firstName;
         this.prenom=this.bankAccountArray[0].customer.lastName;
+
        /*  this.dateOvertureCompte=new Date(this.bankAccountArray[0].createDate); */
         console.log("BankAccounts is fetched",data,"\n------------------------------")
         this.fetchedCustomer=true;
@@ -250,7 +255,7 @@ deleteGarantieElement(value:Guarantie){
   onSelectingAccount(): void {
     if (this.selectedBankAccount) {
       console.log('Selected bank account:', this.selectedBankAccount.id);
-
+      this.devise=this.selectedBankAccount.devise;
       this.dateOvertureCompte = new Date(this.selectedBankAccount.createDate);
       //this.devise = this.selectedBankAccount.currency; // Adjust to your actual property name
     } else {
@@ -281,16 +286,31 @@ deleteGarantieElement(value:Guarantie){
     }
   }
   submit(){
+    console.log("submit is executed")
+    this.showFormData();
     if(this.selectedFile){
       this.selectedFile.forEach((file: File) => {
       this.sacannedDocumentService.uploadPdf(file).subscribe((data:number)=>{
            this.idDocument=data;
-           console.log("id of new doc scanned is ",this.idDocument);
-          //ABATH PAYLOAD
+           console.log("id of new doc scanned is (from database) ",this.idDocument);
+          const demande:DemandeCredit={
+            "montant":this.montant,
+            "nbreEcheance":this.nbreEcheance,
+            "observation":this.observation,
+             "bankAccount":this.selectedBankAccount,
+            "unite":this.unite,
+            "typeCredit":this.selectedTypeCredit,
+            "guaranties":this.guarantiesArrayOfDemand,
+            "scannedDocument":{"id":this.idDocument}
+          };
+          this.demandeServ.addDemande(demande).subscribe((dataResponse:any )=>{ console.log(dataResponse,"is saved")});
+          
+
 
       }
 
       );
+      this.showFormData();
     });
   }else{
     console.log("plz upload file");

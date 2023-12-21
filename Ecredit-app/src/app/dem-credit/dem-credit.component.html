@@ -1,57 +1,81 @@
 
 <form >
-
+<!-- ///////////////////////////////////////////////////////INFORMATION CLIENT///////////////////////////////////////////////// -->
     <p-fieldset legend="Information Client">
-
-
         <div class="grid">
             <div class="col">
-                <div class="text-left p-3 border-round-sm  font-bold">
-                    <h5>num cin</h5>
-                    <input type="text"
-                    (change)="onCinChange()"
-                    [(ngModel)]="ncin"
-                    name="ncin"
-                    maxlength="8" pInputText>
+              <div class="field col-6 md:col-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">
+                        <i class="pi pi-user"></i>
+                    </span>
+                    <span class="p-float-label">
+                        <input inputId="inputnumber"  (change)="onCinChange()"
+                        [(ngModel)]="ncin" name="ncin"   pInputText >
+
+                        <label for="inputgroup">Num CIN</label>
+                    </span>
                 </div>
+            </div>
+
                 <div class="text-left p-3 border-round-sm  font-bold ">
-                    <h5>num de compte</h5>
-                    <p-dropdown [options]="bankAccountArray" [(ngModel)]="selectedBankAccount"
+                    <h5>Num de compte</h5>
+                    <p-dropdown [options]="bankAccountArray"  [(ngModel)]="selectedBankAccount"
                     (onClick)="onSelectingAccount()"
                     name="BankAccount" optionLabel="id"></p-dropdown>
                 </div>
+
+
             </div>
+
             <div class="col">
+                <div class="field col-6 md:col-4">
+                  <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon">
+                          <i class="pi pi-user"></i>
+                      </span>
+                      <span class="p-float-label">
+                          <input type="text"
+                          disabled="true"
+                          [(ngModel)]="nom"
+                          name="nom" pInputText>
+                          <label for="inputgroup">Nom</label>
+                      </span>
+                  </div>
+              </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
-                    <h5>nom </h5>
-                    <input type="text"
-                    disabled="true"
-                    [(ngModel)]="nom"
-                    name="nom" pInputText>
-                </div>
-                <div class="text-left p-3 border-round-sm  font-bold ">
-                    <h5>devise </h5>
+                    <h5>Devise </h5>
                     <input type="text" [(ngModel)]="devise"  disabled="true" name="devise" pInputText>
                 </div>
             </div>
             <div class="col">
-
-
-                <div class="text-left p-3 border-round-sm  font-bold ">
-                    <h5>prénom</h5>
+                <!-- <div class="text-left p-3 border-round-sm  font-bold ">
+                    <h5>Prénom</h5>
                     <input type="text"  disabled="true"
                     type="text" [(ngModel)]="prenom" name="prenom" pInputText>
-                </div>
+                </div> -->
+                <div class="field col-6 md:col-4">
+                  <div class="p-inputgroup">
+                      <span class="p-inputgroup-addon">
+                          <i class="pi pi-user"></i>
+                      </span>
+                      <span class="p-float-label">
+                          <input type="text"  disabled="true"
+                          type="text" [(ngModel)]="prenom" name="prenom" pInputText>
+                          <label for="inputgroup">Prénom</label>
+                      </span>
+                  </div>
+              </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
-                    <h5 for="icon">dateOvertureCompte</h5>
+                    <h5 for="icon">Date d'ouverture du compte</h5>
                     <p-calendar [(ngModel)]="dateOvertureCompte"
-                    name="dateOvertureCompte" [showIcon]="true" inputId="icon"></p-calendar>
+                    name="dateOvertureCompte" [showIcon]="true" inputId="icon" disabled="true"></p-calendar>
 
                 </div>
                 </div>
         </div>
-
-
+<br>
+<!-- ////////////////////////////////////////////////////DOSSIER CREDIT//////////////////////////////////////////////////////////// -->
     </p-fieldset>
     <br>
     <p-fieldset legend="Dossier Credit" [toggleable]="true">
@@ -79,13 +103,12 @@
                 </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>unité </h5>
-                    <p-dropdown [options]="uniteArray" optionLabel="nom"></p-dropdown>
+                    <p-dropdown [options]="uniteArray" [(ngModel)]="unite" name="unite" optionLabel="nom"></p-dropdown>
                 </div>
             </div>
         </div>
 
-<!-- ////////////////////////////////////////////////////////////////////////////////////////////// -->
-
+<!-- ////////////////////////////////////////////////////////Garanties Proposées/////////////////////////////////////////////////// -->
 
     </p-fieldset>
     <p-fieldset legend="Garanties Proposées" [toggleable]="true">
@@ -125,7 +148,8 @@
                     <td>{{g.devise.nom}}</td>
                     <td>
                         <button (click)="showMaximizableDialog()"  pButton pRipple icon="pi pi-pencil" id="editbutton" class="p-button-rounded p-button-success mr-2" ></button>
-                        <button (click)="deleteGarantieElement(g)" pButton  icon="pi pi-trash" class="p-button-rounded p-button-warning" > </button>
+                       <button (click)="deleteGarantieElement(g)" pButton  icon="pi pi-trash" class="p-button-rounded p-button-warning" > </button>
+                        <!-- _______________________________________________________Modal Edit________________________________________________________________________ -->
                         <p-dialog header="Modifer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
                         [draggable]="false" [resizable]="false">
                         <span class="ml-2">Nature</span>
@@ -148,6 +172,7 @@
             </ng-template>
         </p-table>
     </p-fieldset>
+    <!-- ///////////////////////////////////////////////////////////////////////PIECES JOINTES//////////////////////////////////////////////////////////// -->
     <p-fieldset legend="Pieces jointes" [toggleable]="true">
         <p-table [value]="PieceJointeArray" responsiveLayout="scroll">
             <ng-template pTemplate="header">
@@ -177,14 +202,15 @@
 
     </p-fieldset>
 
-
+<!-- /////////////////////////////////////////////////////////OBSERVATION///////////////////////////////////////////////////// -->
     <p-fieldset legend="Observation" [toggleable]="true">
-        <textarea pInputTextarea [(ngModel)]="observation" id="text" placeholder="your text is here"></textarea>
+        <textarea pInputTextarea [(ngModel)]="observation" name="observation" id="text" placeholder="your text is here"></textarea>
     </p-fieldset>
     <br>
     <div class="FormSubmitButtons">
       <button pButton type="button" label="Cancel" icon="pi pi-times"></button>
-      <p-button (onClick)="submit()" label="Envoyer" icon="pi pi-check"></p-button>
+      <p-button (onClick)="submit()" label="Envoyer" icon="pi pi-check" ></p-button>
 
     </div>
+
    </form>

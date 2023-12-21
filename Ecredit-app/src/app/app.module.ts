@@ -25,7 +25,7 @@ import {FileUploadModule} from 'primeng/fileupload';
 import {InputTextareaModule} from 'primeng/inputtextarea';
 import {DialogModule} from 'primeng/dialog';
 import { ListboxModule } from 'primeng/listbox';
-
+import { InputNumberModule } from "primeng/inputnumber";
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +35,7 @@ import { ListboxModule } from 'primeng/listbox';
 
   ],
   imports: [
+    InputNumberModule,
     DialogModule,
     ListboxModule,
     BrowserModule,

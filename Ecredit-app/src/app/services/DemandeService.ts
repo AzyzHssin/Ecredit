@@ -10,7 +10,7 @@ export class DemandeService {
   getDemande(): Observable<DemandeCredit[]> {
     return this.http.get<DemandeCredit[]>("http://localhost:9092/api/DemandeCredit");
   }
-  addDemande(data:DemandeCredit){
-    this.http.post("http://localhost:9092/api/DemandeCredit/add",data);
+  addDemande(data:DemandeCredit):Observable<any>{
+   return this.http.post("http://localhost:9092/api/DemandeCredit/add",data);
   }
 }
