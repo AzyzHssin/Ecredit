@@ -327,9 +327,11 @@ deleteGarantieElement(value:Guarantie){
             "observation":this.observation,
              "bankAccount":this.selectedBankAccount,
             "unite":this.unite,
+            "dateDemande":new Date(),
             "typeCredit":this.selectedTypeCredit,
             "guaranties":this.guarantiesArrayOfDemand,
-            "scannedDocument":{"id":this.idDocument}
+            "scannedDocument":{"id":this.idDocument},
+            "etat":""
           };
           this.demandeServ.addDemande(demande).subscribe((dataResponse:any )=>{
              console.log(dataResponse,"is saved")

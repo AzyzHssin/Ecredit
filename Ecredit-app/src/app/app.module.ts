@@ -12,7 +12,7 @@ import {ReactiveFormsModule,FormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 ////////////////////////////////PRIMENG///////////////////////////////
 import {SplitterModule} from 'primeng/splitter';
-
+import {MenuItem, PrimeIcons} from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { DemCreditComponent } from './dem-credit/dem-credit.component';
 import {InputTextModule} from 'primeng/inputtext';
@@ -36,6 +36,7 @@ import { InputNumberModule } from "primeng/inputnumber";
 
   ],
   imports: [
+    
     ToastModule,
     InputNumberModule,
     DialogModule,

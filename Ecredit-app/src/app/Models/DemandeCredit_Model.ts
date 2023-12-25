@@ -13,6 +13,8 @@ export interface DemandeCredit {
     unite: Unite;
     typeCredit: TypeCredit;
     guaranties: Guarantie[];
+    dateDemande:Date;
+    etat:String;
    /*  documentFiles: DocumentFile[]; */
     scannedDocument:any;
   }
