@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -34,7 +35,9 @@ public class DemandeCredit{
     private long id;
     private int montant;
     private int nbreEcheance;
+    private String etat;
     private String Observation;
+    private Date dateDemande;
     @ManyToOne
     @JoinColumn(name = "bank_account_id")
     private BankAccount bankAccount;

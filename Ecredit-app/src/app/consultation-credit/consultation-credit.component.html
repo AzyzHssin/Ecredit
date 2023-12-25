@@ -1,1 +1,43 @@
-<p>consultation-credit works!</p>
+<p-toast></p-toast>
+<p-fieldset legend="Consultation Crédit" [toggleable]="true" [collapsed]="false">
+  <p-table [value]="demandeArray" responsiveLayout="scroll"> <!--  -->
+    <ng-template pTemplate="header">
+        <tr>
+            <th>N</th>
+
+            <th>ID demande</th>
+            <th>Nom Client</th>
+            <th>Type Credit</th>
+            <th>Etat</th>
+            <th>Date Demande</th>
+            <th>Actions</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-g let-i="rowIndex">
+        <tr>
+            <th>{{i}}</th>
+            <td>{{g.id===null? 'none':g.id }}</td>
+            <td>{{g.bankAccount.customer===null? 'none':g.bankAccount.customer.firstName}}</td>
+            <td>{{g.typeCredit.nom===null?'none':g.typeCredit.nom}}</td>
+            <td>{{g.etat}}</td>
+            <td>{{g.dateDemande===null?'none':g.dateDemande| date:'dd/MM/yyyy'}}</td>
+            <td>
+              <ng-container *ngIf="g.etat === 'En Cours'; else IconVued">
+
+                <button (click)="changerEtat(g,'Validé')" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined"></button>
+                <button (click)="changerEtat(g,'rejeté')" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
+
+              </ng-container>
+
+              <ng-template #IconVued>
+            <div>seen</div>
+
+              </ng-template>
+            </td>
+
+        </tr>
+
+
+    </ng-template>
+</p-table>
+</p-fieldset>

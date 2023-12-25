@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,6 +35,8 @@ public class DemandeCreditService {
         return demandeCreditRepo.findById(id);
     }
     public DemandeCredit createDemandeCredit(DemandeCredit demandeCredit) {
+        demandeCredit.setDateDemande(new Date());
+        demandeCredit.setEtat("En Cours");
         BankAccount  bankAccount= bankAccountRepo.findById(demandeCredit.getBankAccount().getId()).orElse(null);
         //
         Unite unite=uniteRepo.findById(demandeCredit.getUnite().getId()).orElse(null);
@@ -51,6 +54,15 @@ public class DemandeCreditService {
         demandeCredit.setScannedDocument(scannedDocumentRepository.findById(demandeCredit.getScannedDocument().getId()).orElse(null));
 
         return demandeCreditRepo.save(demandeCredit);
+    }
+    public DemandeCredit updateDemandeCredit(DemandeCredit frontDemandeCredit ,String newEtat){
+        Optional<DemandeCredit> backDemandCredit= this.getDemandeCreditById(frontDemandeCredit.getId());
+        if(backDemandCredit.isPresent()){
+            DemandeCredit existingDemandeCredit = backDemandCredit.get();
+            existingDemandeCredit.setEtat(newEtat);
+            return demandeCreditRepo.save(existingDemandeCredit);
+        }
+        return null;
     }
     public void deleteDemandeCredit(Long id) {
         demandeCreditRepo.deleteById(id);

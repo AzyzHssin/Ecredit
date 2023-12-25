@@ -7,10 +7,16 @@ import { DemandeCredit } from '../Models/DemandeCredit_Model';
 })
 export class DemandeService {
   constructor(private http:HttpClient) { }
+  private baseUrl = 'http://localhost:9092/api/DemandeCredit';
   getDemande(): Observable<DemandeCredit[]> {
-    return this.http.get<DemandeCredit[]>("http://localhost:9092/api/DemandeCredit");
+    return this.http.get<DemandeCredit[]>(`${this.baseUrl}`);
   }
   addDemande(data:DemandeCredit):Observable<any>{
-   return this.http.post("http://localhost:9092/api/DemandeCredit/add",data);
+   return this.http.post(`${this.baseUrl}/add`,data);
+  }
+  updateDemande(object:DemandeCredit,nouveauEtat:String){
+    const requestBody = { demande: object, nouvelEtat: nouveauEtat };
+    console.log("requestBody: ",requestBody)
+    return this.http.put(`${this.baseUrl}/update`, requestBody);
   }
 }
