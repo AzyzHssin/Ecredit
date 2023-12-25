@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { DemandeCredit } from '../Models/DemandeCredit_Model';
+import { catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -15,8 +16,13 @@ export class DemandeService {
    return this.http.post(`${this.baseUrl}/add`,data);
   }
   updateDemande(object:DemandeCredit,nouveauEtat:String){
-    const requestBody = { demande: object, nouvelEtat: nouveauEtat };
+    const requestBody = { "demande": object, "nouvelEtat": nouveauEtat };
     console.log("requestBody: ",requestBody)
-    return this.http.put(`${this.baseUrl}/update`, requestBody);
+    return this.http.put(`${this.baseUrl}/update`,requestBody).pipe(
+      catchError((error: any) => {
+        console.error('Error:', error);
+        throw error;  // Rethrow the error to propagate it to the component
+      })
+    );;
   }
 }

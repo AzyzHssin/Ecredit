@@ -36,7 +36,7 @@ import { InputNumberModule } from "primeng/inputnumber";
 
   ],
   imports: [
-    
+
     ToastModule,
     InputNumberModule,
     DialogModule,

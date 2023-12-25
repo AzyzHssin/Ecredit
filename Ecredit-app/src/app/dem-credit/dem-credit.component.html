@@ -132,7 +132,7 @@
     <span class="ml-2">Type</span>
     <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="TypeGarantieInput" placeholder="Choisissez un type garantie" (onClick)="showStateTypeGuarantie()" [(ngModel)]="TypeGarantieInput"></p-dropdown>
     <span class="ml-2">Valeur</span>
-    <input type="text" pInputText [(ngModel)]="ValeurGarantieInput" placeholder="Donner une valeur du garantie" name="ValeurGarantieInput">
+    <input type="text" pInputText [(ngModel)]="ValeurGarantieInput" placeholder="Donner une valeur du garantie" name="ValeurGarantieInput" required>
     <span class="ml-2">Devise</span>
     <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="DeviseGarantieInput"placeholder="Choisissez une devise de garantie" (onClick)="showStateDeviseGarantie()" [(ngModel)]="DeviseGarantieInput"></p-dropdown>
 

@@ -13,10 +13,10 @@
             <th>Actions</th>
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-g let-i="rowIndex">
-        <tr>
-            <th>{{i}}</th>
-            <td>{{g.id===null? 'none':g.id }}</td>
+    <ng-template pTemplate="body" let-g let-i="rowIndex" >
+        <tr >
+            <th (click)="showDemandeInfoDialog(g)">{{i}}</th>
+            <td (click)="showDemandeInfoDialog(g)">{{g.id===null? 'none':g.id }}</td>
             <td>{{g.bankAccount.customer===null? 'none':g.bankAccount.customer.firstName}}</td>
             <td>{{g.typeCredit.nom===null?'none':g.typeCredit.nom}}</td>
             <td>{{g.etat}}</td>
@@ -25,7 +25,7 @@
               <ng-container *ngIf="g.etat === 'En Cours'; else IconVued">
 
                 <button (click)="changerEtat(g,'Validé')" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined"></button>
-                <button (click)="changerEtat(g,'rejeté')" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
+                <button (click)="changerEtat(g,'Rejeté')" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
 
               </ng-container>
 
@@ -40,4 +40,78 @@
 
     </ng-template>
 </p-table>
+
+
+<p-dialog *ngIf="dialogueData" header="Des informations sur la demande credit" [(visible)]="displayInfoDialogue" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
+    [draggable]="false" [resizable]="false">
+    <h2 [ngClass]="{'blue': dialogueData.etat==='En Cours','green':dialogueData.etat==='Validé','red':dialogueData.etat==='Rejeté'}" >Etat du demande: {{dialogueData.etat }}</h2>
+    <h3>Date de la demande: {{dialogueData.dateDemande | date:'dd/MM/yyyy'}}</h3>
+
+    Des informations sur le client
+    <br>
+    <p-splitter [style]="{'height': '300px'}">
+
+      <ng-template pTemplate>
+
+          <div class="col">
+
+        <h4>Numero CIN: {{dialogueData.bankAccount.customer.cin}}</h4>
+        <h4>Nom: {{dialogueData.bankAccount.customer.lastName}}</h4>
+        <h4>Prenom: {{dialogueData.bankAccount.customer.firstName}}</h4>
+        <h4>Date de naissance: {{dialogueData.bankAccount.customer.birthday | date:'dd/MM/yyyy'}}</h4>
+        <h4>situationFamiliale: {{dialogueData.bankAccount.customer.situationFamiliale}}</h4>
+
+          </div>
+      </ng-template>
+
+      <ng-template pTemplate>
+
+        <div class="col">
+          <h4>N° Compte Bancaire: {{dialogueData.bankAccount.id}} </h4>
+          <h4>Solde du Compte: {{dialogueData.bankAccount.solde}}</h4>
+          <h4>Devise du compte: {{dialogueData.bankAccount.devise}}</h4>
+        </div>
+      </ng-template>
+  </p-splitter>
+<br>
+
+
+
+
+        <p>Type du Credit: {{dialogueData.typeCredit.nom}}</p>
+        <p>Montant Credit: {{dialogueData.montant}}</p>
+        <p>Nombre du l'echeance: {{dialogueData.nbreEcheance}}</p>
+        <p>Unité: {{dialogueData.unite.nom}}</p>
+        <br>
+        <h3>Les Guaranties</h3>
+        <p-table *ngIf="dialogueData;" [value]="dialogueData.guaranties" responsiveLayout="scroll">
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Nature</th>
+                  <th>Type</th>
+                  <th>Valeur</th>
+                  <th>Devise</th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-g>
+              <tr>
+                  <th>{{g.natureGuarantie===null? 'none':g.natureGuarantie.nom }}</th>
+                  <td>{{g.typeGuarantie===null? 'none':g.typeGuarantie.nom}}</td>
+                  <td>{{g.valeur}}</td>
+                  <td>{{g.devise===null? 'none':g.devise.nom}}</td>
+
+              </tr>
+          </ng-template>
+      </p-table>
+
+
+      Les Pieces jointes
+      <ul *ngIf="dialogueData?.scannedDocument">
+        <li>{{ dialogueData.scannedDocument?.name }}</li>
+      </ul>
+      <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayInfoDialogue=false" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+</p-dialog>
 </p-fieldset>
