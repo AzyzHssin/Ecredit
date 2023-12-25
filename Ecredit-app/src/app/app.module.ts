@@ -29,8 +29,6 @@ import { InputNumberModule } from "primeng/inputnumber";
 @NgModule({
   declarations: [
     AppComponent,
-
-
     ConsultationCreditComponent,
     DemCreditComponent,
 
