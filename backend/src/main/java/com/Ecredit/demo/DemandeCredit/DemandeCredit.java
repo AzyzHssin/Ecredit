@@ -35,6 +35,7 @@ public class DemandeCredit{
     private long id;
     private int montant;
     private int nbreEcheance;
+    private String etat;
     private String Observation;
     private Date dateDemande;
     @ManyToOne
