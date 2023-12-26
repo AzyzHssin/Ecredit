@@ -34,7 +34,7 @@ public class DemandeCredit{
     )
     private long id;
     private int montant;
-    private int nbreEcheance;
+//    private int nbreEcheance;
     private String etat;
     private String Observation;
     private Date dateDemande;
@@ -57,6 +57,8 @@ public class DemandeCredit{
     @OneToMany
     @JsonIgnore
     private List<DocumentFile> documentFiles;
+    @Column(name="rembourser")
+    private long  rembourser;
 
     @ManyToOne
     @JoinColumn(name = "scanned_document_id")

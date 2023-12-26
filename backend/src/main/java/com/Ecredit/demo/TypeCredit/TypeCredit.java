@@ -32,6 +32,8 @@ public class TypeCredit {
     )
     private long id;
     private String nom;
+    private int taux;
+    private int nbrEcheance ;
     @OneToMany
     @JsonIgnoreProperties("typeCredit")
     private List<PieceJointe> piecesJointes;
