@@ -9,7 +9,7 @@ import { TypeGarantieService } from './../services/type-garantie.service';
 import { DeviseGarantieService } from './../services/devise-garantie.service';
 import { NatureGarantieService } from './../services/nature-garantie.service';
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, NgForm, Validators} from '@angular/forms';
 import {SituationFamiliale} from '../Models/SituationFamiliale_Model'
 import { DemandeCredit } from '../Models/DemandeCredit_Model';
 import {TypeCredit} from '../Models/TypeCredit_Model';
@@ -126,13 +126,15 @@ export class DemCreditComponent implements OnInit {
   onUpdateGarantie(oldGuarantie:Guarantie){
 
     const objUpdate:Guarantie = {
-      "id":oldGuarantie.id,
+      "id": oldGuarantie.id,
       "valeur": this.valeurUpdateState,
       "devise": this.deviseUpdateState,
       "natureGuarantie": this.natureUpdateState,
-      "typeGuarantie": this.typeUpdateState
+      "typeGuarantie": this.typeUpdateState,
+
     };
     this.guarantieService.updateGarantie(objUpdate).subscribe((data:any)=>{
+      data.demandeCredits=null;
       this.guarantiesArrayOfDemand = this.guarantiesArrayOfDemand.filter(item => item.id !== objUpdate.id);
       this.guarantiesArrayOfDemand.push(data)
       console.log("after update ",this.guarantiesArrayOfDemand);
@@ -335,7 +337,7 @@ deleteGarantieElement(value:Guarantie){
       console.warn("no Type Credit is selected to fetch pieces jointes")
     }
   }
-  submit(){
+  submit(addForm:NgForm){
     console.log("submit is executed")
     this.showFormData();
     if(this.selectedFile){
@@ -360,6 +362,7 @@ deleteGarantieElement(value:Guarantie){
           this.demandeServ.addDemande(demande).subscribe((dataResponse:any )=>{
              console.log(dataResponse,"is saved")
              this.showSuccess("Votre demande à été envoyé");
+             addForm.resetForm()
             },(error:any)=>{
               this.showError("Echec :verifier vos donner");
             });
@@ -374,9 +377,9 @@ deleteGarantieElement(value:Guarantie){
   }
 
   }
-  refreshPage(): void {
-    this.location.replaceState(this.location.path()); // Use replaceState to trigger a reload
-    window.location.reload(); // Force a reload from the server, bypassing the browser cache
+  refreshPage(addForm:NgForm): void {
+    addForm.resetForm()
+    window.scroll(0,0)
   }
   //////////////////////////////////////Toasts////////////////////////////////////////
   showSuccess(msg:string) {

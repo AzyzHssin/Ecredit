@@ -9,5 +9,4 @@ export interface Guarantie {
     natureGuarantie: NatureGuarantie;
     devise: Devise;
     typeGuarantie: TypeGuarantie;
-    /* demandeCredit: DemandeCredit; */
   }

@@ -1,6 +1,6 @@
 <p-toast></p-toast>
-<form >
-<!-- ///////////////////////////////////////////////////////INFORMATION CLIENT///////////////////////////////////////////////// -->
+<ng-form #addForm="ngForm">
+  <!-- ///////////////////////////////////////////////////////INFORMATION CLIENT///////////////////////////////////////////////// -->
     <p-fieldset legend="Information Client">
     <div class="grid">
         <div class="col">
@@ -260,9 +260,9 @@
     </p-fieldset>
     <br>
     <div class="FormSubmitButtons">
-      <button pButton type="button" (click)="refreshPage()" label="Cancel" icon="pi pi-times"></button>
-      <p-button (onClick)="submit()" label="Envoyer" icon="pi pi-check" ></p-button>
+      <button pButton type="button" (click)="refreshPage(addForm)" label="Cancel" icon="pi pi-times"></button>
+      <p-button (onClick)="submit(addForm)" label="Envoyer" icon="pi pi-check" ></p-button>
 
     </div>
 
-   </form>
+   </ng-form>
