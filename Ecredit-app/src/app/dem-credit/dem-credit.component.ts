@@ -52,9 +52,10 @@ export class DemCreditComponent implements OnInit {
   birthday: Date | null = null;
   situationFamiliale!:string;
 
-  montant:number=0;
+  montant!:number;
   unite!:Unite;
-  nbreEcheance:number=0;
+  nbreEcheance!:number;
+  frontnbreEcheance!:number;
   observation!:string;
   selectedFile: any;
   selectedTypeCredit!:TypeCredit;
@@ -297,9 +298,25 @@ deleteGarantieElement(value:Guarantie){
       console.error('Error fetching Pieces Jointes data:', error);
     });
   }
+  onChangeUnite(){
+    console.log("this.unite on on changing the unite: ",this.unite.nom)
+    if(this.unite.nom.includes( "mensuelle")) {
+        this.frontnbreEcheance = this.nbreEcheance;
+
+
+    }
+      else if (this.unite.nom.includes("trimestrielle")) {
+        this.frontnbreEcheance = Math.floor(this.nbreEcheance/4)
+      }
+      else if (this.unite.nom.includes("semestrielle")) {
+        this.frontnbreEcheance =Math.floor(this.nbreEcheance/ 6)
+    }
+  }
   onSelectTypeCredit(){
     console.log("this.selectedTypeCredit: ",this.selectedTypeCredit)
     if(this.selectedTypeCredit){
+      this.nbreEcheance=this.selectedTypeCredit.nbrEcheance;
+      console.log("this.nbreEcheance:",this.nbreEcheance)
       this.piecesjointesService.getPiecesJointesByTypeCredit(this.selectedTypeCredit.id).subscribe((data:PieceJointe[])=>{
         this.obligedDocuments=data.map(data=>data.nom);
         console.log("obliged docs ",this.obligedDocuments);
@@ -323,7 +340,7 @@ deleteGarantieElement(value:Guarantie){
            console.log("id of new doc scanned is (from database) ",this.idDocument);
           const demande:DemandeCredit={
             "montant":this.montant,
-            "nbreEcheance":this.nbreEcheance,
+           /*  "nbreEcheance":this.nbreEcheance, */
             "observation":this.observation,
              "bankAccount":this.selectedBankAccount,
             "unite":this.unite,

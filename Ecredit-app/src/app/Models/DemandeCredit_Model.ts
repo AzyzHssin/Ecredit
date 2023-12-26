@@ -7,7 +7,7 @@ import {ScannedDocument} from "./scanned-document.module"
 export interface DemandeCredit {
   /*   id: number; */
     montant: number;
-    nbreEcheance: number;
+    /* nbreEcheance: number; */
     observation: string;
     bankAccount: BankAccount;
     unite: Unite;

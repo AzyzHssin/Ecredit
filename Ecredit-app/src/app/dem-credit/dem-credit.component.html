@@ -11,7 +11,7 @@
                     </span>
                     <span class="p-float-label">
                         <input inputId="inputnumber"  (change)="onCinChange()"
-                        [(ngModel)]="ncin" name="ncin"   pInputText >
+                        [(ngModel)]="ncin" name="ncin" maxlength="8"  pInputText >
 
                         <label for="inputgroup">Num CIN</label>
                     </span>
@@ -101,8 +101,8 @@
                     <h5>nbre echeance </h5>
 
                     <input type="text"
-                    [(ngModel)]="nbreEcheance"
-                    name="nbreEcheance" pInputText>
+                    [(ngModel)]="frontnbreEcheance"
+                    name="frontnbreEcheance" pInputText>
                 </div>
             </div>
             <div class="col-6">
@@ -114,7 +114,7 @@
                 </div>
                 <div class="text-left p-3 border-round-sm  font-bold ">
                     <h5>unité </h5>
-                    <p-dropdown [options]="uniteArray" placeholder="selectionner unite" [(ngModel)]="unite" name="unite" optionLabel="nom"></p-dropdown>
+                    <p-dropdown [options]="uniteArray" placeholder="selectionner unite" (onChange)="onChangeUnite()" [(ngModel)]="unite" name="unite" optionLabel="nom"></p-dropdown>
                 </div>
             </div>
         </div>
