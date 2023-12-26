@@ -4,7 +4,7 @@ import { PrimeNGConfig } from 'primeng/api';
 import { SacannedDocumentService } from './../services/ScannedDocument.service';
 import { Guarantie } from './../Models/Guarantie_Model';
 import { GuarantieService } from './../services/guarantie.service';
-
+import { Location } from '@angular/common';
 import { TypeGarantieService } from './../services/type-garantie.service';
 import { DeviseGarantieService } from './../services/devise-garantie.service';
 import { NatureGarantieService } from './../services/nature-garantie.service';
@@ -66,7 +66,7 @@ export class DemCreditComponent implements OnInit {
   displayMaximizable: boolean=false;
   NatureGarantieInput!:NatureGuarantie;
   TypeGarantieInput!:TypeGuarantie;
-  ValeurGarantieInput!:number;
+  ValeurGarantieInput:number=0;
   DeviseGarantieInput!:Devise;
 
   nn!:NatureGuarantie;
@@ -86,7 +86,8 @@ export class DemCreditComponent implements OnInit {
   constructor(private _formBuilder:FormBuilder,private piecesjointesService:PiecesjointesService,private demandeServ:DemandeService,private uniteServ:UniteService,
     private typecreditService:TypecreditService,private bankaccountService:BankaccountService,
     private typeGarantieService:TypeGarantieService,private deviseGarantieService:DeviseGarantieService,private natureGarantieService:NatureGarantieService,
-    private guarantieService:GuarantieService,private sacannedDocumentService:SacannedDocumentService,private messageService: MessageService, private primengConfig: PrimeNGConfig
+    private guarantieService:GuarantieService,private sacannedDocumentService:SacannedDocumentService,private messageService: MessageService, private primengConfig: PrimeNGConfig,
+    private location: Location
     )
    { }
    ngOnInit(): void {
@@ -116,6 +117,11 @@ export class DemCreditComponent implements OnInit {
       scannedDocument:this.idDocument,
       guarantiesArrayOfDemand:this.guarantiesArrayOfDemand
     });
+  }
+  isPositiveInteger(value: any): boolean {
+    // Check if the value is a positive integer
+    const integerValue = parseInt(value, 10);
+    return Number.isInteger(integerValue) && integerValue >= 0;
   }
   onUpdateGarantie(oldGuarantie:Guarantie){
 
@@ -301,15 +307,15 @@ deleteGarantieElement(value:Guarantie){
   onChangeUnite(){
     console.log("this.unite on on changing the unite: ",this.unite.nom)
     if(this.unite.nom.includes( "mensuelle")) {
-        this.frontnbreEcheance = this.nbreEcheance;
+        this.nbreEcheance = 12;
 
 
     }
       else if (this.unite.nom.includes("trimestrielle")) {
-        this.frontnbreEcheance = Math.floor(this.nbreEcheance/4)
+        this.nbreEcheance = 4
       }
       else if (this.unite.nom.includes("semestrielle")) {
-        this.frontnbreEcheance =Math.floor(this.nbreEcheance/ 6)
+        this.nbreEcheance =2
     }
   }
   onSelectTypeCredit(){
@@ -338,6 +344,7 @@ deleteGarantieElement(value:Guarantie){
         this.showSuccess("fichier est ajouté")
            this.idDocument=data;
            console.log("id of new doc scanned is (from database) ",this.idDocument);
+           this.selectedTypeCredit.nbrEcheance=this.nbreEcheance;
           const demande:DemandeCredit={
             "montant":this.montant,
            /*  "nbreEcheance":this.nbreEcheance, */
@@ -367,7 +374,10 @@ deleteGarantieElement(value:Guarantie){
   }
 
   }
-
+  refreshPage(): void {
+    this.location.replaceState(this.location.path()); // Use replaceState to trigger a reload
+    window.location.reload(); // Force a reload from the server, bypassing the browser cache
+  }
   //////////////////////////////////////Toasts////////////////////////////////////////
   showSuccess(msg:string) {
     this.messageService.add({severity:'success', summary: 'Success', detail:msg});

@@ -101,8 +101,8 @@
                     <h5>nbre echeance </h5>
 
                     <input type="text"
-                    [(ngModel)]="frontnbreEcheance"
-                    name="frontnbreEcheance" pInputText>
+                    [(ngModel)]="nbreEcheance"
+                    name="nbreEcheance" pInputText>
                 </div>
             </div>
             <div class="col-6">
@@ -125,17 +125,40 @@
     <p-fieldset legend="Garanties Proposées" [toggleable]="true" [collapsed]="true">
         <!-- ::::::::::::::::::::::::::::::::::modal:::::::::::::::::::::::::::::::::::::: -->
         <p-button (click)="showModalDialog()" icon="pi pi-external-link" label="Ajouter garantie"></p-button>
+
 <p-dialog header="Ajouter un nouveau garantie" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
     [draggable]="false" [resizable]="false">
-    <span class="ml-2">Nature</span>
-    <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="NatureGarantieInput" placeholder="Choisissez une nature guarantie" (onClick)="showStateNature()" [(ngModel)]="NatureGarantieInput"></p-dropdown>
-    <span class="ml-2">Type</span>
-    <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="TypeGarantieInput" placeholder="Choisissez un type garantie" (onClick)="showStateTypeGuarantie()" [(ngModel)]="TypeGarantieInput"></p-dropdown>
-    <span class="ml-2">Valeur</span>
-    <input type="text" pInputText [(ngModel)]="ValeurGarantieInput" placeholder="Donner une valeur du garantie" name="ValeurGarantieInput" required>
-    <span class="ml-2">Devise</span>
-    <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="DeviseGarantieInput"placeholder="Choisissez une devise de garantie" (onClick)="showStateDeviseGarantie()" [(ngModel)]="DeviseGarantieInput"></p-dropdown>
+    <div class="grid">
+      <div class="col-6">
+          <div class="text-center p-3 border-round-sm  font-bold">
+            <span class="ml-2">Devise</span><br>
+            <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="DeviseGarantieInput"placeholder="Choisissez une devise de garantie" (onClick)="showStateDeviseGarantie()" [(ngModel)]="DeviseGarantieInput"></p-dropdown>
 
+          </div>
+      </div>
+      <div class="col-6">
+          <div class="text-center p-3 border-round-sm  font-bold">
+            <span class="ml-2">Type</span><br>
+            <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="TypeGarantieInput" placeholder="Choisissez un type garantie" (onClick)="showStateTypeGuarantie()" [(ngModel)]="TypeGarantieInput"></p-dropdown>
+
+          </div>
+      </div>
+      <div class="col-6">
+          <div class="text-center p-3 border-round-sm  font-bold">
+            <span class="ml-2">Valeur</span><br>
+            <input type="text" [(ngModel)]="ValeurGarantieInput" placeholder="Donner une valeur du garantie" name="ValeurGarantieInput" required
+            [ngModelOptions]="{standalone: true}" (ngModelChange)="ValeurGarantieInput = isPositiveInteger($event) ? $event : null">
+     <div *ngIf="!isPositiveInteger(ValeurGarantieInput)">Le champ valeur à introduire doit être un entier positif.</div>
+          </div>
+      </div>
+      <div class="col-6">
+          <div class="text-center p-3 border-round-sm  font-bold">
+            <span class="ml-2">Nature</span><br>
+            <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="NatureGarantieInput" placeholder="Choisissez une nature guarantie" (onClick)="showStateNature()" [(ngModel)]="NatureGarantieInput"></p-dropdown>
+
+          </div>
+      </div>
+  </div>
 
         <ng-template pTemplate="footer">
         <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text" placeholder="" (onClick)="onConfirmDialog()"></p-button>
@@ -163,14 +186,31 @@
                         <!-- _______________________________________________________Modal Edit________________________________________________________________________ -->
                         <p-dialog header="Modifer " [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
                         [draggable]="false" [resizable]="false">
-                        <span class="ml-2">Nature</span>
-                        <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder="{{g.natureGuarantie===null? 'none':g.natureGuarantie.nom}} " [(ngModel)]="natureUpdateState"></p-dropdown>
-                        <span class="ml-2">Type</span>
-                        <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="natureUpdateState" placeholder="{{g.typeGuarantie===null? 'none':g.typeGuarantie.nom}}"  [(ngModel)]="typeUpdateState"></p-dropdown>
-                        <span class="ml-2">Valeur</span>
-                        <input type="text" pInputText  placeholder="Donner une valeur du garantie" name="natureUpdateState" placeholder={{g.valeur}} [(ngModel)]="valeurUpdateState">
-                        <span class="ml-2">Devise</span>
-                        <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="natureUpdateState"placeholder="{{g.devise===null? 'none':g.devise.nom}}" [(ngModel)]="deviseUpdateState"></p-dropdown>
+                        <div class="grid">
+                          <div class="col">
+                              <div class="text-center p-3 border-round-sm  font-bold">
+                                <span class="ml-2">Nature</span>
+                        <p-dropdown type="text" [options]="NatureGarantieArray" optionLabel="nom" name="natureUpdateState"  [(ngModel)]="natureUpdateState"></p-dropdown>
+                        <br><span class="ml-2">Type</span>
+                        <p-dropdown type="text"  [options]="TypeGarantieArray" optionLabel="nom" name="natureUpdateState"   [(ngModel)]="typeUpdateState"></p-dropdown>
+
+                              </div>
+                          </div>
+                          <div class="col">
+                              <div class="text-center p-3 border-round-sm  font-bold ">
+                                <span class="ml-2">Valeur</span>
+                                    <input type="text" pInputText  placeholder="Donner une valeur du garantie" name="natureUpdateState" placeholder={{g.valeur}} [(ngModel)]="valeurUpdateState">
+                                   <span class="ml-2">Devise</span>
+                                  <p-dropdown type="text"  [options]="DeviseGarantieArray" optionLabel="nom" name="natureUpdateState" [(ngModel)]="deviseUpdateState"></p-dropdown>
+                              </div>
+                          </div>
+
+                      </div>
+
+                        <!-- placeholder="{{g.natureGuarantie===null? 'none':g.natureGuarantie.nom}} " -->
+                        <!-- placeholder="{{g.typeGuarantie===null? 'none':g.typeGuarantie.nom}}" -->
+                        <!-- placeholder={{g.valeur}} -->
+                        <!-- placeholder="{{g.devise===null? 'none':g.devise.nom}}" -->
 
                          <ng-template pTemplate="footer">
                         <p-button icon="pi pi-check" (click)="onUpdateGarantie(g)"   styleClass="p-button-text"></p-button>
@@ -215,12 +255,12 @@
     </p-fieldset>
 
 <!-- /////////////////////////////////////////////////////////OBSERVATION///////////////////////////////////////////////////// -->
-    <p-fieldset legend="Observation" [toggleable]="true" [collapsed]="true">
+    <p-fieldset ngClass="carta"  legend="Observation" [toggleable]="true" [collapsed]="true">
         <textarea pInputTextarea [(ngModel)]="observation" name="observation" id="text" placeholder="your text is here"></textarea>
     </p-fieldset>
     <br>
     <div class="FormSubmitButtons">
-      <button pButton type="button" label="Cancel" icon="pi pi-times"></button>
+      <button pButton type="button" (click)="refreshPage()" label="Cancel" icon="pi pi-times"></button>
       <p-button (onClick)="submit()" label="Envoyer" icon="pi pi-check" ></p-button>
 
     </div>

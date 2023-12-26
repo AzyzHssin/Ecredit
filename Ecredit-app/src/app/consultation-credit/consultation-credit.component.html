@@ -15,7 +15,7 @@
     </ng-template>
     <ng-template pTemplate="body" let-g let-i="rowIndex" >
         <tr >
-            <th (click)="showDemandeInfoDialog(g)">{{i}}</th>
+            <th (click)="showDemandeInfoDialog(g)">{{i+1}}</th>
             <td (click)="showDemandeInfoDialog(g)">{{g.id===null? 'none':g.id }}</td>
             <td>{{g.bankAccount.customer===null? 'none':g.bankAccount.customer.firstName}}</td>
             <td>{{g.typeCredit.nom===null?'none':g.typeCredit.nom}}</td>
