@@ -1,130 +1,156 @@
-/*  @import '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
 
-.logoInThemiddle{
-    height:40px ;
-    width:40px ;
-    border-radius:35px;
-
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+.fa-2x {
+font-size: 2em;
 }
-html, body { height: 100%; }
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 180vh;
-      margin: 0;
-
- }
-.example-form-field {
-    width: 200px;
-  }
-  .example-form-field-devise{
-    width:50px;
-
-
-  }
-  .deviseText{
-   margin-left: 40px;
-   margin-right: 20px;
-  }
-  .navButton{
-    background-color: aliceblue;
-
-  }
-  .space{
-    margin: 10px;
-    width: 20px;
-  }
-
-  .space-label{
-        margin-left: 40px;
-        margin-right: 20px;
-  }
-
-#addButton{
-    margin-left: 30px;
-    background-color: rgb(114, 114, 245);
-}
-#deleteButton{
-    background-color: rgb(224, 100, 100);
-}
-#editButton{
-    margin-left: 30px;
-    background-color: rgb(195, 238, 131);
-}
-.Observation{
-  width: 95%;
-margin: 20px;
+.fa {
+position: relative;
+display: table-cell;
+width: 60px;
+height: 36px;
+text-align: center;
+vertical-align: middle;
+font-size:20px;
 }
 
-#Submit{
-  margin-left: 50%;
-  background-color: rgb(114, 114, 245);
-  color:white;
-}
-#Submit:hover{
-  background-color: rgb(165, 165, 245);
-  color: rgb(255, 255, 255);
+
+.main-menu:hover,nav.main-menu.expanded {
+width:250px;
+overflow:visible;
 }
 
-.button-container {
-  text-align: center;
-}
-.button-container button {
-  margin: 5px;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  position: relative;
-}
-.files-upload{
+.main-menu {
 
-  border-radius: 5px;
-  justify-content: center;
-
+  background: rgb(65,170,255);
+  background: linear-gradient(0deg, rgba(65,170,255,1) 0%, rgba(162,255,254,0.7875525210084033) 100%);
+border-right:1px solid #e5e5e5;
+position:fixed;
+top:0;
+bottom:0;
+height:100%;
+left:0;
+width:60px;
+overflow:hidden;
+-webkit-transition:width .05s linear;
+transition:width .05s linear;
+-webkit-transform:translateZ(0) scale(1,1);
+z-index:1000;
 }
-.drop-container {
-  position: relative;
-  display: flex;
-  gap: 10px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100px;
-  padding: 20px;
-  border-radius: 10px;
-  border: 2px dashed #555;
-  color: #444;
-  cursor: pointer;
+
+.main-menu>ul {
+margin:7px 0;
+}
+
+.main-menu li {
+position:relative;
+display:block;
+margin-top: 20px;
+padding-right: 10px;
+width:250px;
+}
+.main-menu li:hover{
+
 
 }
 
-.drop-container:hover {
-  background: #eee;
-  border-color: #111;
-}
+.main-menu li>a {
+position:relative;
+display:table;
+border-collapse:collapse;
+border-spacing:0;
+color:#999;
 
-.drop-container:hover .drop-title {
-  color: #222;
-}
-
-.drop-title {
-  color: #444;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  transition: color .2s ease-in-out;
-}
-
-#Card{
-  border:3px solid rgb(240, 240, 240);
-  border-radius: 15px;
-  width: 120vh;
+ font-family: arial;
+font-size: 14px;
+text-decoration:none;
+-webkit-transform:translateZ(0) scale(1,1);
+-webkit-transition:all .1s linear;
+transition:all .1s linear;
 
 }
- */
+
+.main-menu .nav-icon {
+position:relative;
+display:table-cell;
+width:60px;
+height:36px;
+text-align:center;
+vertical-align:middle;
+font-size:18px;
+}
+
+.main-menu .nav-text {
+position:relative;
+display:table-cell;
+vertical-align:middle;
+width:190px;
+font-size:18px;
+font-weight: bold;
+border:2px #fff solid;
+padding: 5px;
+border-radius: 5px;
+color: #000000;
+  font-family: 'Titillium Web', sans-serif;
+}
+.main-menu .nav-text:hover{
+
+  background: rgb(190, 234, 255);
+}
+#route{
+  margin-left: 10px;
+}
+.main-menu>ul.logout {
+position:absolute;
+left:0;
+bottom:0;
+}
+
+.no-touch .scrollable.hover {
+overflow-y:hidden;
+}
+
+.no-touch .scrollable.hover:hover {
+overflow-y:auto;
+overflow:visible;
+}
+
+a:hover,a:focus {
+text-decoration:none;
+}
+
+nav {
+-webkit-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+-o-user-select:none;
+user-select:none;
+}
+
+nav ul,nav li {
+outline:0;
+margin:0;
+padding:0;
+}
+.main-menu li:hover>a,nav.main-menu li.active>a,.dropdown-menu>li>a:hover,.dropdown-menu>li>a:focus,.dropdown-menu>.active>a,.dropdown-menu>.active>a:hover,.dropdown-menu>.active>a:focus,.no-touch .dashboard-page nav.dashboard-menu ul li:hover a,.dashboard-page nav.dashboard-menu ul li.active a {
+color:#fff;
+background-color:#000000;
+}
+.area {
+float: left;
+background: #e2e2e2;
+width: 100%;
+height: 100%;
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+
+
+
  #editbutton{
   background-color:rgb(111, 111, 255) ;
  }
@@ -171,3 +197,5 @@ color: #2196F3;
 .green{
   color: greenyellow;
 }
+
+

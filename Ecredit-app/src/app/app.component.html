@@ -345,23 +345,47 @@
 
 
 
-      <div class="w3-sidebar w3-bar-block" style="width:15%">
-        <p-fieldset legend="Routes" [toggleable]="true">
+      <div  >
+        <!-- <p-fieldset legend="Routes" [toggleable]="true">
 
 
 
             <button id="navButton" (click)="redirectToDemandeRoute()" >Demande Credit</button>
-<br><br>
+          <br><br>
 
 
             <button  id="navButton" (click)="redirectToConsultationRoute()"  > Consultation Credit</button>
 
 
-      </p-fieldset>
+         </p-fieldset> -->
+         <div class="area"></div><nav class="main-menu">
+          <ul>
+
+              <li class="has-subnav">
+
+                      <i class="fa fa-globe fa-2x"></i>
+                      <span class="nav-text" (click)="redirectToConsultationRoute()">
+                        Consultation Credit
+                      </span>
+
+
+              </li>
+              <li class="has-subnav">
+
+                     <i class="fa fa-comments fa-2x"></i>
+                      <span class="nav-text" (click)="redirectToDemandeRoute()">
+                        Demande Credit
+                      </span>
+
+
+              </li>
+
+          </ul>
+      </nav>
+
       </div>
 
-
-
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 		<div style="margin-left:15%" id="rghtside">
 				<router-outlet></router-outlet>
 			</div>
