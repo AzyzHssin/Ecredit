@@ -1,5 +1,7 @@
 package com.Ecredit.demo.TypeGuarantie;
 
+import com.Ecredit.demo.Models.TypeGuarantie;
+import com.Ecredit.demo.Service.TypeGuarantieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

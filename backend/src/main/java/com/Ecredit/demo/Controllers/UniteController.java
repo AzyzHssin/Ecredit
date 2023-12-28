@@ -1,5 +1,7 @@
 package com.Ecredit.demo.Unite;
 
+import com.Ecredit.demo.Models.Unite;
+import com.Ecredit.demo.Service.UniteService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

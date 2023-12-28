@@ -1,8 +1,8 @@
 package com.Ecredit.demo.BankAccount;
 
-import com.Ecredit.demo.Customer.Customer;
+import com.Ecredit.demo.Models.BankAccount;
+import com.Ecredit.demo.Service.BankAccountService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

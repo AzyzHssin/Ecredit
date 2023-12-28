@@ -1,6 +1,7 @@
 package com.Ecredit.demo.Devise;
 
-import com.Ecredit.demo.Guarantie.Guarantie;
+import com.Ecredit.demo.Models.Devise;
+import com.Ecredit.demo.Service.DeviseService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.*;

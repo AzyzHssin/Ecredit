@@ -1,6 +1,7 @@
 package com.Ecredit.demo.Guarantie;
 
-import com.Ecredit.demo.NatureGuarantie.NatureGuarantie;
+import com.Ecredit.demo.Models.Guarantie;
+import com.Ecredit.demo.Service.GuarantieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

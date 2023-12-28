@@ -1,6 +1,7 @@
 package com.Ecredit.demo.Customer;
 
-import com.Ecredit.demo.DemandeCredit.DemandeCredit;
+import com.Ecredit.demo.Models.Customer;
+import com.Ecredit.demo.Service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

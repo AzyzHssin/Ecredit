@@ -1,7 +1,9 @@
-package com.Ecredit.demo.BankAccount;
+package com.Ecredit.demo.Service;
 
-import com.Ecredit.demo.Customer.Customer;
-import com.Ecredit.demo.Customer.CustomerRepo;
+import com.Ecredit.demo.Repositories.BankAccountRepo;
+import com.Ecredit.demo.Models.Customer;
+import com.Ecredit.demo.Repositories.CustomerRepo;
+import com.Ecredit.demo.Models.BankAccount;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

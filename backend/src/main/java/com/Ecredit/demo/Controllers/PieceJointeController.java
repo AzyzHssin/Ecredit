@@ -1,6 +1,7 @@
 package com.Ecredit.demo.PieceJointe;
 
-import com.Ecredit.demo.SituationFamiliale.SituationFamiliale;
+import com.Ecredit.demo.Models.PieceJointe;
+import com.Ecredit.demo.Service.PieceJointeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

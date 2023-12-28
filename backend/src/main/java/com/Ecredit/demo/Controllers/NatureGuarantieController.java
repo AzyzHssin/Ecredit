@@ -1,7 +1,7 @@
 package com.Ecredit.demo.NatureGuarantie;
 
-import com.Ecredit.demo.Devise.Devise;
-import com.Ecredit.demo.PieceJointe.PieceJointe;
+import com.Ecredit.demo.Models.NatureGuarantie;
+import com.Ecredit.demo.Service.NatureGuarantieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

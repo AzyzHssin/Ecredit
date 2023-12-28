@@ -107,7 +107,12 @@
 
       Les Pieces jointes
       <ul *ngIf="dialogueData?.scannedDocument">
-        <li>{{ dialogueData.scannedDocument?.name }}</li>
+        <li>{{ dialogueData.scannedDocument?.name }} </li>
+        <br>
+        <button pButton (click)="downloadPDF()" label="download pdf"> </button>
+
+
+
       </ul>
       <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
         <ng-template pTemplate="footer">

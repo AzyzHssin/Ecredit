@@ -1,3 +1,4 @@
+import { SacannedDocumentService } from './../services/ScannedDocument.service';
 import { DemandeCredit } from './../Models/DemandeCredit_Model';
 import { Component, OnInit } from '@angular/core';
 import {DemandeService} from "../services/DemandeService"
@@ -11,8 +12,9 @@ import {MessageService} from 'primeng/api';
   providers: [MessageService]
 })
 export class ConsultationCreditComponent implements OnInit {
+  documentId: number=0;
 
-  constructor(private demandeServ:DemandeService,private messageService: MessageService) { }
+  constructor(private sannedDocumentService:SacannedDocumentService,private demandeServ:DemandeService,private messageService: MessageService) { }
   displayInfoDialogue:boolean=false;
   demandeArray!:DemandeCredit[];
   dialogueData!:DemandeCredit;
@@ -61,5 +63,24 @@ showError(msg:string) {
 showDemandeInfoDialog(demande:DemandeCredit){
   this.displayInfoDialogue=true
   this.dialogueData=demande;
+
+  this.documentId=demande.scannedDocument.id
+  console.log(demande);
+
 }
+downloadPDF(): void {
+  this.sannedDocumentService.downloadPdf(this.documentId).subscribe(
+    (data: Blob) => {
+      const blob = new Blob([data], { type: 'application/pdf' });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      link.download = `document_${this.documentId}.pdf`;
+      link.click();
+    },
+    (error) => {
+      console.error('Error downloading PDF:', error);
+    }
+  );
+}
+
 }

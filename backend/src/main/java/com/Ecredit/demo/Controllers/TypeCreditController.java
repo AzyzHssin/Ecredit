@@ -1,6 +1,7 @@
 package com.Ecredit.demo.TypeCredit;
 
-import com.Ecredit.demo.TypeGuarantie.TypeGuarantie;
+import com.Ecredit.demo.Models.TypeCredit;
+import com.Ecredit.demo.Service.TypeCreditService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

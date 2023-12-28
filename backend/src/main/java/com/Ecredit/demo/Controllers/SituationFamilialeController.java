@@ -1,16 +1,13 @@
 package com.Ecredit.demo.SituationFamiliale;
 
-import com.Ecredit.demo.TypeCredit.TypeCredit;
-import lombok.AllArgsConstructor;
+import com.Ecredit.demo.Models.SituationFamiliale;
+import com.Ecredit.demo.Service.SituationFamilialeService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.ID;
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/SituationFamiliale")

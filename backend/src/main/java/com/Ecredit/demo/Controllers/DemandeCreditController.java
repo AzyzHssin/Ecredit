@@ -1,10 +1,8 @@
 package com.Ecredit.demo.DemandeCredit;
 
-import com.Ecredit.demo.BankAccount.BankAccount;
-import com.Ecredit.demo.BankAccount.BankAccountService;
-import com.Ecredit.demo.Devise.Devise;
+import com.Ecredit.demo.Models.DemandeCredit;
+import com.Ecredit.demo.Service.DemandeCreditService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

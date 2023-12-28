@@ -1,5 +1,7 @@
 package com.Ecredit.demo.File;
 
+import com.Ecredit.demo.Models.DocumentFile;
+import com.Ecredit.demo.Service.DocumentFILEService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
