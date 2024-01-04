@@ -25,6 +25,7 @@ import { PiecesjointesService } from './../services/piecesjointes.service';
 import { NatureGuarantie } from '../Models/NatureGuarantie_Model';
 import { TypeGuarantie } from '../Models/TypeGuarantie_Model';
 import { Devise } from '../Models/Devise_Model';
+
 ////////////////////////////////////////////////////////////////
 @Component({
   selector: 'app-dem-credit',
@@ -137,7 +138,7 @@ export class DemCreditComponent implements OnInit {
       data.demandeCredits=null;
       this.guarantiesArrayOfDemand = this.guarantiesArrayOfDemand.filter(item => item.id !== objUpdate.id);
       this.guarantiesArrayOfDemand.push(data)
-      console.log("after update ",this.guarantiesArrayOfDemand);
+      // console.log("after update ",this.guarantiesArrayOfDemand);
       this.showSuccess("Garantie est modifié")
 
     })
@@ -147,7 +148,7 @@ export class DemCreditComponent implements OnInit {
   getTypeGarantieRequest(){
     this.typeGarantieService.getTypeGarantie().subscribe((data:TypeGuarantie[])=>{
       this.TypeGarantieArray=data;
-      console.log("Type Garantie is fetched",data,"--------------")
+      // console.log("Type Garantie is fetched",data,"--------------")
     },(error:any) => {
       console.error('Error fetching type Garantie data:', error);
     });
@@ -155,7 +156,7 @@ export class DemCreditComponent implements OnInit {
   getNatureGarantieRequest(){
     this.natureGarantieService.getNatureGarantie().subscribe((data:NatureGuarantie[])=>{
       this.NatureGarantieArray=data;
-      console.log(" NatureGuarantie is fetched",data,"--------------")
+      // console.log(" NatureGuarantie is fetched",data,"--------------")
     },(error:any) => {
       console.error('Error fetching NatureGuarantie data:', error);
     });
@@ -164,7 +165,7 @@ export class DemCreditComponent implements OnInit {
   getDeviseGarantieRequest(){
     this.deviseGarantieService.getDeviseGarantie().subscribe((data:Devise[])=>{
       this.DeviseGarantieArray=data;
-      console.log(" DeviseGarantie is fetched",data,"--------------")
+      // console.log(" DeviseGarantie is fetched",data,"--------------")
     },(error:any) => {
       console.error('Error fetching DeviseGarantie data:', error);
     });
@@ -211,14 +212,14 @@ this.guarantieService.addGuarantie(objectGarantieToSave).subscribe((data:any)=>{
 deleteGarantieElement(value:Guarantie){
   this.guarantieService.deleteGuarantie(value.id).subscribe(data=>{
     this.guarantiesArrayOfDemand=this.guarantiesArrayOfDemand.filter(item=>item!==value);
-   console.log("tab after deleting one element ",this.guarantiesArrayOfDemand);
+  //  console.log("tab after deleting one element ",this.guarantiesArrayOfDemand);
     this.showSuccess("Guarantie est supprimé")
   })
 
 }
 
   onCinChange(){
-    console.log("on cin change is executed with cin value :",this.ncin)
+    // console.log("on cin change is executed with cin value :",this.ncin)
     if(this.ncin.toString().length===8){
       this.getBankAccountsByCustomerId(this.ncin);
       console.log("request fetch is executed using this id ncin:",this.ncin);
@@ -230,7 +231,7 @@ deleteGarantieElement(value:Guarantie){
   }
   onFileChange(event: any) {
     this.selectedFile = event.files;
-    console.log('Selected file:', this.selectedFile);
+    // console.log('Selected file:', this.selectedFile);
 
   }
 
@@ -246,7 +247,7 @@ deleteGarantieElement(value:Guarantie){
   getUnite(){
     this.uniteServ.getUnite().subscribe((data:Unite[])=>{
       this.uniteArray=data;
-      console.log("data is detched ",data,"*********");
+      // console.log("data is detched ",data,"*********");
     },(error:any) => {
       console.error('Error fetching Unite data:', error);
     }
@@ -256,7 +257,7 @@ deleteGarantieElement(value:Guarantie){
   getTypecredit(){
     this.typecreditService.getTypeCredit().subscribe((data:TypeCredit[])=>{
       this.typecreditArray=data;
-      console.log("Type Credits is fetched",data,"--------------")
+      // console.log("Type Credits is fetched",data,"--------------")
     },(error:any) => {
       console.error('Error fetching type credits data:', error);
     })
@@ -272,7 +273,7 @@ deleteGarantieElement(value:Guarantie){
         this.birthday=new Date(this.bankAccountArray[0].customer.birthday);
         this.situationFamiliale=this.bankAccountArray[0].customer.situationFamiliale.situation;
        /*  this.dateOvertureCompte=new Date(this.bankAccountArray[0].createDate); */
-        console.log("BankAccounts is fetched",data,"\n------------------------------")
+        // console.log("BankAccounts is fetched",data,"\n------------------------------")
         this.fetchedCustomer=true;
         this.showSuccess(`Le system a trouvé les comptes bancaires de client qu'il a la carte cin numero: ${id}`)
       }
@@ -289,7 +290,7 @@ deleteGarantieElement(value:Guarantie){
 
   onSelectingAccount(): void {
     if (this.selectedBankAccount) {
-      console.log('Selected bank account:', this.selectedBankAccount.id);
+      // console.log('Selected bank account:', this.selectedBankAccount.id);
       this.devise=this.selectedBankAccount.devise;
       this.dateOvertureCompte = new Date(this.selectedBankAccount.createDate);
 
@@ -301,13 +302,13 @@ deleteGarantieElement(value:Guarantie){
   getPiecesJointes(){
     this.piecesjointesService.getPiecesJointes().subscribe((data:PieceJointe[])=>{
       this.PieceJointeArray=data;
-      console.log("Pieces Jointes are fetched \n",this.PieceJointeArray);
+      // console.log("Pieces Jointes are fetched \n",this.PieceJointeArray);
     },(error:any) => {
       console.error('Error fetching Pieces Jointes data:', error);
     });
   }
   onChangeUnite(){
-    console.log("this.unite on on changing the unite: ",this.unite.nom)
+    // console.log("this.unite on on changing the unite: ",this.unite.nom)
     if(this.unite.nom.includes( "mensuelle")) {
         this.nbreEcheance = 12;
 
@@ -321,13 +322,13 @@ deleteGarantieElement(value:Guarantie){
     }
   }
   onSelectTypeCredit(){
-    console.log("this.selectedTypeCredit: ",this.selectedTypeCredit)
+    // console.log("this.selectedTypeCredit: ",this.selectedTypeCredit)
     if(this.selectedTypeCredit){
       this.nbreEcheance=this.selectedTypeCredit.nbrEcheance;
-      console.log("this.nbreEcheance:",this.nbreEcheance)
+      // console.log("this.nbreEcheance:",this.nbreEcheance)
       this.piecesjointesService.getPiecesJointesByTypeCredit(this.selectedTypeCredit.id).subscribe((data:PieceJointe[])=>{
         this.obligedDocuments=data.map(data=>data.nom);
-        console.log("obliged docs ",this.obligedDocuments);
+        // console.log("obliged docs ",this.obligedDocuments);
 
 
       })
@@ -338,14 +339,14 @@ deleteGarantieElement(value:Guarantie){
     }
   }
   submit(addForm:NgForm){
-    console.log("submit is executed")
-    this.showFormData();
+    // console.log("submit is executed")
+    // this.showFormData();
     if(this.selectedFile){
       this.selectedFile.forEach((file: File) => {
       this.sacannedDocumentService.uploadPdf(file).subscribe((data:number)=>{
         this.showSuccess("fichier est ajouté")
            this.idDocument=data;
-           console.log("id of new doc scanned is (from database) ",this.idDocument);
+          //  console.log("id of new doc scanned is (from database) ",this.idDocument);
            this.selectedTypeCredit.nbrEcheance=this.nbreEcheance;
           const demande:DemandeCredit={
             "montant":this.montant,
@@ -360,7 +361,7 @@ deleteGarantieElement(value:Guarantie){
             "etat":""
           };
           this.demandeServ.addDemande(demande).subscribe((dataResponse:any )=>{
-             console.log(dataResponse,"is saved")
+            //  console.log(dataResponse,"is saved")
              this.showSuccess("Votre demande à été envoyé");
              addForm.resetForm()
             },(error:any)=>{
@@ -370,10 +371,10 @@ deleteGarantieElement(value:Guarantie){
 
       );
       this.showFormData();
-      
+
     });
   }else{
-    console.log("plz upload file");
+    console.log("please upload file");
     this.showError("mettez les pieces jointes");
   }
 

@@ -23,7 +23,7 @@ export class ConsultationCreditComponent implements OnInit {
   }
 
   fetchDemandes(){
-    console.log("called");
+    // console.log("called");
 
     this.demandeServ.getDemande().subscribe((data:DemandeCredit[])=>{
       this.demandeArray=data;
@@ -32,7 +32,7 @@ export class ConsultationCreditComponent implements OnInit {
 
 
       });
-      console.log(" demandeCredit array is fetched",data,"--------------")
+      // console.log(" demandeCredit array is fetched",data,"--------------")
     },(error:any) => {
       console.error('Error fetching demandeCredit data:', error);
     });
@@ -65,7 +65,7 @@ showDemandeInfoDialog(demande:DemandeCredit){
   this.dialogueData=demande;
 
   this.documentId=demande.scannedDocument.id
-  console.log(demande);
+  // console.log(demande);
 
 }
 downloadPDF(): void {
