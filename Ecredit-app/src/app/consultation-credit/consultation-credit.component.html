@@ -4,7 +4,6 @@
     <ng-template pTemplate="header">
         <tr>
             <th>N</th>
-
             <th>ID demande</th>
             <th>Nom Client</th>
             <th>Type Credit</th>
@@ -25,12 +24,14 @@
               <ng-container *ngIf="g.etat === 'En Cours'; else IconVued">
 
                 <button (click)="changerEtat(g,'Validé')" pButton pRipple type="button" icon="pi pi-check" class="p-button-rounded p-button-outlined"></button>
-                <button (click)="changerEtat(g,'Rejeté')" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined"></button>
-
+                <button (click)="changerEtat(g,'Rejeté')" pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" id="deleteDemandeBtn"></button>
+                <a href="http://localhost:9092/api/Jasper/report/pdf/{{g.id}}" pButton pRipple type="button" icon="pi-file-pdf" class="p-button-rounded " id="rapportIcon"></a>
               </ng-container>
 
               <ng-template #IconVued>
-            <div><i class="pi  pi-eye" style="font-size: 2rem"></i></div>
+            <div><i class="pi  pi-eye" style="font-size: 2rem"></i>
+              <a href="http://localhost:9092/api/Jasper/report/pdf/{{g.id}}" pButton pRipple type="button" icon="pi-file-pdf" class="p-button-rounded " id="rapportIcon"></a>
+            </div>
 
               </ng-template>
             </td>

@@ -198,4 +198,10 @@ color: #2196F3;
   color: greenyellow;
 }
 
-
+#rapportIcon{
+  margin-left: 10px;
+}
+#deleteDemandeBtn{
+  margin-left: 10px;
+  background-image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/391px-PDF_file_icon.svg.png";
+}
