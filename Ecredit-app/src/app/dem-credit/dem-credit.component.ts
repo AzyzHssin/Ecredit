@@ -380,7 +380,8 @@ deleteGarantieElement(value:Guarantie){
 
   }
   refreshPage(addForm:NgForm): void {
-    addForm.resetForm()
+    addForm.resetForm();
+  /*   location.reload(); */
     window.scroll(0,0)
   }
   //////////////////////////////////////Toasts////////////////////////////////////////
