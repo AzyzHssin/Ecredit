@@ -65,16 +65,17 @@ showDemandeInfoDialog(demande:DemandeCredit){
   this.dialogueData=demande;
 
   this.documentId=demande.scannedDocument.id
-  // console.log(demande);
+  console.log(demande);
 
 }
-downloadPDF(): void {
-  this.sannedDocumentService.downloadPdf(this.documentId).subscribe(
+downloadPDF(idDoc:number): void {
+  console.log("id pdf ",idDoc)
+  this.sannedDocumentService.downloadPdf(idDoc).subscribe(
     (data: Blob) => {
       const blob = new Blob([data], { type: 'application/pdf' });
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(blob);
-      link.download = `document_${this.documentId}.pdf`;
+      link.download = `document_${idDoc}.pdf`;
       link.click();
     },
     (error) => {

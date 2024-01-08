@@ -110,7 +110,7 @@
       <ul *ngIf="dialogueData?.scannedDocument">
         <li>{{ dialogueData.scannedDocument?.name }} </li>
         <br>
-        <button pButton (click)="downloadPDF()" label="download pdf"> </button>
+        <button pButton (click)="downloadPDF(dialogueData.scannedDocument.id)" label="download pdf"> </button>
 
 
 
@@ -119,5 +119,7 @@
         <ng-template pTemplate="footer">
             <p-button icon="pi pi-check" (click)="displayInfoDialogue=false" label="Ok" styleClass="p-button-text"></p-button>
         </ng-template>
+        <h5>Observation</h5>
+        <p>{{dialogueData.observation?dialogueData.observation:""}}</p>
 </p-dialog>
 </p-fieldset>
